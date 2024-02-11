@@ -1,0 +1,7 @@
+public enum FormOfEducation
+{
+ Full-time,
+ Part-time,
+ Evening,
+ Distant
+}

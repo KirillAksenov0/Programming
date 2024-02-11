@@ -1,0 +1,9 @@
+public enum SmartphoneMakers
+{
+ Samsung,
+ Apple,
+ Xiaomi,
+ Huawei,
+ Realme,
+ Oppo
+}
