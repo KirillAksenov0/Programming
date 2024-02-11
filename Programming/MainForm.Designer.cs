@@ -2,7 +2,7 @@
 {
 
     
-    partial class Form1
+    partial class MainForm : Form
     {
         /// <summary>
         ///  Required designer variable.
