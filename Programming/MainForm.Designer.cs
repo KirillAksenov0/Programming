@@ -1,5 +1,7 @@
-﻿namespace Programming
+﻿namespace Programming.View
 {
+
+    
     partial class Form1
     {
         /// <summary>
