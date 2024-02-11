@@ -6,5 +6,10 @@ namespace Programming
         {
             InitializeComponent();
         }
+
+        private void InitializeComponent()
+        {
+
+        }
     }
 }
