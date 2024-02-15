@@ -86,7 +86,7 @@
             ValueLabel.Name = "ValueLabel";
             ValueLabel.Size = new Size(68, 20);
             ValueLabel.TabIndex = 5;
-            ValueLabel.Text = "Int value;";
+            ValueLabel.Text = "Int value:";
             // 
             // ValuesTextBox
             // 
@@ -130,6 +130,7 @@
             EnumsListBox.Name = "EnumsListBox";
             EnumsListBox.Size = new Size(150, 104);
             EnumsListBox.TabIndex = 0;
+            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
             // MainForm
             // 

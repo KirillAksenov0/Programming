@@ -1,4 +1,4 @@
-﻿public enum SmartphoneManufactures
+﻿public enum Manufactures
 {
     Samsung,
     LG,
