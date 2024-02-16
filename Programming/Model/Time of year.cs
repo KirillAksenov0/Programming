@@ -3,5 +3,5 @@
     Summer,
     Autumn,
     Winter,
-    spring,
+    Spring,
 }

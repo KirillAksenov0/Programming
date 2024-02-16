@@ -30,6 +30,11 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            SeasonGroupBox = new GroupBox();
+            SeasonLabel = new Label();
+            GoButton = new Button();
+            ChooseSeasonLabel = new Label();
+            SeasonComboBox = new ComboBox();
             parsingGroupBox = new GroupBox();
             ValueEquivalentLabel = new Label();
             parseButton = new Button();
@@ -44,6 +49,7 @@
             EnumsListBox = new ListBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            SeasonGroupBox.SuspendLayout();
             parsingGroupBox.SuspendLayout();
             EnumsGroupBox.SuspendLayout();
             SuspendLayout();
@@ -55,20 +61,69 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(720, 395);
+            tabControl1.Size = new Size(721, 395);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(SeasonGroupBox);
             tabPage1.Controls.Add(parsingGroupBox);
             tabPage1.Controls.Add(EnumsGroupBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(712, 362);
+            tabPage1.Size = new Size(713, 362);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // SeasonGroupBox
+            // 
+            SeasonGroupBox.Controls.Add(SeasonLabel);
+            SeasonGroupBox.Controls.Add(GoButton);
+            SeasonGroupBox.Controls.Add(ChooseSeasonLabel);
+            SeasonGroupBox.Controls.Add(SeasonComboBox);
+            SeasonGroupBox.Location = new Point(362, 216);
+            SeasonGroupBox.Name = "SeasonGroupBox";
+            SeasonGroupBox.Size = new Size(347, 138);
+            SeasonGroupBox.TabIndex = 2;
+            SeasonGroupBox.TabStop = false;
+            SeasonGroupBox.Text = "Season handle";
+            // 
+            // SeasonLabel
+            // 
+            SeasonLabel.AutoSize = true;
+            SeasonLabel.Location = new Point(6, 96);
+            SeasonLabel.Name = "SeasonLabel";
+            SeasonLabel.Size = new Size(0, 20);
+            SeasonLabel.TabIndex = 6;
+            // 
+            // GoButton
+            // 
+            GoButton.Location = new Point(247, 57);
+            GoButton.Name = "GoButton";
+            GoButton.Size = new Size(94, 29);
+            GoButton.TabIndex = 5;
+            GoButton.Text = "Go!";
+            GoButton.UseVisualStyleBackColor = true;
+            GoButton.Click += GoButton_Click;
+            // 
+            // ChooseSeasonLabel
+            // 
+            ChooseSeasonLabel.AutoSize = true;
+            ChooseSeasonLabel.Location = new Point(6, 34);
+            ChooseSeasonLabel.Name = "ChooseSeasonLabel";
+            ChooseSeasonLabel.Size = new Size(107, 20);
+            ChooseSeasonLabel.TabIndex = 4;
+            ChooseSeasonLabel.Text = "Choose season";
+            // 
+            // SeasonComboBox
+            // 
+            SeasonComboBox.FormattingEnabled = true;
+            SeasonComboBox.Location = new Point(6, 58);
+            SeasonComboBox.Name = "SeasonComboBox";
+            SeasonComboBox.Size = new Size(228, 28);
+            SeasonComboBox.TabIndex = 0;
             // 
             // parsingGroupBox
             // 
@@ -190,12 +245,15 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(720, 395);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(721, 395);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Form1";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            SeasonGroupBox.ResumeLayout(false);
+            SeasonGroupBox.PerformLayout();
             parsingGroupBox.ResumeLayout(false);
             parsingGroupBox.PerformLayout();
             EnumsGroupBox.ResumeLayout(false);
@@ -219,5 +277,10 @@
         private TextBox ParsingTextBox;
         private Label ValueEquivalentLabel;
         private Button parseButton;
+        private GroupBox SeasonGroupBox;
+        private ComboBox SeasonComboBox;
+        private Label ChooseSeasonLabel;
+        private Button GoButton;
+        private Label SeasonLabel;
     }
 }

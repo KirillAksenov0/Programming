@@ -9,6 +9,7 @@ namespace Programming
         {
             InitializeComponent();
             PopulateEnumsListBox();
+            FillingSeasonComboBox();
         }
 
         private void PopulateEnumsListBox()
@@ -31,7 +32,7 @@ namespace Programming
         {
             ListBox EnumListBox = (ListBox)sender;
 
-            //Проверяем какой элемент выбран в EnumsListBox
+            //Проверяем какой цвет выбран в EnumsListBox
             switch (EnumsListBox.SelectedItem.ToString())
             {
                 //Выбран "Color"
@@ -111,29 +112,69 @@ namespace Programming
         {
             var inputWeekday = ParsingTextBox.Text;
             Weekday outputWeekday;
-            
+
             //Проверяем, можно ли преобразовать введенное значение к типу Weekday
             if (Enum.TryParse(inputWeekday, true, out outputWeekday))
             {
-             //получаем номер дня недели и выводим сообщение
-             int dayNumber = Array.IndexOf(Enum.GetValues(typeof(Weekday)), outputWeekday) + 1;
-             ValueEquivalentLabel.Text = $" Это день недели ({outputWeekday} = {dayNumber})";
-                
+                //получаем номер дня недели и выводим сообщение
+                int dayNumber = Array.IndexOf(Enum.GetValues(typeof(Weekday)), outputWeekday) + 1;
+                ValueEquivalentLabel.Text = $" Это день недели ({outputWeekday} = {dayNumber})";
+
             }
             else
             {
-              //Если не удалось преобразовать
-              ValueEquivalentLabel.Text = "Нет такого дня недели";
+                //Если не удалось преобразовать
+                ValueEquivalentLabel.Text = "Нет такого дня недели";
             }
-            
-            
+
         }
 
+        private void FillingSeasonComboBox()
+        {
+            //Заполнение SeasonComboBox
+            foreach (TimeOfYear seasonName in Enum.GetValues(typeof(TimeOfYear)))
 
+                SeasonComboBox.Items.Add(seasonName);
+        }
 
+        private void GoButton_Click(object sender, EventArgs e)
+        {
+            //Проверяем какое время года выбрано в SeasonComboBox
+            switch (SeasonComboBox.Text)
+            {
+                //Выбран "Summer"
+                case "Summer":
 
+                    this.BackColor = SystemColors.Control;
+                    SeasonLabel.Text = "Ура! Лето!";
+                    break;
+                //Выбран "Autumn"
+                case "Autumn":
+                    SeasonLabel.Text = " ";
+                    this.BackColor = System.Drawing.Color.SandyBrown;
+                    break;
+                //Выбран "Winter"
+                case "Winter":
+                    this.BackColor = SystemColors.Control;
+                    SeasonLabel.Text = "Бррр! Холодно!";
+                    break;
+                //Выбран "Spring"
+                case "Spring":
+                    
+                    SeasonLabel.Text = "";
+                    this.BackColor = System.Drawing.Color.Green;
+                    break;
+                //Нечего не выбрано
+                case "":
+                    SeasonLabel.Text = "Выберите время года";
+                    break;
+                //Выбрано что то другое
+                default:
+                    this.BackColor = SystemColors.Control;
+                    SeasonLabel.Text = "Нет такого времени года";
+                    break;
+            }
 
-
-       
+        }
     }
 }
