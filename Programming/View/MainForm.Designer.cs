@@ -30,7 +30,12 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            groupBox1 = new GroupBox();
+            parsingGroupBox = new GroupBox();
+            ValueEquivalentLabel = new Label();
+            parseButton = new Button();
+            ParsingTextBox = new TextBox();
+            ParsingLabel = new Label();
+            EnumsGroupBox = new GroupBox();
             ValueLabel = new Label();
             ValuesTextBox = new TextBox();
             ValuesLabel = new Label();
@@ -39,7 +44,8 @@
             EnumsListBox = new ListBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            groupBox1.SuspendLayout();
+            parsingGroupBox.SuspendLayout();
+            EnumsGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -54,7 +60,8 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(groupBox1);
+            tabPage1.Controls.Add(parsingGroupBox);
+            tabPage1.Controls.Add(EnumsGroupBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -63,26 +70,72 @@
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // parsingGroupBox
             // 
-            groupBox1.Controls.Add(ValueLabel);
-            groupBox1.Controls.Add(ValuesTextBox);
-            groupBox1.Controls.Add(ValuesLabel);
-            groupBox1.Controls.Add(EnumLabel);
-            groupBox1.Controls.Add(ValuesListBox);
-            groupBox1.Controls.Add(EnumsListBox);
-            groupBox1.Dock = DockStyle.Fill;
-            groupBox1.Location = new Point(3, 3);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(706, 356);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Enumerations";
+            parsingGroupBox.Controls.Add(ValueEquivalentLabel);
+            parsingGroupBox.Controls.Add(parseButton);
+            parsingGroupBox.Controls.Add(ParsingTextBox);
+            parsingGroupBox.Controls.Add(ParsingLabel);
+            parsingGroupBox.Location = new Point(3, 216);
+            parsingGroupBox.Name = "parsingGroupBox";
+            parsingGroupBox.Size = new Size(353, 138);
+            parsingGroupBox.TabIndex = 1;
+            parsingGroupBox.TabStop = false;
+            parsingGroupBox.Text = "Weekday/Parsing";
+            // 
+            // ValueEquivalentLabel
+            // 
+            ValueEquivalentLabel.AutoSize = true;
+            ValueEquivalentLabel.Location = new Point(6, 96);
+            ValueEquivalentLabel.Name = "ValueEquivalentLabel";
+            ValueEquivalentLabel.Size = new Size(0, 20);
+            ValueEquivalentLabel.TabIndex = 3;
+            // 
+            // parseButton
+            // 
+            parseButton.Location = new Point(253, 57);
+            parseButton.Name = "parseButton";
+            parseButton.Size = new Size(94, 29);
+            parseButton.TabIndex = 2;
+            parseButton.Text = "Parse";
+            parseButton.UseVisualStyleBackColor = true;
+            parseButton.Click += parseButton_Click;
+            // 
+            // ParsingTextBox
+            // 
+            ParsingTextBox.Location = new Point(6, 57);
+            ParsingTextBox.Name = "ParsingTextBox";
+            ParsingTextBox.Size = new Size(236, 27);
+            ParsingTextBox.TabIndex = 1;
+            // 
+            // ParsingLabel
+            // 
+            ParsingLabel.AutoSize = true;
+            ParsingLabel.Location = new Point(6, 34);
+            ParsingLabel.Name = "ParsingLabel";
+            ParsingLabel.Size = new Size(155, 20);
+            ParsingLabel.TabIndex = 0;
+            ParsingLabel.Text = "Type value for parsing";
+            // 
+            // EnumsGroupBox
+            // 
+            EnumsGroupBox.Controls.Add(ValueLabel);
+            EnumsGroupBox.Controls.Add(ValuesTextBox);
+            EnumsGroupBox.Controls.Add(ValuesLabel);
+            EnumsGroupBox.Controls.Add(EnumLabel);
+            EnumsGroupBox.Controls.Add(ValuesListBox);
+            EnumsGroupBox.Controls.Add(EnumsListBox);
+            EnumsGroupBox.Location = new Point(3, 3);
+            EnumsGroupBox.Name = "EnumsGroupBox";
+            EnumsGroupBox.Size = new Size(706, 207);
+            EnumsGroupBox.TabIndex = 0;
+            EnumsGroupBox.TabStop = false;
+            EnumsGroupBox.Text = "Enumerations";
             // 
             // ValueLabel
             // 
             ValueLabel.AutoSize = true;
-            ValueLabel.Location = new Point(478, 41);
+            ValueLabel.Location = new Point(421, 51);
             ValueLabel.Name = "ValueLabel";
             ValueLabel.Size = new Size(68, 20);
             ValueLabel.TabIndex = 5;
@@ -90,7 +143,7 @@
             // 
             // ValuesTextBox
             // 
-            ValuesTextBox.Location = new Point(474, 76);
+            ValuesTextBox.Location = new Point(421, 74);
             ValuesTextBox.Name = "ValuesTextBox";
             ValuesTextBox.Size = new Size(125, 27);
             ValuesTextBox.TabIndex = 4;
@@ -98,7 +151,7 @@
             // ValuesLabel
             // 
             ValuesLabel.AutoSize = true;
-            ValuesLabel.Location = new Point(254, 48);
+            ValuesLabel.Location = new Point(225, 32);
             ValuesLabel.Name = "ValuesLabel";
             ValuesLabel.Size = new Size(97, 20);
             ValuesLabel.TabIndex = 3;
@@ -107,7 +160,7 @@
             // EnumLabel
             // 
             EnumLabel.AutoSize = true;
-            EnumLabel.Location = new Point(47, 48);
+            EnumLabel.Location = new Point(31, 32);
             EnumLabel.Name = "EnumLabel";
             EnumLabel.Size = new Size(142, 20);
             EnumLabel.TabIndex = 2;
@@ -117,16 +170,17 @@
             // 
             ValuesListBox.FormattingEnabled = true;
             ValuesListBox.ItemHeight = 20;
-            ValuesListBox.Location = new Point(254, 76);
+            ValuesListBox.Location = new Point(225, 55);
             ValuesListBox.Name = "ValuesListBox";
             ValuesListBox.Size = new Size(150, 104);
             ValuesListBox.TabIndex = 1;
+            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
             // 
             // EnumsListBox
             // 
             EnumsListBox.FormattingEnabled = true;
             EnumsListBox.ItemHeight = 20;
-            EnumsListBox.Location = new Point(47, 76);
+            EnumsListBox.Location = new Point(31, 55);
             EnumsListBox.Name = "EnumsListBox";
             EnumsListBox.Size = new Size(150, 104);
             EnumsListBox.TabIndex = 0;
@@ -142,8 +196,10 @@
             Text = "Form1";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            parsingGroupBox.ResumeLayout(false);
+            parsingGroupBox.PerformLayout();
+            EnumsGroupBox.ResumeLayout(false);
+            EnumsGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -151,12 +207,17 @@
 
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private GroupBox groupBox1;
+        private GroupBox EnumsGroupBox;
         private ListBox EnumsListBox;
         private Label ValuesLabel;
         private Label EnumLabel;
         private ListBox ValuesListBox;
         private Label ValueLabel;
         private TextBox ValuesTextBox;
+        private GroupBox parsingGroupBox;
+        private Label ParsingLabel;
+        private TextBox ParsingTextBox;
+        private Label ValueEquivalentLabel;
+        private Button parseButton;
     }
 }
