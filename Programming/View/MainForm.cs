@@ -148,26 +148,31 @@ namespace Programming
                     this.BackColor = SystemColors.Control;
                     SeasonLabel.Text = "Ура! Лето!";
                     break;
+
                 //Выбран "Autumn"
                 case "Autumn":
                     SeasonLabel.Text = " ";
                     this.BackColor = System.Drawing.Color.SandyBrown;
                     break;
+
                 //Выбран "Winter"
                 case "Winter":
                     this.BackColor = SystemColors.Control;
                     SeasonLabel.Text = "Бррр! Холодно!";
                     break;
+
                 //Выбран "Spring"
                 case "Spring":
                     
                     SeasonLabel.Text = "";
                     this.BackColor = System.Drawing.Color.Green;
                     break;
+
                 //Нечего не выбрано
                 case "":
                     SeasonLabel.Text = "Выберите время года";
                     break;
+
                 //Выбрано что то другое
                 default:
                     this.BackColor = SystemColors.Control;
