@@ -112,9 +112,9 @@ namespace Programming
         {
             var inputWeekday = ParsingTextBox.Text;
             Weekday outputWeekday;
-
+            double number;
             //Проверяем, можно ли преобразовать введенное значение к типу Weekday
-            if (Enum.TryParse(inputWeekday, true, out outputWeekday))
+            if (Enum.TryParse(inputWeekday, true, out outputWeekday) && double.TryParse(inputWeekday, out number) == false)
             {
                 //получаем номер дня недели и выводим сообщение
                 int dayNumber = Array.IndexOf(Enum.GetValues(typeof(Weekday)), outputWeekday) + 1;
