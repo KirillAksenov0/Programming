@@ -1,4 +1,4 @@
-using System.IO;
+п»їusing System.IO;
 using System.Windows.Forms;
 
 namespace Programming
@@ -14,13 +14,13 @@ namespace Programming
 
         private void PopulateEnumsListBox()
         {
-            //Получение всех типов в сборке
+            //РџРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… С‚РёРїРѕРІ РІ СЃР±РѕСЂРєРµ
             Type[] types = typeof(Program).Assembly.GetTypes();
 
-            //Фильтруем только перечесления
+            //Р¤РёР»СЊС‚СЂСѓРµРј С‚РѕР»СЊРєРѕ РїРµСЂРµС‡РµСЃР»РµРЅРёСЏ
             var enumTypes = Array.FindAll(types, t => t.IsEnum);
 
-            //Добавление имен перечеслений в EnumsListBox
+            //Р”РѕР±Р°РІР»РµРЅРёРµ РёРјРµРЅ РїРµСЂРµС‡РµСЃР»РµРЅРёР№ РІ EnumsListBox
 
             foreach (var enumType in enumTypes)
             {
@@ -32,67 +32,67 @@ namespace Programming
         {
             ListBox EnumListBox = (ListBox)sender;
 
-            //Проверяем какой цвет выбран в EnumsListBox
+            //РџСЂРѕРІРµСЂСЏРµРј РєР°РєРѕР№ С†РІРµС‚ РІС‹Р±СЂР°РЅ РІ EnumsListBox
             switch (EnumsListBox.SelectedItem.ToString())
             {
-                //Выбран "Color"
+                //Р’С‹Р±СЂР°РЅ "Color"
                 case "Color":
 
-                    //Очищаем от элементов
+                    //РћС‡РёС‰Р°РµРј РѕС‚ СЌР»РµРјРµРЅС‚РѕРІ
                     ValuesListBox.Items.Clear();
 
-                    //Добавление соответсвтующих элемнтов в ValuesListBox
+                    //Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕРѕС‚РІРµС‚СЃРІС‚СѓСЋС‰РёС… СЌР»РµРјРЅС‚РѕРІ РІ ValuesListBox
                     foreach (Color colorName in Enum.GetValues(typeof(Color)))
 
                         ValuesListBox.Items.Add(colorName);
                     break;
-                //Выбран "FormOfEducation"
+                //Р’С‹Р±СЂР°РЅ "FormOfEducation"
                 case "FormOfEducation":
 
-                    //Очищаем от элементов
+                    //РћС‡РёС‰Р°РµРј РѕС‚ СЌР»РµРјРµРЅС‚РѕРІ
                     ValuesListBox.Items.Clear();
 
-                    //Добавление соответсвтующих элемнтов в ValuesListBox
+                    //Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕРѕС‚РІРµС‚СЃРІС‚СѓСЋС‰РёС… СЌР»РµРјРЅС‚РѕРІ РІ ValuesListBox
                     foreach (FormOfEducation formName in Enum.GetValues(typeof(FormOfEducation)))
 
                         ValuesListBox.Items.Add(formName);
                     break;
-                //Выбран "Genre"
+                //Р’С‹Р±СЂР°РЅ "Genre"
                 case "Genre":
-                    //Очищаем от элементов
+                    //РћС‡РёС‰Р°РµРј РѕС‚ СЌР»РµРјРµРЅС‚РѕРІ
                     ValuesListBox.Items.Clear();
 
-                    //Добавление соответсвтующих элемнтов в ValuesListBox
+                    //Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕРѕС‚РІРµС‚СЃРІС‚СѓСЋС‰РёС… СЌР»РµРјРЅС‚РѕРІ РІ ValuesListBox
                     foreach (Genre genreName in Enum.GetValues(typeof(Genre)))
 
                         ValuesListBox.Items.Add(genreName);
                     break;
-                //Выбран "Manufactories"
+                //Р’С‹Р±СЂР°РЅ "Manufactories"
                 case "Manufactures":
-                    //Очищаем от элементов
+                    //РћС‡РёС‰Р°РµРј РѕС‚ СЌР»РµРјРµРЅС‚РѕРІ
                     ValuesListBox.Items.Clear();
 
-                    //Добавление соответсвтующих элемнтов в ValuesListBox
+                    //Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕРѕС‚РІРµС‚СЃРІС‚СѓСЋС‰РёС… СЌР»РµРјРЅС‚РѕРІ РІ ValuesListBox
                     foreach (Manufactures smartphoneName in Enum.GetValues(typeof(Manufactures)))
 
                         ValuesListBox.Items.Add(smartphoneName);
                     break;
-                //Выбран "TimeOfYear"
+                //Р’С‹Р±СЂР°РЅ "TimeOfYear"
                 case "TimeOfYear":
-                    //Очищаем от элементов
+                    //РћС‡РёС‰Р°РµРј РѕС‚ СЌР»РµРјРµРЅС‚РѕРІ
                     ValuesListBox.Items.Clear();
 
-                    //Добавление соответсвтующих элемнтов в ValuesListBox
+                    //Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕРѕС‚РІРµС‚СЃРІС‚СѓСЋС‰РёС… СЌР»РµРјРЅС‚РѕРІ РІ ValuesListBox
                     foreach (TimeOfYear seasonName in Enum.GetValues(typeof(TimeOfYear)))
 
                         ValuesListBox.Items.Add(seasonName);
                     break;
-                //Выбран "Weekday"
+                //Р’С‹Р±СЂР°РЅ "Weekday"
                 case "Weekday":
-                    //Очищаем от элементов
+                    //РћС‡РёС‰Р°РµРј РѕС‚ СЌР»РµРјРµРЅС‚РѕРІ
                     ValuesListBox.Items.Clear();
 
-                    //Добавление соответсвтующих элемнтов в ValuesListBox
+                    //Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕРѕС‚РІРµС‚СЃРІС‚СѓСЋС‰РёС… СЌР»РµРјРЅС‚РѕРІ РІ ValuesListBox
                     foreach (Weekday dayName in Enum.GetValues(typeof(Weekday)))
 
                         ValuesListBox.Items.Add(dayName);
@@ -104,7 +104,7 @@ namespace Programming
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Отображение номера элемента в ValuesTextBox
+            //РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РЅРѕРјРµСЂР° СЌР»РµРјРµРЅС‚Р° РІ ValuesTextBox
             ValuesTextBox.Text = ValuesListBox.SelectedIndex.ToString();
 
         }
@@ -113,25 +113,25 @@ namespace Programming
             var inputWeekday = ParsingTextBox.Text;
             Weekday outputWeekday;
 
-            //Проверяем, можно ли преобразовать введенное значение к типу Weekday
+            //РџСЂРѕРІРµСЂСЏРµРј, РјРѕР¶РЅРѕ Р»Рё РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РІРІРµРґРµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Рє С‚РёРїСѓ Weekday
             if (Enum.TryParse(inputWeekday, true, out outputWeekday))
             {
-                //получаем номер дня недели и выводим сообщение
+                //РїРѕР»СѓС‡Р°РµРј РЅРѕРјРµСЂ РґРЅСЏ РЅРµРґРµР»Рё Рё РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ
                 int dayNumber = Array.IndexOf(Enum.GetValues(typeof(Weekday)), outputWeekday) + 1;
-                ValueEquivalentLabel.Text = $" Это день недели ({outputWeekday} = {dayNumber})";
+                ValueEquivalentLabel.Text = $" Р­С‚Рѕ РґРµРЅСЊ РЅРµРґРµР»Рё ({outputWeekday} = {dayNumber})";
 
             }
             else
             {
-                //Если не удалось преобразовать
-                ValueEquivalentLabel.Text = "Нет такого дня недели";
+                //Р•СЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ
+                ValueEquivalentLabel.Text = "РќРµС‚ С‚Р°РєРѕРіРѕ РґРЅСЏ РЅРµРґРµР»Рё";
             }
 
         }
 
         private void FillingSeasonComboBox()
         {
-            //Заполнение SeasonComboBox
+            //Р—Р°РїРѕР»РЅРµРЅРёРµ SeasonComboBox
             foreach (TimeOfYear seasonName in Enum.GetValues(typeof(TimeOfYear)))
 
                 SeasonComboBox.Items.Add(seasonName);
@@ -139,44 +139,44 @@ namespace Programming
 
         private void GoButton_Click(object sender, EventArgs e)
         {
-            //Проверяем какое время года выбрано в SeasonComboBox
+            //РџСЂРѕРІРµСЂСЏРµРј РєР°РєРѕРµ РІСЂРµРјСЏ РіРѕРґР° РІС‹Р±СЂР°РЅРѕ РІ SeasonComboBox
             switch (SeasonComboBox.Text)
             {
-                //Выбран "Summer"
+                //Р’С‹Р±СЂР°РЅ "Summer"
                 case "Summer":
 
                     this.BackColor = SystemColors.Control;
-                    SeasonLabel.Text = "Ура! Лето!";
+                    SeasonLabel.Text = "РЈСЂР°! Р›РµС‚Рѕ!";
                     break;
 
-                //Выбран "Autumn"
+                //Р’С‹Р±СЂР°РЅ "Autumn"
                 case "Autumn":
                     SeasonLabel.Text = " ";
                     this.BackColor = System.Drawing.Color.SandyBrown;
                     break;
 
-                //Выбран "Winter"
+                //Р’С‹Р±СЂР°РЅ "Winter"
                 case "Winter":
                     this.BackColor = SystemColors.Control;
-                    SeasonLabel.Text = "Бррр! Холодно!";
+                    SeasonLabel.Text = "Р‘СЂСЂСЂ! РҐРѕР»РѕРґРЅРѕ!";
                     break;
 
-                //Выбран "Spring"
+                //Р’С‹Р±СЂР°РЅ "Spring"
                 case "Spring":
                     
                     SeasonLabel.Text = "";
                     this.BackColor = System.Drawing.Color.Green;
                     break;
 
-                //Нечего не выбрано
+                //РќРµС‡РµРіРѕ РЅРµ РІС‹Р±СЂР°РЅРѕ
                 case "":
-                    SeasonLabel.Text = "Выберите время года";
+                    SeasonLabel.Text = "Р’С‹Р±РµСЂРёС‚Рµ РІСЂРµРјСЏ РіРѕРґР°";
                     break;
 
-                //Выбрано что то другое
+                //Р’С‹Р±СЂР°РЅРѕ С‡С‚Рѕ С‚Рѕ РґСЂСѓРіРѕРµ
                 default:
                     this.BackColor = SystemColors.Control;
-                    SeasonLabel.Text = "Нет такого времени года";
+                    SeasonLabel.Text = "РќРµС‚ С‚Р°РєРѕРіРѕ РІСЂРµРјРµРЅРё РіРѕРґР°";
                     break;
             }
 
