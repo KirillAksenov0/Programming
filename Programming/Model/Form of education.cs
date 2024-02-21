@@ -1,7 +1,7 @@
 ﻿public enum FormOfEducation
 {
-    fullTime,
-    correspondence,
-    evening,
-    distant,
+    FullTime,
+    Correspondence,
+    Evening,
+    Distant,
 }

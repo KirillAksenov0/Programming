@@ -1,6 +1,6 @@
 ﻿public class Flight
 {
-    private string _departurePoint;
-    private string _destinationPoint;
-    private int _flightTimeMinute;
+    public string DeparturePoint { get; set; }
+    public string DestinationPoint { get; set; }
+    public int FlightTimeMinute { get; set; }
 }

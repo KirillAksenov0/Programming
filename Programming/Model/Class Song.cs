@@ -1,6 +1,6 @@
 ﻿public class Song
 {
-    private string _name;
-    private string _executor;
-    private int _durationMinute;
+    public string Name { get; set; }
+    public string Executor { get; set; }
+    public int DurationMinute { get; set; }
 }

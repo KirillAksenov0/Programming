@@ -1,6 +1,22 @@
 ﻿public class Contact
 {
-    private string _name;
-    private string _surname;
-    private int _number;
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    private string _number;
+
+    public string Number
+    {
+        get
+        {
+            return _number;
+        }
+        set
+        {
+            if (decimal.TryParse(value, out decimal number ) == true)
+            {
+                throw new ArgumentException();
+            }
+            _number = value;
+        }
+    }
 }
