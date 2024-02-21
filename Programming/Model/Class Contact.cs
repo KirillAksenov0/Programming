@@ -19,4 +19,11 @@
             _number = value;
         }
     }
+
+    public Contact(string name, string surname, string number)
+    {
+        Name = name;
+        Surname = surname;
+        Number = number;
+    }
 }

@@ -19,4 +19,12 @@
             _grade = value;
         }
     }
+
+    public Discipline(string disciplineName, int numberOfHours, int grade)
+    {
+        DisciplineName = disciplineName;
+        NumberOfHours = numberOfHours;
+        Grade = grade;
+        Grade = grade;
+    }
 }
