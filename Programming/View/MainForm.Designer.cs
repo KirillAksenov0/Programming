@@ -49,13 +49,14 @@
             EnumsListBox = new ListBox();
             tabPage2 = new TabPage();
             RectangleGroupBox = new GroupBox();
-            RectangleListBox = new ListBox();
-            LenghtLabel = new Label();
-            ColorLabel = new Label();
-            WidthLabel = new Label();
-            LenghtTextBox = new TextBox();
-            WidthTextBox = new TextBox();
+            FindButton = new Button();
             ColorTextBox = new TextBox();
+            WidthTextBox = new TextBox();
+            LenghtTextBox = new TextBox();
+            WidthLabel = new Label();
+            ColorLabel = new Label();
+            LenghtLabel = new Label();
+            RectanglesListBox = new ListBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
@@ -266,13 +267,14 @@
             // 
             // RectangleGroupBox
             // 
+            RectangleGroupBox.Controls.Add(FindButton);
             RectangleGroupBox.Controls.Add(ColorTextBox);
             RectangleGroupBox.Controls.Add(WidthTextBox);
             RectangleGroupBox.Controls.Add(LenghtTextBox);
             RectangleGroupBox.Controls.Add(WidthLabel);
             RectangleGroupBox.Controls.Add(ColorLabel);
             RectangleGroupBox.Controls.Add(LenghtLabel);
-            RectangleGroupBox.Controls.Add(RectangleListBox);
+            RectangleGroupBox.Controls.Add(RectanglesListBox);
             RectangleGroupBox.Dock = DockStyle.Fill;
             RectangleGroupBox.Location = new Point(3, 3);
             RectangleGroupBox.Name = "RectangleGroupBox";
@@ -281,32 +283,35 @@
             RectangleGroupBox.TabStop = false;
             RectangleGroupBox.Text = "Rectangles";
             // 
-            // RectangleListBox
+            // FindButton
             // 
-            RectangleListBox.FormattingEnabled = true;
-            RectangleListBox.ItemHeight = 20;
-            RectangleListBox.Location = new Point(6, 26);
-            RectangleListBox.Name = "RectangleListBox";
-            RectangleListBox.Size = new Size(196, 284);
-            RectangleListBox.TabIndex = 0;
+            FindButton.Location = new Point(236, 281);
+            FindButton.Name = "FindButton";
+            FindButton.Size = new Size(94, 29);
+            FindButton.TabIndex = 7;
+            FindButton.Text = "Find";
+            FindButton.UseVisualStyleBackColor = true;
             // 
-            // LenghtLabel
+            // ColorTextBox
             // 
-            LenghtLabel.AutoSize = true;
-            LenghtLabel.Location = new Point(225, 26);
-            LenghtLabel.Name = "LenghtLabel";
-            LenghtLabel.Size = new Size(57, 20);
-            LenghtLabel.TabIndex = 1;
-            LenghtLabel.Text = "Lenght:";
+            ColorTextBox.Location = new Point(225, 174);
+            ColorTextBox.Name = "ColorTextBox";
+            ColorTextBox.Size = new Size(125, 27);
+            ColorTextBox.TabIndex = 6;
             // 
-            // ColorLabel
+            // WidthTextBox
             // 
-            ColorLabel.AutoSize = true;
-            ColorLabel.Location = new Point(225, 151);
-            ColorLabel.Name = "ColorLabel";
-            ColorLabel.Size = new Size(48, 20);
-            ColorLabel.TabIndex = 2;
-            ColorLabel.Text = "Color:";
+            WidthTextBox.Location = new Point(225, 111);
+            WidthTextBox.Name = "WidthTextBox";
+            WidthTextBox.Size = new Size(125, 27);
+            WidthTextBox.TabIndex = 5;
+            // 
+            // LenghtTextBox
+            // 
+            LenghtTextBox.Location = new Point(225, 49);
+            LenghtTextBox.Name = "LenghtTextBox";
+            LenghtTextBox.Size = new Size(125, 27);
+            LenghtTextBox.TabIndex = 4;
             // 
             // WidthLabel
             // 
@@ -317,26 +322,34 @@
             WidthLabel.TabIndex = 3;
             WidthLabel.Text = "Width:";
             // 
-            // LenghtTextBox
+            // ColorLabel
             // 
-            LenghtTextBox.Location = new Point(225, 49);
-            LenghtTextBox.Name = "LenghtTextBox";
-            LenghtTextBox.Size = new Size(125, 27);
-            LenghtTextBox.TabIndex = 4;
+            ColorLabel.AutoSize = true;
+            ColorLabel.Location = new Point(225, 151);
+            ColorLabel.Name = "ColorLabel";
+            ColorLabel.Size = new Size(48, 20);
+            ColorLabel.TabIndex = 2;
+            ColorLabel.Text = "Color:";
             // 
-            // WidthTextBox
+            // LenghtLabel
             // 
-            WidthTextBox.Location = new Point(225, 111);
-            WidthTextBox.Name = "WidthTextBox";
-            WidthTextBox.Size = new Size(125, 27);
-            WidthTextBox.TabIndex = 5;
+            LenghtLabel.AutoSize = true;
+            LenghtLabel.Location = new Point(225, 26);
+            LenghtLabel.Name = "LenghtLabel";
+            LenghtLabel.Size = new Size(57, 20);
+            LenghtLabel.TabIndex = 1;
+            LenghtLabel.Text = "Lenght:";
             // 
-            // ColorTextBox
+            // RectanglesListBox
             // 
-            ColorTextBox.Location = new Point(225, 174);
-            ColorTextBox.Name = "ColorTextBox";
-            ColorTextBox.Size = new Size(125, 27);
-            ColorTextBox.TabIndex = 6;
+            RectanglesListBox.FormattingEnabled = true;
+            RectanglesListBox.ItemHeight = 20;
+            RectanglesListBox.Items.AddRange(new object[] { "Rectangle1", "Rectangle2", "Rectangle3", "Rectangle4", "Rectangle5" });
+            RectanglesListBox.Location = new Point(6, 26);
+            RectanglesListBox.Name = "RectanglesListBox";
+            RectanglesListBox.Size = new Size(196, 284);
+            RectanglesListBox.TabIndex = 0;
+            RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
             // MainForm
             // 
@@ -384,12 +397,13 @@
         private Label SeasonLabel;
         private TabPage tabPage2;
         private GroupBox RectangleGroupBox;
-        private ListBox RectangleListBox;
+        private ListBox RectanglesListBox;
         private Label LenghtLabel;
         private TextBox ColorTextBox;
         private TextBox WidthTextBox;
         private TextBox LenghtTextBox;
         private Label WidthLabel;
         private Label ColorLabel;
+        private Button FindButton;
     }
 }

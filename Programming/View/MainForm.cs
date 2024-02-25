@@ -1,11 +1,16 @@
 ﻿using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Programming
 {
     public partial class MainForm : Form
     {
+        //Создаем массив прямоугольников
         private Rectangle[] _rectangles;
+        private string[] colors;
+
+        //Создаем поле _currentRangle
         private Rectangle _currentRectangle;
         public MainForm()
         {
@@ -13,18 +18,22 @@ namespace Programming
             PopulateEnumsListBox();
             FillingSeasonComboBox();
 
+            //Задаем рандомное значение для массива
             Random random = new Random();
             double min = 0.0;
             double max = 10.0;
-            _currentRectangle = new Rectangle(3,2,"Orange");
+
+            colors = new string[5] { "Orange", "Red", "Green", "Yellow", "Blue" };
+            //Заполнение массива
             _rectangles = new Rectangle[5];
 
-            for (int index = 0;  index < _rectangles.Length; index++)
+            for (int index = 0; index < _rectangles.Length; index++)
             {
-                double randomNumber = min + (random.NextDouble() * (max-min));
-                _rectangles[index] = new Rectangle(randomNumber, randomNumber, "");
+                double randomLenght = Math.Round(min + (random.NextDouble() * (max - min)), 2);
+                double randomWeight = Math.Round(min + (random.NextDouble() * (max - min)), 2);
+                _rectangles[index] = new Rectangle(randomLenght, randomWeight, colors[index]);
             }
-            
+
         }
 
         private void PopulateEnumsListBox()
@@ -143,7 +152,6 @@ namespace Programming
             }
 
         }
-
         private void FillingSeasonComboBox()
         {
             //Заполнение SeasonComboBox
@@ -192,6 +200,58 @@ namespace Programming
                 default:
                     this.BackColor = SystemColors.Control;
                     SeasonLabel.Text = "Нет такого времени года";
+                    break;
+            }
+
+        }
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Получаем текущий выбранный индекс
+            int selectedIndex = RectanglesListBox.SelectedIndex;
+
+            //Проверяем, чтобы индекс был в пределах массива
+            if (selectedIndex >= 0 && selectedIndex < _rectangles.Length)
+            {
+                //Устанавливаем текущий прямоугольник
+                _currentRectangle = _rectangles[selectedIndex];
+            }
+
+            //Заполнение текстбоксов в зависимости от выбранного объекта
+            switch (RectanglesListBox.SelectedItem.ToString())
+            {
+                //Если выбран "Rectangle1"
+                case "Rectangle1":
+                    LenghtTextBox.Text = _currentRectangle.Length.ToString();
+                    WidthTextBox.Text = _currentRectangle.Width.ToString();
+                    ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    break;
+
+                //Если выбран "Rectangle2"
+                case "Rectangle2":
+                    LenghtTextBox.Text = _currentRectangle.Length.ToString();
+                    WidthTextBox.Text = _currentRectangle.Width.ToString();
+                    ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    break;
+
+                //Если выбран "Rectangle3"
+                case "Rectangle3":
+                    LenghtTextBox.Text = _currentRectangle.Length.ToString();
+                    WidthTextBox.Text = _currentRectangle.Width.ToString();
+                    ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    break;
+
+                //Если выбран "Rectangle4"
+                case "Rectangle4":
+                    LenghtTextBox.Text = _currentRectangle.Length.ToString();
+                    WidthTextBox.Text = _currentRectangle.Width.ToString();
+                    ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    break;
+
+                //Если выбран "Rectangle5"
+                case "Rectangle5":
+                    LenghtTextBox.Text = _currentRectangle.Length.ToString();
+                    WidthTextBox.Text = _currentRectangle.Width.ToString();
+                    ColorTextBox.Text = _currentRectangle.Color.ToString();
                     break;
             }
 
