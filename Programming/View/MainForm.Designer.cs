@@ -47,21 +47,33 @@
             EnumLabel = new Label();
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
+            tabPage2 = new TabPage();
+            RectangleGroupBox = new GroupBox();
+            RectangleListBox = new ListBox();
+            LenghtLabel = new Label();
+            ColorLabel = new Label();
+            WidthLabel = new Label();
+            LenghtTextBox = new TextBox();
+            WidthTextBox = new TextBox();
+            ColorTextBox = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
             parsingGroupBox.SuspendLayout();
             EnumsGroupBox.SuspendLayout();
+            tabPage2.SuspendLayout();
+            RectangleGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(721, 395);
+            tabControl1.Size = new Size(725, 395);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -72,7 +84,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(713, 362);
+            tabPage1.Size = new Size(717, 362);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
@@ -241,12 +253,97 @@
             EnumsListBox.TabIndex = 0;
             EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(RectangleGroupBox);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(717, 362);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Classes";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // RectangleGroupBox
+            // 
+            RectangleGroupBox.Controls.Add(ColorTextBox);
+            RectangleGroupBox.Controls.Add(WidthTextBox);
+            RectangleGroupBox.Controls.Add(LenghtTextBox);
+            RectangleGroupBox.Controls.Add(WidthLabel);
+            RectangleGroupBox.Controls.Add(ColorLabel);
+            RectangleGroupBox.Controls.Add(LenghtLabel);
+            RectangleGroupBox.Controls.Add(RectangleListBox);
+            RectangleGroupBox.Dock = DockStyle.Fill;
+            RectangleGroupBox.Location = new Point(3, 3);
+            RectangleGroupBox.Name = "RectangleGroupBox";
+            RectangleGroupBox.Size = new Size(711, 356);
+            RectangleGroupBox.TabIndex = 0;
+            RectangleGroupBox.TabStop = false;
+            RectangleGroupBox.Text = "Rectangles";
+            // 
+            // RectangleListBox
+            // 
+            RectangleListBox.FormattingEnabled = true;
+            RectangleListBox.ItemHeight = 20;
+            RectangleListBox.Location = new Point(6, 26);
+            RectangleListBox.Name = "RectangleListBox";
+            RectangleListBox.Size = new Size(196, 284);
+            RectangleListBox.TabIndex = 0;
+            // 
+            // LenghtLabel
+            // 
+            LenghtLabel.AutoSize = true;
+            LenghtLabel.Location = new Point(225, 26);
+            LenghtLabel.Name = "LenghtLabel";
+            LenghtLabel.Size = new Size(57, 20);
+            LenghtLabel.TabIndex = 1;
+            LenghtLabel.Text = "Lenght:";
+            // 
+            // ColorLabel
+            // 
+            ColorLabel.AutoSize = true;
+            ColorLabel.Location = new Point(225, 151);
+            ColorLabel.Name = "ColorLabel";
+            ColorLabel.Size = new Size(48, 20);
+            ColorLabel.TabIndex = 2;
+            ColorLabel.Text = "Color:";
+            // 
+            // WidthLabel
+            // 
+            WidthLabel.AutoSize = true;
+            WidthLabel.Location = new Point(225, 88);
+            WidthLabel.Name = "WidthLabel";
+            WidthLabel.Size = new Size(52, 20);
+            WidthLabel.TabIndex = 3;
+            WidthLabel.Text = "Width:";
+            // 
+            // LenghtTextBox
+            // 
+            LenghtTextBox.Location = new Point(225, 49);
+            LenghtTextBox.Name = "LenghtTextBox";
+            LenghtTextBox.Size = new Size(125, 27);
+            LenghtTextBox.TabIndex = 4;
+            // 
+            // WidthTextBox
+            // 
+            WidthTextBox.Location = new Point(225, 111);
+            WidthTextBox.Name = "WidthTextBox";
+            WidthTextBox.Size = new Size(125, 27);
+            WidthTextBox.TabIndex = 5;
+            // 
+            // ColorTextBox
+            // 
+            ColorTextBox.Location = new Point(225, 174);
+            ColorTextBox.Name = "ColorTextBox";
+            ColorTextBox.Size = new Size(125, 27);
+            ColorTextBox.TabIndex = 6;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(721, 395);
+            ClientSize = new Size(725, 395);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Form1";
@@ -258,6 +355,9 @@
             parsingGroupBox.PerformLayout();
             EnumsGroupBox.ResumeLayout(false);
             EnumsGroupBox.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            RectangleGroupBox.ResumeLayout(false);
+            RectangleGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -282,5 +382,14 @@
         private Label ChooseSeasonLabel;
         private Button GoButton;
         private Label SeasonLabel;
+        private TabPage tabPage2;
+        private GroupBox RectangleGroupBox;
+        private ListBox RectangleListBox;
+        private Label LenghtLabel;
+        private TextBox ColorTextBox;
+        private TextBox WidthTextBox;
+        private TextBox LenghtTextBox;
+        private Label WidthLabel;
+        private Label ColorLabel;
     }
 }

@@ -5,11 +5,26 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
+        private Rectangle[] _rectangles;
+        private Rectangle _currentRectangle;
         public MainForm()
         {
             InitializeComponent();
             PopulateEnumsListBox();
             FillingSeasonComboBox();
+
+            Random random = new Random();
+            double min = 0.0;
+            double max = 10.0;
+            _currentRectangle = new Rectangle(3,2,"Orange");
+            _rectangles = new Rectangle[5];
+
+            for (int index = 0;  index < _rectangles.Length; index++)
+            {
+                double randomNumber = min + (random.NextDouble() * (max-min));
+                _rectangles[index] = new Rectangle(randomNumber, randomNumber, "");
+            }
+            
         }
 
         private void PopulateEnumsListBox()
@@ -163,7 +178,7 @@ namespace Programming
 
                 //Выбран "Spring"
                 case "Spring":
-                    
+
                     SeasonLabel.Text = "";
                     this.BackColor = System.Drawing.Color.Green;
                     break;
