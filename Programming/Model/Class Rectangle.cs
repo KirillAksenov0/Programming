@@ -10,4 +10,9 @@
         Width = width;
         Color = color;
     }
+
+    public Rectangle()
+    {
+        
+    }
 }

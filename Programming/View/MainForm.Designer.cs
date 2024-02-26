@@ -76,6 +76,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(725, 395);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // tabPage1
             // 
@@ -291,6 +292,7 @@
             FindButton.TabIndex = 7;
             FindButton.Text = "Find";
             FindButton.UseVisualStyleBackColor = true;
+            FindButton.Click += FindButton_Click;
             // 
             // ColorTextBox
             // 
@@ -298,6 +300,7 @@
             ColorTextBox.Name = "ColorTextBox";
             ColorTextBox.Size = new Size(125, 27);
             ColorTextBox.TabIndex = 6;
+            ColorTextBox.TextChanged += ColorTextBox_TextChanged;
             // 
             // WidthTextBox
             // 
@@ -305,6 +308,7 @@
             WidthTextBox.Name = "WidthTextBox";
             WidthTextBox.Size = new Size(125, 27);
             WidthTextBox.TabIndex = 5;
+            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
             // 
             // LenghtTextBox
             // 
@@ -312,6 +316,7 @@
             LenghtTextBox.Name = "LenghtTextBox";
             LenghtTextBox.Size = new Size(125, 27);
             LenghtTextBox.TabIndex = 4;
+            LenghtTextBox.TextChanged += LenghtTextBox_TextChanged;
             // 
             // WidthLabel
             // 

@@ -204,6 +204,14 @@ namespace Programming
             }
 
         }
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                // Устанавливаем первый элемент в ListBox по умолчанию
+                RectanglesListBox.SelectedIndex = 0;
+            }
+        }
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Получаем текущий выбранный индекс
@@ -255,6 +263,98 @@ namespace Programming
                     break;
             }
 
+        }
+
+        private void LenghtTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                _currentRectangle.Length = Convert.ToDouble(LenghtTextBox.Text);
+            }
+            catch
+            {
+                LenghtTextBox.BackColor = System.Drawing.Color.LightPink;
+
+                _currentRectangle.Length = -1;
+            }
+            finally
+            {
+                if (_currentRectangle.Length == -1 || _currentRectangle.Length < 0 
+                    || LenghtTextBox.Text == "")
+                {
+                    LenghtTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
+                else
+                {
+                    LenghtTextBox.BackColor = System.Drawing.Color.White;
+                }
+            }
+
+        }
+
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Width = Convert.ToDouble(WidthTextBox.Text);
+            }
+            catch
+            {
+
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+
+                _currentRectangle.Width = -1;
+            }
+            finally
+            {
+                if (_currentRectangle.Width == -1 || _currentRectangle.Length < 0 || 
+                    WidthTextBox.Text == "")
+                {
+                    WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
+                else
+                {
+                    WidthTextBox.BackColor = System.Drawing.Color.White;
+                }
+
+            }
+        }
+
+        private void ColorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentRectangle.Color = ColorTextBox.Text;
+
+            if (ColorTextBox.Text == "" || (double.TryParse(ColorTextBox.Text, out double result)))
+            {
+                ColorTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
+            else
+            {
+                ColorTextBox.BackColor = System.Drawing.Color.White;
+            }
+        }
+
+        private int FindRectangleWithMaxWidth(Rectangle[] _rectangles)
+        {
+            double widthmax = _rectangles[0].Width;
+            int index = 0;
+            for (int i = 0; i < _rectangles.Length; i++)
+            {
+                if (_rectangles[i].Width > widthmax)
+                {
+                    widthmax = _rectangles[i].Width;
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        private void FindButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = FindRectangleWithMaxWidth(_rectangles);
+            RectanglesListBox.SelectedIndex = selectedIndex;
         }
     }
 }
