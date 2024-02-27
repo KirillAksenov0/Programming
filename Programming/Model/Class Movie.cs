@@ -46,4 +46,13 @@
         Genre = genre;
         Rating = rating;
     }
+
+    public Movie()
+    {
+        Name = "none";
+        DurationMinute = 0;
+        Year = 0;
+        Genre = "none";
+        Rating= 0;
+    }
 }

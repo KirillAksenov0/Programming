@@ -13,6 +13,8 @@
 
     public Rectangle()
     {
-        
+        Length = 0;
+        Width = 0;
+        Color = "none";
     }
 }
