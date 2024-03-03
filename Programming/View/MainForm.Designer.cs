@@ -500,6 +500,11 @@
             ResumeLayout(false);
         }
 
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private TabControl tabControl1;

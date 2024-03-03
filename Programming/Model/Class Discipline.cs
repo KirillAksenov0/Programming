@@ -1,9 +1,26 @@
-﻿public class Discipline
+﻿/// <summary>
+/// Хранит данные зачетной книжки.
+/// </summary>
+public class Discipline
 {
+    /// <summary>
+    /// Название дисциплины.
+    /// </summary>
     public string DisciplineName { get; set; }
+
+    /// <summary>
+    /// Количество часов.
+    /// </summary>
     public int NumberOfHours { get; set; }
+
+    /// <summary>
+    /// Оценка.
+    /// </summary>
     private int _grade;
 
+    /// <summary>
+    /// Возвращает и задает оценку.
+    /// </summary>
     public int Grade
     {
         get
@@ -20,11 +37,26 @@
         }
     }
 
+    /// <summary>
+    /// Создает экземпляр класса <see cref="Discipline"/>.
+    /// </summary>
+    /// <param name="disciplineName">Название дисциплины. Должно состоять только из букв.</param>
+    /// <param name="numberOfHours">Количество часов.</param>
+    /// <param name="grade">Оценка.</param>
     public Discipline(string disciplineName, int numberOfHours, int grade)
     {
         DisciplineName = disciplineName;
         NumberOfHours = numberOfHours;
         Grade = grade;
-        Grade = grade;
+    }
+
+    /// <summary>
+    /// Создает экземпляр класса <see cref="Discipline"/> без инициализации полей.
+    /// </summary>
+    public Discipline()
+    {
+        DisciplineName = "none";
+        NumberOfHours = 0;
+        Grade = 0;
     }
 }

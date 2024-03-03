@@ -10,6 +10,9 @@ namespace Programming
         //Создаем массив прямоугольников
         private Rectangle[] _rectangles;
 
+        //Флаг для события tabcontrol1_SelectedIndexChanged
+        private bool listBoxFilled = false;
+
         //Массив цветов
         private string[] colors;
 
@@ -76,7 +79,9 @@ namespace Programming
             }
 
         }
-
+        /// <summary>
+        /// Добавляет имена перечеслений в EnumsListBox
+        /// </summary>
         private void PopulateEnumsListBox()
         {
             //Получение всех типов в сборке
@@ -193,6 +198,10 @@ namespace Programming
             }
 
         }
+
+        /// <summary>
+        /// Заполняет SeasonComboBox
+        /// </summary>
         private void FillingSeasonComboBox()
         {
             //Заполнение SeasonComboBox
@@ -247,20 +256,22 @@ namespace Programming
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Заполнение MovieListBox
-            foreach (var nameMovie in _movies)
-            {
-                MoviesListBox.Items.Add(nameMovie.Name);
-            }
-
-            if (tabControl1.SelectedIndex == 1)
-            {
+            
+            if (tabControl1.SelectedIndex == 1 && !listBoxFilled)
+            {   
+                //Заполнение MovieListBox
+                foreach (var nameMovie in _movies)
+                {
+                    MoviesListBox.Items.Add(nameMovie.Name);
+                }
+              
                 // Устанавливаем первый элемент в ListBox по умолчанию
                 RectanglesListBox.SelectedIndex = 0;
 
                 //Устанавливаем первый элемент в MoviesListBox по умолчанию
                 MoviesListBox.SelectedIndex = 0;
 
+                listBoxFilled = true;
             }
         }
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -400,10 +411,13 @@ namespace Programming
             }
         }
 
-        //Поиск прямоугольника с максимальной шириной
+        /// <summary>
+        /// Ищет прямоугольник с наибольшей шириной.
+        /// </summary>
+        /// <param name="_rectangles">Массив объектов класса Rectangle.</param>
+        /// <returns>Возвращает индекс прямоугольника с наибольшей шириной.</returns>
         private int FindRectangleWithMaxWidth(Rectangle[] _rectangles)
         {
-
             double widthmax = _rectangles[0].Width;
             int index = 0;
 
@@ -508,6 +522,11 @@ namespace Programming
                 RatingTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+        /// <summary>
+        /// Ищет фильм с наибольшим рейтингом.
+        /// </summary>
+        /// <param name="_movies">Массив с объектамии класса Movie.</param>
+        /// <returns>Возвращает индекс фильма с наибольшим рейтингом.</returns>
         private int FindMovieRating(Movie[] _movies)
         {
 
