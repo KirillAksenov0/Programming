@@ -98,6 +98,11 @@ namespace Programming
             }
         }
 
+        /// <summary>
+        /// Запоняет ValuesListBox в зависимости от выбранного значения в EnumsListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox EnumListBox = (ListBox)sender;
@@ -172,12 +177,23 @@ namespace Programming
 
         }
 
+        /// <summary>
+        /// Отображает номер элемента ValuesListBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Отображение номера элемента в ValuesTextBox
             ValuesTextBox.Text = ValuesListBox.SelectedIndex.ToString();
 
         }
+
+        /// <summary>
+        /// Выводит номер дня недели при нажатии кнопки.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void parseButton_Click(object sender, EventArgs e)
         {
             var inputWeekday = ParsingTextBox.Text;
@@ -210,6 +226,11 @@ namespace Programming
                 SeasonComboBox.Items.Add(seasonName);
         }
 
+        /// <summary>
+        /// Выводит сообщение при нажатии кнопки в зависимости от выбранного времени года.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GoButton_Click(object sender, EventArgs e)
         {
             //Проверяем какое время года выбрано в SeasonComboBox
@@ -254,6 +275,12 @@ namespace Programming
             }
 
         }
+
+        /// <summary>
+        /// Заполняет MoviesListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
@@ -274,6 +301,12 @@ namespace Programming
                 listBoxFilled = true;
             }
         }
+
+        /// <summary>
+        /// Заполнение параметров прямоугольников.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Получаем текущий выбранный индекс
@@ -327,7 +360,11 @@ namespace Programming
 
         }
 
-        //Обработка неверно-введенных значений длины прямоугльника
+        /// <summary>
+        /// Обрабатывает неверно-введенное значение длины прямоугольника.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LenghtTextBox_TextChanged(object sender, EventArgs e)
         {
             //Присваивание длины прямоугольника _currentRectangle
@@ -359,7 +396,11 @@ namespace Programming
 
         }
 
-        //Обработка неверно-введенных значений ширины прямоугльника
+        /// <summary>
+        /// Обрабатывает неверно-введенное значение ширины прямоугльника.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
             //Присваивание ширины прямоугольника _currentRectangle
@@ -391,7 +432,11 @@ namespace Programming
 
             }
         }
-        //Обработка неверно-введенных значений цвета прямоугльника
+        /// <summary>
+        /// Обрабатывает неверно-введенное значение цвета прямоугльника.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             //Присваивание введенного цвета
@@ -434,7 +479,11 @@ namespace Programming
             return index;
         }
 
-        //Выбор прямоугольника с максимальной шириной
+        /// <summary>
+        /// Выбирает прямоугольник с максимальной шириной
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FindButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = FindRectangleWithMaxWidth(_rectangles);
@@ -442,8 +491,11 @@ namespace Programming
             RectanglesListBox.SelectedIndex = selectedIndex;
         }
 
-        //Работа с классом фильмов
-
+        /// <summary>
+        /// Заполняет параметры для выбранного фильма.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Получаем текущий выбранный индекс
@@ -499,7 +551,12 @@ namespace Programming
                     break;
             }
         }
-        ////Обработка неверно-введенных значений рейтинга фильма
+
+        /// <summary>
+        /// Обрабатывает неверно-введенное значение рейтинга фильма.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             //Проверяем можно ли конвертировать в тип double
@@ -522,6 +579,7 @@ namespace Programming
                 RatingTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
         /// <summary>
         /// Ищет фильм с наибольшим рейтингом.
         /// </summary>
@@ -529,7 +587,6 @@ namespace Programming
         /// <returns>Возвращает индекс фильма с наибольшим рейтингом.</returns>
         private int FindMovieRating(Movie[] _movies)
         {
-
             double ratingMax = _movies[0].Rating;
             int index = 0;
 
@@ -546,7 +603,11 @@ namespace Programming
             return index;
         }
 
-        //Выбор фильма с максимальным рейтингом
+        /// <summary>
+        /// Выбирает фильм с максимальным рейтингом.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FindMoviesButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = FindMovieRating(_movies);
