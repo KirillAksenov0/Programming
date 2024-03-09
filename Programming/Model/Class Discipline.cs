@@ -29,10 +29,7 @@ public class Discipline
         }
         set
         {
-            if (value < 2 || value > 5)
-            {
-                throw new ArgumentException();
-            }
+            Validator.AssertValueInRange(value, 2, 5, "Grade");
             _grade = value;
         }
     }

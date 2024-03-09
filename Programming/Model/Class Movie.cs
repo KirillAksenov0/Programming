@@ -39,11 +39,9 @@ public class Movie
         }
         set 
         {
-            if (value < 1900 || value > 2024)
-            {
-                throw new ArgumentException();
-            }
+            Validator.AssertValueInRange(value, 1900, 2024, "Year");
             _year = value;
+
         }
     }
 
@@ -58,10 +56,7 @@ public class Movie
         }
         set
         {
-            if (value < 0 || value > 10)
-            {
-                throw new ArgumentException();
-            }
+            Validator.AssertValueInRange(value, 0, 10, "Rating");
             _rating = value;
         }
     }

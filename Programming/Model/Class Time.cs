@@ -29,10 +29,7 @@ public class Time
         }
         set
         {
-            if (value < 0 || value > 23)
-            {
-                throw new ArgumentException();
-            }
+            Validator.AssertValueInRange(value, 0, 23, "Hours");
             _hours = value;
         }
     }
@@ -48,10 +45,7 @@ public class Time
         }
         set
         {
-            if (value < 0 || value > 60)
-            {
-                throw new ArgumentException();
-            }
+            Validator.AssertValueInRange(value, 0, 60, "Minutes");
             _minutes = value;
         }
     }
@@ -67,10 +61,7 @@ public class Time
         }
         set
         {
-            if (value < 0 || value > 60)
-            {
-                throw new ArgumentException();
-            }
+            Validator.AssertValueInRange(value, 0, 60, "Seconds");
             _seconds = value;
         }
     }
