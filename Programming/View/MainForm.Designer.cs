@@ -60,6 +60,10 @@
             GenreLabel = new Label();
             MoviesListBox = new ListBox();
             RectangleGroupBox = new GroupBox();
+            YLabel = new Label();
+            XLabel = new Label();
+            YTextBox = new TextBox();
+            XTextBox = new TextBox();
             FindButton = new Button();
             ColorTextBox = new TextBox();
             WidthTextBox = new TextBox();
@@ -388,6 +392,10 @@
             // 
             // RectangleGroupBox
             // 
+            RectangleGroupBox.Controls.Add(YLabel);
+            RectangleGroupBox.Controls.Add(XLabel);
+            RectangleGroupBox.Controls.Add(YTextBox);
+            RectangleGroupBox.Controls.Add(XTextBox);
             RectangleGroupBox.Controls.Add(FindButton);
             RectangleGroupBox.Controls.Add(ColorTextBox);
             RectangleGroupBox.Controls.Add(WidthTextBox);
@@ -402,6 +410,40 @@
             RectangleGroupBox.TabIndex = 0;
             RectangleGroupBox.TabStop = false;
             RectangleGroupBox.Text = "Rectangles";
+            // 
+            // YLabel
+            // 
+            YLabel.AutoSize = true;
+            YLabel.Location = new Point(276, 215);
+            YLabel.Name = "YLabel";
+            YLabel.Size = new Size(20, 20);
+            YLabel.TabIndex = 11;
+            YLabel.Text = "Y:";
+            // 
+            // XLabel
+            // 
+            XLabel.AutoSize = true;
+            XLabel.Location = new Point(208, 215);
+            XLabel.Name = "XLabel";
+            XLabel.Size = new Size(21, 20);
+            XLabel.TabIndex = 10;
+            XLabel.Text = "X:";
+            // 
+            // YTextBox
+            // 
+            YTextBox.Location = new Point(276, 238);
+            YTextBox.Name = "YTextBox";
+            YTextBox.ReadOnly = true;
+            YTextBox.Size = new Size(57, 27);
+            YTextBox.TabIndex = 9;
+            // 
+            // XTextBox
+            // 
+            XTextBox.Location = new Point(208, 238);
+            XTextBox.Name = "XTextBox";
+            XTextBox.ReadOnly = true;
+            XTextBox.Size = new Size(57, 27);
+            XTextBox.TabIndex = 8;
             // 
             // FindButton
             // 
@@ -547,5 +589,9 @@
         private TextBox RatingTextBox;
         private TextBox YearTextBox;
         private Button FindMoviesButton;
+        private TextBox YTextBox;
+        private TextBox XTextBox;
+        private Label XLabel;
+        private Label YLabel;
     }
 }

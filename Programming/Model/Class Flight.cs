@@ -16,8 +16,23 @@ public class Flight
     /// <summary>
     /// Время полета в минутах.
     /// </summary>
-    public int FlightTimeMinute { get; set; }
+    private int _flightTimeMinute;
 
+    /// <summary>
+    /// Возвращает и задает время полета а минутах.
+    /// </summary>
+    public int FlightTimeMinute
+    {
+        get
+        {
+            return _flightTimeMinute;
+        }
+        set
+        {
+            Validator.AssertOnPositiveValue(value, "FlightTimeMinute");
+            _flightTimeMinute = value;
+        }
+    }
     /// <summary>
     /// Создает экземпляр класса <see cref="Flight"/>.
     /// </summary>

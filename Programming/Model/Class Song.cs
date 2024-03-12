@@ -16,8 +16,23 @@ public class Song
     /// <summary>
     /// Длительность песни в минутах.
     /// </summary>
-    public int DurationMinute { get; set; }
+    private int _durationMinute;
 
+    /// <summary>
+    /// Возвращает и задает длительность песни в минутах.
+    /// </summary>
+    public int DurationMinute
+    {
+        get
+        {
+            return _durationMinute;
+        }
+        set
+        {
+            Validator.AssertOnPositiveValue(value, "DurationMinute");
+            _durationMinute = value;
+        }
+    }
     /// <summary>
     /// Создает экземпляр класса <see cref="Song"/>.
     /// </summary>

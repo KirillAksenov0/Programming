@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -47,7 +48,10 @@ namespace Programming
             double minRating = 0.0;
             double maxRating = 10.0;
 
-            //
+            //Задаем рандомное значение точек X и Y
+            Random randomPoint = new Random();
+
+            //Заполнение массива цветов
             colors = new string[5] { "Orange", "Red", "Green", "Yellow", "Blue" };
 
             //Заполнение массивов объектов фильма
@@ -61,9 +65,12 @@ namespace Programming
 
             for (int index = 0; index < _rectangles.Length; index++)
             {
+                int randomNumberX = randomPoint.Next(1, 11);
+                int randomNumberY = randomPoint.Next(1, 11);
+                Point2D centerPoint = new Point2D(randomNumberX, randomNumberY);
                 double randomLenght = Math.Round(minRec + (randomRec.NextDouble() * (maxRec - minRec)), 2);
                 double randomWeight = Math.Round(minRec + (randomRec.NextDouble() * (maxRec - minRec)), 2);
-                _rectangles[index] = new Rectangle(randomLenght, randomWeight, colors[index]);
+                _rectangles[index] = new Rectangle(centerPoint, randomLenght, randomWeight, colors[index]);
             }
             //Заполнение массива фильмов
             _movies = new Movie[5];
@@ -283,15 +290,15 @@ namespace Programming
         /// <param name="e"></param>
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (tabControl1.SelectedIndex == 1 && !listBoxFilled)
-            {   
+            {
                 //Заполнение MovieListBox
                 foreach (var nameMovie in _movies)
                 {
                     MoviesListBox.Items.Add(nameMovie.Name);
                 }
-              
+
                 // Устанавливаем первый элемент в ListBox по умолчанию
                 RectanglesListBox.SelectedIndex = 0;
 
@@ -327,6 +334,8 @@ namespace Programming
                     LenghtTextBox.Text = _currentRectangle.Length.ToString();
                     WidthTextBox.Text = _currentRectangle.Width.ToString();
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    XTextBox.Text = _currentRectangle.Center.X.ToString();
+                    YTextBox.Text = _currentRectangle.Center.Y.ToString();
                     break;
 
                 //Если выбран "Rectangle2"
@@ -334,6 +343,8 @@ namespace Programming
                     LenghtTextBox.Text = _currentRectangle.Length.ToString();
                     WidthTextBox.Text = _currentRectangle.Width.ToString();
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    XTextBox.Text = _currentRectangle.Center.X.ToString();
+                    YTextBox.Text = _currentRectangle.Center.Y.ToString();
                     break;
 
                 //Если выбран "Rectangle3"
@@ -341,6 +352,8 @@ namespace Programming
                     LenghtTextBox.Text = _currentRectangle.Length.ToString();
                     WidthTextBox.Text = _currentRectangle.Width.ToString();
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    XTextBox.Text = _currentRectangle.Center.X.ToString();
+                    YTextBox.Text = _currentRectangle.Center.Y.ToString();
                     break;
 
                 //Если выбран "Rectangle4"
@@ -348,6 +361,8 @@ namespace Programming
                     LenghtTextBox.Text = _currentRectangle.Length.ToString();
                     WidthTextBox.Text = _currentRectangle.Width.ToString();
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    XTextBox.Text = _currentRectangle.Center.X.ToString();
+                    YTextBox.Text = _currentRectangle.Center.Y.ToString();
                     break;
 
                 //Если выбран "Rectangle5"
@@ -355,6 +370,8 @@ namespace Programming
                     LenghtTextBox.Text = _currentRectangle.Length.ToString();
                     WidthTextBox.Text = _currentRectangle.Width.ToString();
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    XTextBox.Text = _currentRectangle.Center.X.ToString();
+                    YTextBox.Text = _currentRectangle.Center.Y.ToString();
                     break;
             }
 
@@ -383,7 +400,7 @@ namespace Programming
             //Окрашивание textBox в белый, если введено верное значение 
             finally
             {
-                if ( _currentRectangle.Length < 0
+                if (_currentRectangle.Length < 0
                     || LenghtTextBox.Text == "")
                 {
                     LenghtTextBox.BackColor = System.Drawing.Color.LightPink;
@@ -420,7 +437,7 @@ namespace Programming
             //Окрашивание textBox в белый, если введено верное значение
             finally
             {
-                if ( _currentRectangle.Width < 0 ||
+                if (_currentRectangle.Width < 0 ||
                     WidthTextBox.Text == "")
                 {
                     WidthTextBox.BackColor = System.Drawing.Color.LightPink;
@@ -612,7 +629,7 @@ namespace Programming
         {
             int selectedIndex = FindMovieRating(_movies);
             //Смена выбранного фильма на фильм с максимальным рейтингом
-            MoviesListBox.SelectedIndex = selectedIndex; 
+            MoviesListBox.SelectedIndex = selectedIndex;
 
         }
     }

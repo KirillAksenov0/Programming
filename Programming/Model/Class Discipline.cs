@@ -11,12 +11,28 @@ public class Discipline
     /// <summary>
     /// Количество часов.
     /// </summary>
-    public int NumberOfHours { get; set; }
+    private int _numberOfHours;
 
     /// <summary>
     /// Оценка.
     /// </summary>
     private int _grade;
+
+    /// <summary>
+    /// Возвращает и задает количество часов.
+    /// </summary>
+    public int NumberOfHours
+    {
+        get
+        {
+            return _numberOfHours;
+        }
+        set
+        {
+            Validator.AssertOnPositiveValue(value, "NumberOfHours");
+            _numberOfHours = value;
+        }
+    }
 
     /// <summary>
     /// Возвращает и задает оценку.

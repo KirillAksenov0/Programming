@@ -11,7 +11,7 @@ public class Movie
     /// <summary>
     /// Длительность фильма в минутах.
     /// </summary>
-    public int DurationMinute { get; set; }
+    private int _durationMinute;
 
     /// <summary>
     /// Год выхода фильма.
@@ -45,6 +45,21 @@ public class Movie
         }
     }
 
+     /// <summary>
+     /// Возвращает и задает длительность фильма в минутах.
+     /// </summary>
+    public int DurationMinute
+    {
+        get
+        {
+            return _durationMinute;
+        }
+        set
+        {
+            Validator.AssertOnPositiveValue(value, "DurationMinute");
+            _durationMinute = value;
+        }
+    }
     /// <summary>
     /// Возвращает и задает рейтинг фильма.
     /// </summary>
