@@ -336,6 +336,7 @@ namespace Programming
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
                     XTextBox.Text = _currentRectangle.Center.X.ToString();
                     YTextBox.Text = _currentRectangle.Center.Y.ToString();
+                    IDTextBox.Text = _currentRectangle.ID.ToString();
                     break;
 
                 //Если выбран "Rectangle2"
@@ -345,6 +346,7 @@ namespace Programming
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
                     XTextBox.Text = _currentRectangle.Center.X.ToString();
                     YTextBox.Text = _currentRectangle.Center.Y.ToString();
+                    IDTextBox.Text = _currentRectangle.ID.ToString();
                     break;
 
                 //Если выбран "Rectangle3"
@@ -354,6 +356,7 @@ namespace Programming
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
                     XTextBox.Text = _currentRectangle.Center.X.ToString();
                     YTextBox.Text = _currentRectangle.Center.Y.ToString();
+                    IDTextBox.Text = _currentRectangle.ID.ToString();
                     break;
 
                 //Если выбран "Rectangle4"
@@ -363,6 +366,7 @@ namespace Programming
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
                     XTextBox.Text = _currentRectangle.Center.X.ToString();
                     YTextBox.Text = _currentRectangle.Center.Y.ToString();
+                    IDTextBox.Text = _currentRectangle.ID.ToString();
                     break;
 
                 //Если выбран "Rectangle5"
@@ -372,6 +376,7 @@ namespace Programming
                     ColorTextBox.Text = _currentRectangle.Color.ToString();
                     XTextBox.Text = _currentRectangle.Center.X.ToString();
                     YTextBox.Text = _currentRectangle.Center.Y.ToString();
+                    IDTextBox.Text = _currentRectangle.ID.ToString();
                     break;
             }
 

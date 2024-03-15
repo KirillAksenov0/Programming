@@ -60,6 +60,8 @@
             GenreLabel = new Label();
             MoviesListBox = new ListBox();
             RectangleGroupBox = new GroupBox();
+            IDLabel = new Label();
+            IDTextBox = new TextBox();
             YLabel = new Label();
             XLabel = new Label();
             YTextBox = new TextBox();
@@ -304,7 +306,7 @@
             // 
             // FindMoviesButton
             // 
-            FindMoviesButton.Location = new Point(224, 281);
+            FindMoviesButton.Location = new Point(225, 268);
             FindMoviesButton.Name = "FindMoviesButton";
             FindMoviesButton.Size = new Size(94, 29);
             FindMoviesButton.TabIndex = 9;
@@ -314,7 +316,7 @@
             // 
             // DurationTextBox
             // 
-            DurationTextBox.Location = new Point(208, 238);
+            DurationTextBox.Location = new Point(208, 229);
             DurationTextBox.Name = "DurationTextBox";
             DurationTextBox.ReadOnly = true;
             DurationTextBox.Size = new Size(125, 27);
@@ -322,7 +324,7 @@
             // 
             // RatingTextBox
             // 
-            RatingTextBox.Location = new Point(208, 174);
+            RatingTextBox.Location = new Point(208, 165);
             RatingTextBox.Name = "RatingTextBox";
             RatingTextBox.Size = new Size(125, 27);
             RatingTextBox.TabIndex = 7;
@@ -330,7 +332,7 @@
             // 
             // YearTextBox
             // 
-            YearTextBox.Location = new Point(208, 111);
+            YearTextBox.Location = new Point(208, 97);
             YearTextBox.Name = "YearTextBox";
             YearTextBox.ReadOnly = true;
             YearTextBox.Size = new Size(125, 27);
@@ -338,7 +340,7 @@
             // 
             // GenreTextBox
             // 
-            GenreTextBox.Location = new Point(208, 49);
+            GenreTextBox.Location = new Point(208, 33);
             GenreTextBox.Name = "GenreTextBox";
             GenreTextBox.ReadOnly = true;
             GenreTextBox.Size = new Size(125, 27);
@@ -347,7 +349,7 @@
             // DurationLabel
             // 
             DurationLabel.AutoSize = true;
-            DurationLabel.Location = new Point(208, 215);
+            DurationLabel.Location = new Point(208, 206);
             DurationLabel.Name = "DurationLabel";
             DurationLabel.Size = new Size(70, 20);
             DurationLabel.TabIndex = 4;
@@ -356,7 +358,7 @@
             // RatingLabel
             // 
             RatingLabel.AutoSize = true;
-            RatingLabel.Location = new Point(208, 151);
+            RatingLabel.Location = new Point(208, 142);
             RatingLabel.Name = "RatingLabel";
             RatingLabel.Size = new Size(55, 20);
             RatingLabel.TabIndex = 3;
@@ -365,7 +367,7 @@
             // YearLabel
             // 
             YearLabel.AutoSize = true;
-            YearLabel.Location = new Point(208, 88);
+            YearLabel.Location = new Point(208, 74);
             YearLabel.Name = "YearLabel";
             YearLabel.Size = new Size(40, 20);
             YearLabel.TabIndex = 2;
@@ -374,7 +376,7 @@
             // GenreLabel
             // 
             GenreLabel.AutoSize = true;
-            GenreLabel.Location = new Point(208, 26);
+            GenreLabel.Location = new Point(208, 10);
             GenreLabel.Name = "GenreLabel";
             GenreLabel.Size = new Size(51, 20);
             GenreLabel.TabIndex = 1;
@@ -392,6 +394,8 @@
             // 
             // RectangleGroupBox
             // 
+            RectangleGroupBox.Controls.Add(IDLabel);
+            RectangleGroupBox.Controls.Add(IDTextBox);
             RectangleGroupBox.Controls.Add(YLabel);
             RectangleGroupBox.Controls.Add(XLabel);
             RectangleGroupBox.Controls.Add(YTextBox);
@@ -411,27 +415,46 @@
             RectangleGroupBox.TabStop = false;
             RectangleGroupBox.Text = "Rectangles";
             // 
+            // IDLabel
+            // 
+            IDLabel.AutoSize = true;
+            IDLabel.Location = new Point(208, 206);
+            IDLabel.Name = "IDLabel";
+            IDLabel.Size = new Size(27, 20);
+            IDLabel.TabIndex = 13;
+            IDLabel.Text = "ID:";
+            // 
+            // IDTextBox
+            // 
+            IDTextBox.Location = new Point(208, 229);
+            IDTextBox.Name = "IDTextBox";
+            IDTextBox.ReadOnly = true;
+            IDTextBox.Size = new Size(125, 27);
+            IDTextBox.TabIndex = 12;
+            // 
             // YLabel
             // 
             YLabel.AutoSize = true;
-            YLabel.Location = new Point(276, 215);
+            YLabel.Font = new Font("Segoe UI", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            YLabel.Location = new Point(271, 268);
             YLabel.Name = "YLabel";
-            YLabel.Size = new Size(20, 20);
+            YLabel.Size = new Size(18, 17);
             YLabel.TabIndex = 11;
             YLabel.Text = "Y:";
             // 
             // XLabel
             // 
             XLabel.AutoSize = true;
-            XLabel.Location = new Point(208, 215);
+            XLabel.Font = new Font("Segoe UI", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            XLabel.Location = new Point(208, 265);
             XLabel.Name = "XLabel";
-            XLabel.Size = new Size(21, 20);
+            XLabel.Size = new Size(19, 17);
             XLabel.TabIndex = 10;
             XLabel.Text = "X:";
             // 
             // YTextBox
             // 
-            YTextBox.Location = new Point(276, 238);
+            YTextBox.Location = new Point(271, 285);
             YTextBox.Name = "YTextBox";
             YTextBox.ReadOnly = true;
             YTextBox.Size = new Size(57, 27);
@@ -439,7 +462,7 @@
             // 
             // XTextBox
             // 
-            XTextBox.Location = new Point(208, 238);
+            XTextBox.Location = new Point(208, 285);
             XTextBox.Name = "XTextBox";
             XTextBox.ReadOnly = true;
             XTextBox.Size = new Size(57, 27);
@@ -447,7 +470,7 @@
             // 
             // FindButton
             // 
-            FindButton.Location = new Point(223, 281);
+            FindButton.Location = new Point(221, 318);
             FindButton.Name = "FindButton";
             FindButton.Size = new Size(94, 29);
             FindButton.TabIndex = 7;
@@ -457,7 +480,7 @@
             // 
             // ColorTextBox
             // 
-            ColorTextBox.Location = new Point(208, 174);
+            ColorTextBox.Location = new Point(208, 165);
             ColorTextBox.Name = "ColorTextBox";
             ColorTextBox.Size = new Size(125, 27);
             ColorTextBox.TabIndex = 6;
@@ -465,7 +488,7 @@
             // 
             // WidthTextBox
             // 
-            WidthTextBox.Location = new Point(208, 111);
+            WidthTextBox.Location = new Point(208, 97);
             WidthTextBox.Name = "WidthTextBox";
             WidthTextBox.Size = new Size(125, 27);
             WidthTextBox.TabIndex = 5;
@@ -473,7 +496,7 @@
             // 
             // LenghtTextBox
             // 
-            LenghtTextBox.Location = new Point(208, 49);
+            LenghtTextBox.Location = new Point(208, 33);
             LenghtTextBox.Name = "LenghtTextBox";
             LenghtTextBox.Size = new Size(125, 27);
             LenghtTextBox.TabIndex = 4;
@@ -482,7 +505,7 @@
             // WidthLabel
             // 
             WidthLabel.AutoSize = true;
-            WidthLabel.Location = new Point(208, 88);
+            WidthLabel.Location = new Point(208, 74);
             WidthLabel.Name = "WidthLabel";
             WidthLabel.Size = new Size(52, 20);
             WidthLabel.TabIndex = 3;
@@ -491,7 +514,7 @@
             // ColorLabel
             // 
             ColorLabel.AutoSize = true;
-            ColorLabel.Location = new Point(208, 151);
+            ColorLabel.Location = new Point(208, 142);
             ColorLabel.Name = "ColorLabel";
             ColorLabel.Size = new Size(48, 20);
             ColorLabel.TabIndex = 2;
@@ -500,7 +523,7 @@
             // LenghtLabel
             // 
             LenghtLabel.AutoSize = true;
-            LenghtLabel.Location = new Point(208, 26);
+            LenghtLabel.Location = new Point(208, 10);
             LenghtLabel.Name = "LenghtLabel";
             LenghtLabel.Size = new Size(57, 20);
             LenghtLabel.TabIndex = 1;
@@ -593,5 +616,7 @@
         private TextBox XTextBox;
         private Label XLabel;
         private Label YLabel;
+        private Label IDLabel;
+        private TextBox IDTextBox;
     }
 }

@@ -1,12 +1,14 @@
-﻿/// <summary>
+﻿using System.Diagnostics;
+/// <summary>
 /// Хранит параметры прямоугольника.
 /// </summary>
 public class Rectangle
 {
     /// <summary>
-    /// Точка с координатами x,y.
+    /// Центр прямоугольника с координатами x,y.
     /// </summary>
     private Point2D _center;
+
     /// <summary>
     /// Длина прямоугольника.
     /// </summary>
@@ -18,9 +20,19 @@ public class Rectangle
     private double _width;
 
     /// <summary>
-    /// Цвет прямоугольника. Должен состоять только из букв.
+    /// Цвет прямоугольника. 
     /// </summary>
     public string Color { get; set; }
+
+    /// <summary>
+    /// Счетчик прямоугольников.
+    /// </summary>
+    private static int _allRectanglesCount = 0;
+
+    /// <summary>
+    /// ID прямоугольника.
+    /// </summary>
+    private int _id;
 
     /// <summary>
     /// Возвращает и задает точку с координатами.
@@ -70,6 +82,28 @@ public class Rectangle
     }
 
     /// <summary>
+    /// Возвращает количество прямоугольников.
+    /// </summary>
+    public static int AllRectanglesCount
+    {
+        get
+        {
+            return _allRectanglesCount;
+        }
+    }
+
+    /// <summary>
+    /// Возвращает ID прямоугольника.
+    /// </summary>
+    public int ID
+    {
+        get
+        {
+            return _id;
+        }
+        
+    }
+    /// <summary>
     /// Создает экземпляр класса <see cref="Rectangle"/>. 
     /// </summary>
     /// <param name="length">Длина прямоугольника.</param>
@@ -81,6 +115,8 @@ public class Rectangle
         Length = length;
         Width = width;
         Color = color;
+        _allRectanglesCount++;
+        _id = _allRectanglesCount;
     }
 
     /// <summary>
