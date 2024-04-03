@@ -3,6 +3,7 @@
 /// </summary>
 public static class CollisionManager
 {
+    /*
     /// <summary>
     /// Проверяет пересечение прямоугольников.
     /// </summary>
@@ -12,10 +13,10 @@ public static class CollisionManager
     public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
     {
         //Сумма половин ширин.
-        double sumHalfWidth = (rectangle1.Length / 2) + (rectangle2.Length / 2);
+        double sumHalfWidth = (rectangle1.Width / 2) + (rectangle2.Width / 2);
 
         //Сумма половин высот.
-        double sumHalfHeight = ((rectangle1.Width / 2) + (rectangle2.Width / 2));
+        double sumHalfHeight = ((rectangle1.Length / 2) + (rectangle2.Length / 2));
 
         //Разница X.
         double dX = Math.Abs(rectangle1.Center.X - rectangle2.Center.X);
@@ -30,7 +31,32 @@ public static class CollisionManager
 
         return false;
     }
+    */
+    /// <summary>
+    /// Проверяет пересечение прямоугольников.
+    /// </summary>
+    /// <param name="rectangle1">Первый прямоугольник. Должен быть объектом класса rectangle.</param>
+    /// <param name="rectangle2">Второй прямоугольник. Должен быть объектом класса rectangle.</param>
+    /// <returns>Возвращает true, если прямоугольники пересекаются и false, если нет.</returns>
+    public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
+    {
+        int xMax1 = rectangle1.Center.X + rectangle1.Width;
+        int yMax1 = rectangle1.Center.Y + rectangle1.Length;
+        int xMax2 = rectangle2.Center.X + rectangle2.Width;
+        int yMax2 = rectangle2.Center.Y + rectangle2.Length;
 
+        if (rectangle1.Center.X >= xMax2 || rectangle2.Center.X >= xMax1)
+        {
+            return false;
+        }
+
+        if (rectangle1.Center.Y >= yMax2 || rectangle2.Center.Y >= yMax1)
+        {
+            return false;
+        }
+
+        return true;
+    }
     /// <summary>
     /// Проверяет пересечение колец.
     /// </summary>

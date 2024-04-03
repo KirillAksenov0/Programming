@@ -6,12 +6,12 @@ public class Point2D
     /// <summary>
     /// Координата X.
     /// </summary>
-    private  int _x;
+    private int _x;
 
     /// <summary>
     /// Координата Y.
     /// </summary>
-    private  int _y;
+    private int _y;
 
     /// <summary>
     /// Возвращает и задает координату X.

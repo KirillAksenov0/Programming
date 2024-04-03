@@ -74,6 +74,23 @@
             ColorLabel = new Label();
             LenghtLabel = new Label();
             RectanglesListBox = new ListBox();
+            tabPage3 = new TabPage();
+            MinusPictureBox = new PictureBox();
+            PlusPictureBox = new PictureBox();
+            RectanglesLabel2 = new Label();
+            panel1 = new Panel();
+            WidthTextBox2 = new TextBox();
+            HeightTextBox2 = new TextBox();
+            YTextBox2 = new TextBox();
+            XTextBox2 = new TextBox();
+            IDTextBox2 = new TextBox();
+            HeightLabel = new Label();
+            WidthLabel2 = new Label();
+            IDLabel2 = new Label();
+            YLabel2 = new Label();
+            XLabel2 = new Label();
+            SelectedRectangleLabel = new Label();
+            RectanglesListBox2 = new ListBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
@@ -82,12 +99,16 @@
             tabPage2.SuspendLayout();
             MoviesGroupBox.SuspendLayout();
             RectangleGroupBox.SuspendLayout();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MinusPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PlusPictureBox).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -540,6 +561,185 @@
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(MinusPictureBox);
+            tabPage3.Controls.Add(PlusPictureBox);
+            tabPage3.Controls.Add(RectanglesLabel2);
+            tabPage3.Controls.Add(panel1);
+            tabPage3.Controls.Add(WidthTextBox2);
+            tabPage3.Controls.Add(HeightTextBox2);
+            tabPage3.Controls.Add(YTextBox2);
+            tabPage3.Controls.Add(XTextBox2);
+            tabPage3.Controls.Add(IDTextBox2);
+            tabPage3.Controls.Add(HeightLabel);
+            tabPage3.Controls.Add(WidthLabel2);
+            tabPage3.Controls.Add(IDLabel2);
+            tabPage3.Controls.Add(YLabel2);
+            tabPage3.Controls.Add(XLabel2);
+            tabPage3.Controls.Add(SelectedRectangleLabel);
+            tabPage3.Controls.Add(RectanglesListBox2);
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(717, 362);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Rectangles";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // MinusPictureBox
+            // 
+            MinusPictureBox.Cursor = Cursors.Hand;
+            MinusPictureBox.Image = Properties.Resources.delete_rectangle_button;
+            MinusPictureBox.Location = new Point(157, 130);
+            MinusPictureBox.Name = "MinusPictureBox";
+            MinusPictureBox.Size = new Size(56, 29);
+            MinusPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            MinusPictureBox.TabIndex = 24;
+            MinusPictureBox.TabStop = false;
+            MinusPictureBox.Click += MinusPictureBox_Click;
+            // 
+            // PlusPictureBox
+            // 
+            PlusPictureBox.Cursor = Cursors.Hand;
+            PlusPictureBox.Image = Properties.Resources.add_rectandle_button;
+            PlusPictureBox.Location = new Point(63, 130);
+            PlusPictureBox.Name = "PlusPictureBox";
+            PlusPictureBox.Size = new Size(53, 29);
+            PlusPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            PlusPictureBox.TabIndex = 23;
+            PlusPictureBox.TabStop = false;
+            PlusPictureBox.Click += PlusPictureBox_Click;
+            PlusPictureBox.Paint += PlusPictureBox_Paint;
+            // 
+            // RectanglesLabel2
+            // 
+            RectanglesLabel2.AutoSize = true;
+            RectanglesLabel2.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point);
+            RectanglesLabel2.Location = new Point(8, 0);
+            RectanglesLabel2.Name = "RectanglesLabel2";
+            RectanglesLabel2.Size = new Size(74, 17);
+            RectanglesLabel2.TabIndex = 22;
+            RectanglesLabel2.Text = "Rectangles:";
+            // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Location = new Point(282, 15);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(427, 333);
+            panel1.TabIndex = 21;
+            // 
+            // WidthTextBox2
+            // 
+            WidthTextBox2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            WidthTextBox2.Location = new Point(73, 292);
+            WidthTextBox2.Name = "WidthTextBox2";
+            WidthTextBox2.Size = new Size(125, 25);
+            WidthTextBox2.TabIndex = 20;
+            WidthTextBox2.TextChanged += WidthTextBox2_TextChanged;
+            // 
+            // HeightTextBox2
+            // 
+            HeightTextBox2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            HeightTextBox2.Location = new Point(73, 323);
+            HeightTextBox2.Name = "HeightTextBox2";
+            HeightTextBox2.Size = new Size(125, 25);
+            HeightTextBox2.TabIndex = 19;
+            HeightTextBox2.TextChanged += HeightTextBox2_TextChanged;
+            // 
+            // YTextBox2
+            // 
+            YTextBox2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            YTextBox2.Location = new Point(73, 261);
+            YTextBox2.Name = "YTextBox2";
+            YTextBox2.ReadOnly = true;
+            YTextBox2.Size = new Size(125, 25);
+            YTextBox2.TabIndex = 18;
+            // 
+            // XTextBox2
+            // 
+            XTextBox2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            XTextBox2.Location = new Point(74, 229);
+            XTextBox2.Name = "XTextBox2";
+            XTextBox2.ReadOnly = true;
+            XTextBox2.Size = new Size(125, 25);
+            XTextBox2.TabIndex = 17;
+            // 
+            // IDTextBox2
+            // 
+            IDTextBox2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            IDTextBox2.Location = new Point(74, 198);
+            IDTextBox2.Name = "IDTextBox2";
+            IDTextBox2.ReadOnly = true;
+            IDTextBox2.Size = new Size(125, 25);
+            IDTextBox2.TabIndex = 16;
+            // 
+            // HeightLabel
+            // 
+            HeightLabel.AutoSize = true;
+            HeightLabel.Location = new Point(11, 322);
+            HeightLabel.Name = "HeightLabel";
+            HeightLabel.Size = new Size(57, 20);
+            HeightLabel.TabIndex = 15;
+            HeightLabel.Text = "Height:";
+            // 
+            // WidthLabel2
+            // 
+            WidthLabel2.AutoSize = true;
+            WidthLabel2.Location = new Point(16, 292);
+            WidthLabel2.Name = "WidthLabel2";
+            WidthLabel2.Size = new Size(52, 20);
+            WidthLabel2.TabIndex = 14;
+            WidthLabel2.Text = "Width:";
+            // 
+            // IDLabel2
+            // 
+            IDLabel2.AutoSize = true;
+            IDLabel2.Location = new Point(47, 203);
+            IDLabel2.Name = "IDLabel2";
+            IDLabel2.Size = new Size(25, 20);
+            IDLabel2.TabIndex = 13;
+            IDLabel2.Text = "Id:";
+            // 
+            // YLabel2
+            // 
+            YLabel2.AutoSize = true;
+            YLabel2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            YLabel2.Location = new Point(47, 261);
+            YLabel2.Name = "YLabel2";
+            YLabel2.Size = new Size(20, 20);
+            YLabel2.TabIndex = 12;
+            YLabel2.Text = "Y:";
+            // 
+            // XLabel2
+            // 
+            XLabel2.AutoSize = true;
+            XLabel2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            XLabel2.Location = new Point(47, 232);
+            XLabel2.Name = "XLabel2";
+            XLabel2.Size = new Size(21, 20);
+            XLabel2.TabIndex = 11;
+            XLabel2.Text = "X:";
+            // 
+            // SelectedRectangleLabel
+            // 
+            SelectedRectangleLabel.AutoSize = true;
+            SelectedRectangleLabel.Location = new Point(15, 171);
+            SelectedRectangleLabel.Name = "SelectedRectangleLabel";
+            SelectedRectangleLabel.Size = new Size(139, 20);
+            SelectedRectangleLabel.TabIndex = 3;
+            SelectedRectangleLabel.Text = "Selected Rectangle:";
+            // 
+            // RectanglesListBox2
+            // 
+            RectanglesListBox2.FormattingEnabled = true;
+            RectanglesListBox2.ItemHeight = 20;
+            RectanglesListBox2.Location = new Point(8, 20);
+            RectanglesListBox2.Name = "RectanglesListBox2";
+            RectanglesListBox2.Size = new Size(268, 104);
+            RectanglesListBox2.TabIndex = 0;
+            RectanglesListBox2.SelectedIndexChanged += RectanglesListBox2_SelectedIndexChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -562,6 +762,10 @@
             MoviesGroupBox.PerformLayout();
             RectangleGroupBox.ResumeLayout(false);
             RectangleGroupBox.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)MinusPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PlusPictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -618,5 +822,22 @@
         private Label YLabel;
         private Label IDLabel;
         private TextBox IDTextBox;
+        private TabPage tabPage3;
+        private ListBox RectanglesListBox2;
+        private Label SelectedRectangleLabel;
+        private Label WidthLabel2;
+        private Label IDLabel2;
+        private Label YLabel2;
+        private Label XLabel2;
+        private TextBox YTextBox2;
+        private TextBox XTextBox2;
+        private TextBox IDTextBox2;
+        private Label HeightLabel;
+        private TextBox WidthTextBox2;
+        private TextBox HeightTextBox2;
+        private Label RectanglesLabel2;
+        private Panel panel1;
+        private PictureBox PlusPictureBox;
+        private PictureBox MinusPictureBox;
     }
 }

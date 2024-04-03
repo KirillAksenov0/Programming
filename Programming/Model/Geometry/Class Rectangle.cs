@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 /// <summary>
 /// Хранит параметры прямоугольника.
 /// </summary>
@@ -7,17 +8,17 @@ public class Rectangle
     /// <summary>
     /// Центр прямоугольника с координатами x,y.
     /// </summary>
-    private Point2D _center;
+    public Point2D Center { get; set; }
 
     /// <summary>
     /// Длина прямоугольника.
     /// </summary>
-    private double _length;
+    private int _length;
 
     /// <summary>
     /// Ширина прямоугольника.
     /// </summary>
-    private double _width;
+    private int _width;
 
     /// <summary>
     /// Цвет прямоугольника. 
@@ -34,25 +35,12 @@ public class Rectangle
     /// </summary>
     private int _id;
 
-    /// <summary>
-    /// Возвращает и задает точку с координатами.
-    /// </summary>
-    public Point2D Center
-    {
-        get
-        {
-            return _center;
-        }
-        set
-        {
-            _center = value;
-        }
-    }
+    Random rand = new Random();
 
     /// <summary>
     /// Возвращает и задает длину прямоугольника.
     /// </summary>
-    public double Length
+    public int Length
     {
         get
         {
@@ -68,7 +56,7 @@ public class Rectangle
     /// <summary>
     /// Возвращает и задает ширину прямоугольника.
     /// </summary>
-    public double Width
+    public int Width
     {
         get
         {
@@ -109,14 +97,16 @@ public class Rectangle
     /// <param name="length">Длина прямоугольника.</param>
     /// <param name="width">Ширина прямоугольника.</param>
     /// <param name="color">Цвет прямоугольника. Должен состоять только из букв.</param>
-    public Rectangle(Point2D center,double length, double width, string color)
+    public Rectangle( int length, int width, string color)
     {
-        Center = center;
+        
         Length = length;
         Width = width;
         Color = color;
         _allRectanglesCount++;
         _id = _allRectanglesCount;
+
+        Center = new Point2D(rand.Next(5, 301), rand.Next(5, 301));
     }
 
     /// <summary>
