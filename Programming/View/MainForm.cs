@@ -762,8 +762,6 @@ namespace Programming
             }
             FindCollisions();
         }
-
-
         /// <summary>
         /// Ищет пересекающиеся прямоугольники.
         /// </summary>
@@ -896,5 +894,7 @@ namespace Programming
                 FindCollisions();
             }
         }
+
+        
     }
 }
