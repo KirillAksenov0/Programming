@@ -42,6 +42,7 @@
             BookTitleLabel = new Label();
             AddButton = new Button();
             DeletButton = new Button();
+            EditButton = new Button();
             BookGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,6 +54,7 @@
             BooksListBox.Name = "BooksListBox";
             BooksListBox.Size = new Size(343, 284);
             BooksListBox.TabIndex = 0;
+            BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
             // 
             // BookGroupBox
             // 
@@ -80,8 +82,9 @@
             GenreComboBox.IntegralHeight = false;
             GenreComboBox.Location = new Point(125, 169);
             GenreComboBox.Name = "GenreComboBox";
-            GenreComboBox.Size = new Size(125, 28);
+            GenreComboBox.Size = new Size(221, 28);
             GenreComboBox.TabIndex = 12;
+            GenreComboBox.TextChanged += GenreComboBox_TextChanged;
             // 
             // GenreLabel
             // 
@@ -96,8 +99,9 @@
             // 
             PageCountTextBox.Location = new Point(125, 133);
             PageCountTextBox.Name = "PageCountTextBox";
-            PageCountTextBox.Size = new Size(125, 27);
+            PageCountTextBox.Size = new Size(221, 27);
             PageCountTextBox.TabIndex = 10;
+            PageCountTextBox.TextChanged += PageCountTextBox_TextChanged;
             // 
             // PageCountLabel
             // 
@@ -112,7 +116,7 @@
             // 
             AuthorTextBox.Location = new Point(125, 100);
             AuthorTextBox.Name = "AuthorTextBox";
-            AuthorTextBox.Size = new Size(125, 27);
+            AuthorTextBox.Size = new Size(221, 27);
             AuthorTextBox.TabIndex = 8;
             // 
             // AuthorLabel
@@ -128,8 +132,9 @@
             // 
             YearOfReleaseTextBox.Location = new Point(125, 67);
             YearOfReleaseTextBox.Name = "YearOfReleaseTextBox";
-            YearOfReleaseTextBox.Size = new Size(125, 27);
+            YearOfReleaseTextBox.Size = new Size(221, 27);
             YearOfReleaseTextBox.TabIndex = 6;
+            YearOfReleaseTextBox.TextChanged += YearOfReleaseTextBox_TextChanged;
             // 
             // YearOfReleaseLabel
             // 
@@ -144,8 +149,9 @@
             // 
             BookTitleTextBox.Location = new Point(125, 34);
             BookTitleTextBox.Name = "BookTitleTextBox";
-            BookTitleTextBox.Size = new Size(125, 27);
+            BookTitleTextBox.Size = new Size(221, 27);
             BookTitleTextBox.TabIndex = 4;
+            BookTitleTextBox.TextChanged += BookTitleTextBox_TextChanged;
             // 
             // BookTitleLabel
             // 
@@ -175,11 +181,22 @@
             DeletButton.Text = "Delete";
             DeletButton.UseVisualStyleBackColor = true;
             // 
+            // EditButton
+            // 
+            EditButton.Location = new Point(504, 371);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(94, 32);
+            EditButton.TabIndex = 6;
+            EditButton.Text = "Edit";
+            EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(EditButton);
             Controls.Add(DeletButton);
             Controls.Add(AddButton);
             Controls.Add(BooksListBox);
@@ -207,5 +224,6 @@
         private Label GenreLabel;
         private Button AddButton;
         private Button DeletButton;
+        private Button EditButton;
     }
 }

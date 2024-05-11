@@ -20,7 +20,7 @@
         {
             if ( value.Length > 100)
             {
-                throw new ArgumentException($"Некоректное значение в поле Book Title. Длина книги" +
+                throw new ArgumentException("Некоректное значение в поле Book Title. Длина книги" +
                     " не должна привышать 100 символов");
             }
             _bookTitle = value;
@@ -35,11 +35,12 @@
         }
         set
         {
-            if (value > 2024)
+            if (value > 2024 || value < 0)
             {
-                throw new ArgumentException($"Некоректное значение в поле Year of Release. Год выпуска" +
-                    " не должен быть больше текущего");
+                throw new ArgumentException("Некоректное значение в поле Year of Release. Год выпуска" +
+                    " не должен быть больше текущего или иметь отрицательное значение");
             }
+            
 
             _yearOfRelease = value;
         }
@@ -53,11 +54,13 @@
         }
         set
         {
-            if ( value <= 0)
+            if ( value <= 0 )
             {
-                throw new ArgumentException($"Некоректное значение в поле Page Count. Количесвто страниц " +
+                throw new ArgumentException($"Некоректное значение в поле Page Count. Количество страниц " +
                     "должно быть положительным числом");
             }
+            
+            
             _pageCount = value;
         }
     }
