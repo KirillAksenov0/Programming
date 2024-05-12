@@ -40,10 +40,13 @@
             YearOfReleaseLabel = new Label();
             BookTitleTextBox = new TextBox();
             BookTitleLabel = new Label();
-            AddButton = new Button();
-            DeletButton = new Button();
-            EditButton = new Button();
+            AddPictureBox = new PictureBox();
+            DelPictureBox = new PictureBox();
+            EditPictureBox = new PictureBox();
             BookGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AddPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DelPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)EditPictureBox).BeginInit();
             SuspendLayout();
             // 
             // BooksListBox
@@ -52,7 +55,7 @@
             BooksListBox.ItemHeight = 20;
             BooksListBox.Location = new Point(12, 12);
             BooksListBox.Name = "BooksListBox";
-            BooksListBox.Size = new Size(343, 284);
+            BooksListBox.Size = new Size(380, 344);
             BooksListBox.TabIndex = 0;
             BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
             // 
@@ -68,7 +71,7 @@
             BookGroupBox.Controls.Add(YearOfReleaseLabel);
             BookGroupBox.Controls.Add(BookTitleTextBox);
             BookGroupBox.Controls.Add(BookTitleLabel);
-            BookGroupBox.Location = new Point(379, 12);
+            BookGroupBox.Location = new Point(412, 12);
             BookGroupBox.Name = "BookGroupBox";
             BookGroupBox.Size = new Size(366, 231);
             BookGroupBox.TabIndex = 3;
@@ -118,6 +121,7 @@
             AuthorTextBox.Name = "AuthorTextBox";
             AuthorTextBox.Size = new Size(221, 27);
             AuthorTextBox.TabIndex = 8;
+            AuthorTextBox.TextChanged += AuthorTextBox_TextChanged;
             // 
             // AuthorLabel
             // 
@@ -162,49 +166,59 @@
             BookTitleLabel.TabIndex = 3;
             BookTitleLabel.Text = "Book Title:";
             // 
-            // AddButton
+            // AddPictureBox
             // 
-            AddButton.Location = new Point(447, 311);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(94, 32);
-            AddButton.TabIndex = 4;
-            AddButton.Text = "Add";
-            AddButton.UseVisualStyleBackColor = true;
-            AddButton.Click += AddButton_Click;
+            AddPictureBox.Cursor = Cursors.Hand;
+            AddPictureBox.Image = Properties.Resources.add_document1;
+            AddPictureBox.Location = new Point(94, 377);
+            AddPictureBox.Name = "AddPictureBox";
+            AddPictureBox.Size = new Size(43, 45);
+            AddPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            AddPictureBox.TabIndex = 7;
+            AddPictureBox.TabStop = false;
+            AddPictureBox.Click += AddPictureBox_Click;
             // 
-            // DeletButton
+            // DelPictureBox
             // 
-            DeletButton.Location = new Point(567, 311);
-            DeletButton.Name = "DeletButton";
-            DeletButton.Size = new Size(94, 32);
-            DeletButton.TabIndex = 5;
-            DeletButton.Text = "Delete";
-            DeletButton.UseVisualStyleBackColor = true;
+            DelPictureBox.Cursor = Cursors.Hand;
+            DelPictureBox.Image = Properties.Resources.delete_document1;
+            DelPictureBox.Location = new Point(179, 377);
+            DelPictureBox.Name = "DelPictureBox";
+            DelPictureBox.Size = new Size(43, 45);
+            DelPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            DelPictureBox.TabIndex = 8;
+            DelPictureBox.TabStop = false;
+            DelPictureBox.Click += DelPictureBox_Click;
             // 
-            // EditButton
+            // EditPictureBox
             // 
-            EditButton.Location = new Point(504, 371);
-            EditButton.Name = "EditButton";
-            EditButton.Size = new Size(94, 32);
-            EditButton.TabIndex = 6;
-            EditButton.Text = "Edit";
-            EditButton.UseVisualStyleBackColor = true;
-            EditButton.Click += EditButton_Click;
+            EditPictureBox.Cursor = Cursors.Hand;
+            EditPictureBox.Image = Properties.Resources.edit;
+            EditPictureBox.Location = new Point(262, 377);
+            EditPictureBox.Name = "EditPictureBox";
+            EditPictureBox.Size = new Size(43, 45);
+            EditPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            EditPictureBox.TabIndex = 9;
+            EditPictureBox.TabStop = false;
+            EditPictureBox.Click += EditPictureBox_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(EditButton);
-            Controls.Add(DeletButton);
-            Controls.Add(AddButton);
+            Controls.Add(EditPictureBox);
+            Controls.Add(DelPictureBox);
+            Controls.Add(AddPictureBox);
             Controls.Add(BooksListBox);
             Controls.Add(BookGroupBox);
             Name = "Form1";
             Text = "Form1";
             BookGroupBox.ResumeLayout(false);
             BookGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)AddPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DelPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)EditPictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -222,8 +236,8 @@
         private Label AuthorLabel;
         private ComboBox GenreComboBox;
         private Label GenreLabel;
-        private Button AddButton;
-        private Button DeletButton;
-        private Button EditButton;
+        private PictureBox AddPictureBox;
+        private PictureBox DelPictureBox;
+        private PictureBox EditPictureBox;
     }
 }

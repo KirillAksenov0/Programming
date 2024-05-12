@@ -21,42 +21,6 @@ namespace Solution
 
                 GenreComboBox.Items.Add(genreName);
         }
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            if ((!int.TryParse(PageCountTextBox.Text, out int pageCount) && PageCountTextBox.Text != "") ||
-                (!int.TryParse(YearOfReleaseTextBox.Text, out int year) && YearOfReleaseTextBox.Text != ""))
-            {
-                throw new Exception("Введено не корректное значение");
-            }
-            try
-            {
-                _currentBook = new Book(BookTitleTextBox.Text, Convert.ToInt32(YearOfReleaseTextBox.Text),
-                    AuthorTextBox.Text, Convert.ToInt32(PageCountTextBox.Text), (Genre)GenreComboBox.SelectedItem);
-            }
-
-            catch (FormatException)
-            {
-                throw new Exception("Заполнены не все поля");
-            }
-            catch (NullReferenceException)
-            {
-                throw new Exception("Не выбран жанр книги");
-            }
-
-
-            books.Add(_currentBook);
-
-            books.Sort((book1, book2) => string.Compare(book1.BookTitle, book2.BookTitle));
-
-            BooksListBox.Items.Clear();
-
-            foreach (Book book in books)
-            {
-                BooksListBox.Items.Add($"{book.BookTitle}, {book.Author}, " +
-               $"{book.YearOfRelease} г.");
-            }
-
-        }
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,7 +72,7 @@ namespace Solution
         private void BookTitleTextBox_TextChanged(object sender, EventArgs e)
         {
 
-            if (BookTitleTextBox.TextLength > 100)
+            if (BookTitleTextBox.TextLength > 100 || BookTitleTextBox.Text == "")
             {
                 BookTitleTextBox.BackColor = System.Drawing.Color.LightPink;
             }
@@ -136,9 +100,94 @@ namespace Solution
             }
 
         }
-        private void EditButton_Click(object sender, EventArgs e)
-        {
 
+        private void AuthorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (AuthorTextBox.Text == "")
+            {
+                // Если значение неверное, устанавливаем красный цвет фона текстового поля
+                AuthorTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            else
+            {
+                // Если значение верное, устанавливаем белый цвет фона текстового поля
+                AuthorTextBox.BackColor = SystemColors.Window;
+            }
+        }
+
+        private void GenreComboBox_TextChanged(object sender, EventArgs e)
+        {
+            // Проверяем, существует ли введенное пользователем значение в списке предложенных значений ComboBox
+            if (GenreComboBox.SelectedIndex == -1)
+            {
+                // Если введенное значение отсутствует в списке, окрашиваем ComboBox в красный
+                GenreComboBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            else
+            {
+                // Если введенное значение совпадает с одним из предложенных, устанавливаем стандартный цвет
+                GenreComboBox.BackColor = SystemColors.Window;
+            }
+        }
+
+        private void AddPictureBox_Click(object sender, EventArgs e)
+        {
+            if ((!int.TryParse(PageCountTextBox.Text, out int pageCount) && PageCountTextBox.Text != "") ||
+                (!int.TryParse(YearOfReleaseTextBox.Text, out int year) && YearOfReleaseTextBox.Text != ""))
+            {
+                throw new Exception("Введено не корректное значение");
+            }
+            try
+            {
+                _currentBook = new Book(BookTitleTextBox.Text, Convert.ToInt32(YearOfReleaseTextBox.Text),
+                    AuthorTextBox.Text, Convert.ToInt32(PageCountTextBox.Text), (Genre)GenreComboBox.SelectedItem);
+            }
+
+            catch (FormatException)
+            {
+                throw new Exception("Заполнены не все поля");
+            }
+
+            catch (NullReferenceException)
+            {
+                throw new Exception("Не выбран жанр книги");
+            }
+
+
+            books.Add(_currentBook);
+
+            books.Sort((book1, book2) => string.Compare(book1.BookTitle, book2.BookTitle));
+
+            BooksListBox.Items.Clear();
+
+            foreach (Book book in books)
+            {
+                BooksListBox.Items.Add($"{book.BookTitle}, {book.Author}, " +
+               $"{book.YearOfRelease} г.");
+            }
+        }
+
+        private void DelPictureBox_Click(object sender, EventArgs e)
+        {
+            if (BooksListBox.SelectedIndex != -1)
+            {
+                books.RemoveAt(BooksListBox.SelectedIndex);
+                BooksListBox.Items.Remove(BooksListBox.SelectedIndex);
+                ClearTextBox();
+                books.Sort((book1, book2) => string.Compare(book1.BookTitle, book2.BookTitle));
+
+                BooksListBox.Items.Clear();
+
+                foreach (Book book in books)
+                {
+                    BooksListBox.Items.Add($"{book.BookTitle}, {book.Author}, " +
+                   $"{book.YearOfRelease} г.");
+                }
+            }
+        }
+
+        private void EditPictureBox_Click(object sender, EventArgs e)
+        {
             if (BooksListBox.SelectedIndex != -1)
             {
                 try
@@ -169,19 +218,6 @@ namespace Solution
             }
         }
 
-        private void GenreComboBox_TextChanged(object sender, EventArgs e)
-        {
-            // Проверяем, существует ли введенное пользователем значение в списке предложенных значений ComboBox
-            if (GenreComboBox.SelectedIndex == -1)
-            {
-                // Если введенное значение отсутствует в списке, окрашиваем ComboBox в красный
-                GenreComboBox.BackColor = System.Drawing.Color.LightPink;
-            }
-            else
-            {
-                // Если введенное значение совпадает с одним из предложенных, устанавливаем стандартный цвет
-                GenreComboBox.BackColor = SystemColors.Window;
-            }
-        }
+
     }
 }
