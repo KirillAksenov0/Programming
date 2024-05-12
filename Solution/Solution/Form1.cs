@@ -1,4 +1,7 @@
 using System.Linq.Expressions;
+using System.Windows.Forms.VisualStyles;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace Solution
 {
@@ -6,13 +9,23 @@ namespace Solution
     {
         private List<Book> books;
 
+        public List<string[]> booksInfo;
+        private string filePath;
+
         private Book _currentBook;
         public Form1()
         {
+
             InitializeComponent();
             FillingGenreComboBox();
-
+            filePath = @"C:\Users\HONOR01\source\repos\Programming\Solution\Solution\books.txt";
             books = new List<Book>();
+            LoadBooksFromFile();
+
+
+
+            booksInfo = new List<string[]>();
+
         }
 
         private void FillingGenreComboBox()
@@ -24,7 +37,7 @@ namespace Solution
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (BooksListBox.SelectedIndex != null)
+            if (BooksListBox.SelectedIndex != -1)
             {
                 UpdateTextBox();
 
@@ -153,7 +166,6 @@ namespace Solution
                 throw new Exception("Не выбран жанр книги");
             }
 
-
             books.Add(_currentBook);
 
             books.Sort((book1, book2) => string.Compare(book1.BookTitle, book2.BookTitle));
@@ -165,6 +177,7 @@ namespace Solution
                 BooksListBox.Items.Add($"{book.BookTitle}, {book.Author}, " +
                $"{book.YearOfRelease} г.");
             }
+            SaveBooksToFile();
         }
 
         private void DelPictureBox_Click(object sender, EventArgs e)
@@ -183,7 +196,9 @@ namespace Solution
                     BooksListBox.Items.Add($"{book.BookTitle}, {book.Author}, " +
                    $"{book.YearOfRelease} г.");
                 }
+                SaveBooksToFile();
             }
+
         }
 
         private void EditPictureBox_Click(object sender, EventArgs e)
@@ -206,6 +221,7 @@ namespace Solution
                         BooksListBox.Items.Add($"{book.BookTitle}, {book.Author}, " +
                          $"{book.YearOfRelease} г.");
                     }
+                    SaveBooksToFile();
                 }
                 catch (FormatException)
                 {
@@ -216,6 +232,45 @@ namespace Solution
                     throw new Exception("Не выбран жанр книги");
                 }
             }
+        }
+        private void SaveBooksToFile()
+        {
+            File.WriteAllText(filePath, string.Empty);
+
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                foreach (Book book in books)
+                {
+                    string line = $"{book.BookTitle};{book.YearOfRelease};{book.Author};{book.PageCount};{book.Genre}";
+                    writer.WriteLine(line);
+                }
+            }
+        }
+
+        private void LoadBooksFromFile()
+        {
+            string[] lines = File.ReadAllLines(filePath);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                string[] info = line.Split(";");
+                if (info.Length >= 5)
+                {
+                    Book book = new Book(info[0], Convert.ToInt32(info[1]), info[2],
+                     Convert.ToInt32(info[3]), (Genre)Enum.Parse(typeof(Genre), info[4]));
+
+                    books.Add(book);
+                }
+            }
+
+            books.Sort((book1, book2) => string.Compare(book1.BookTitle, book2.BookTitle));
+
+            foreach (Book book in books)
+            {
+                BooksListBox.Items.Add($"{book.BookTitle}, {book.Author}, " +
+               $"{book.YearOfRelease} г.");
+            }
+
         }
 
 

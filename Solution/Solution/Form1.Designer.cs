@@ -55,7 +55,7 @@
             BooksListBox.ItemHeight = 20;
             BooksListBox.Location = new Point(12, 12);
             BooksListBox.Name = "BooksListBox";
-            BooksListBox.Size = new Size(380, 344);
+            BooksListBox.Size = new Size(536, 344);
             BooksListBox.TabIndex = 0;
             BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
             // 
@@ -71,7 +71,7 @@
             BookGroupBox.Controls.Add(YearOfReleaseLabel);
             BookGroupBox.Controls.Add(BookTitleTextBox);
             BookGroupBox.Controls.Add(BookTitleLabel);
-            BookGroupBox.Location = new Point(412, 12);
+            BookGroupBox.Location = new Point(567, 12);
             BookGroupBox.Name = "BookGroupBox";
             BookGroupBox.Size = new Size(366, 231);
             BookGroupBox.TabIndex = 3;
@@ -170,9 +170,9 @@
             // 
             AddPictureBox.Cursor = Cursors.Hand;
             AddPictureBox.Image = Properties.Resources.add_document1;
-            AddPictureBox.Location = new Point(94, 377);
+            AddPictureBox.Location = new Point(156, 378);
             AddPictureBox.Name = "AddPictureBox";
-            AddPictureBox.Size = new Size(43, 45);
+            AddPictureBox.Size = new Size(53, 47);
             AddPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             AddPictureBox.TabIndex = 7;
             AddPictureBox.TabStop = false;
@@ -182,9 +182,9 @@
             // 
             DelPictureBox.Cursor = Cursors.Hand;
             DelPictureBox.Image = Properties.Resources.delete_document1;
-            DelPictureBox.Location = new Point(179, 377);
+            DelPictureBox.Location = new Point(241, 378);
             DelPictureBox.Name = "DelPictureBox";
-            DelPictureBox.Size = new Size(43, 45);
+            DelPictureBox.Size = new Size(53, 47);
             DelPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             DelPictureBox.TabIndex = 8;
             DelPictureBox.TabStop = false;
@@ -194,9 +194,9 @@
             // 
             EditPictureBox.Cursor = Cursors.Hand;
             EditPictureBox.Image = Properties.Resources.edit;
-            EditPictureBox.Location = new Point(262, 377);
+            EditPictureBox.Location = new Point(324, 378);
             EditPictureBox.Name = "EditPictureBox";
-            EditPictureBox.Size = new Size(43, 45);
+            EditPictureBox.Size = new Size(53, 47);
             EditPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             EditPictureBox.TabIndex = 9;
             EditPictureBox.TabStop = false;
@@ -206,12 +206,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(945, 450);
             Controls.Add(EditPictureBox);
             Controls.Add(DelPictureBox);
             Controls.Add(AddPictureBox);
             Controls.Add(BooksListBox);
             Controls.Add(BookGroupBox);
+            MaximumSize = new Size(963, 497);
+            MinimumSize = new Size(963, 497);
             Name = "Form1";
             Text = "Form1";
             BookGroupBox.ResumeLayout(false);
