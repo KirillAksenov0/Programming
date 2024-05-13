@@ -1,4 +1,7 @@
-﻿public enum Genre
+﻿/// <summary>
+/// Хранит жанры книг.
+/// </summary>
+public enum Genre
 {
     Fantasy,
     Detective,

@@ -1,15 +1,37 @@
-﻿public class Book
+﻿/// <summary>
+/// Хранит данные о книге.
+/// </summary>
+public class Book
 {
+    /// <summary>
+    /// Название книги.
+    /// </summary>
     private string _bookTitle;
 
+    /// <summary>
+    /// Год выпуска.
+    /// </summary>
     private int _yearOfRelease;
 
+    /// <summary>
+    /// Автор книги.
+    /// </summary>
     private string _author;
 
+    /// <summary>
+    /// Количесвто страниц.
+    /// </summary>
     private int _pageCount;
 
+    /// <summary>
+    /// Жанр книги.
+    /// </summary>
     public Genre Genre { get; set; }
 
+    /// <summary>
+    /// Возвращает и задает название книги. Количесвто символов в названий не должно привышать 100
+    /// символов и быть пустым значением.
+    /// </summary>
     public string BookTitle
     {
         get
@@ -34,6 +56,9 @@
         }
     }
 
+    /// <summary>
+    /// Возвращает и задает год выпуска. Должен не превышать текущий год и не быть отрицательным числом.
+    /// </summary>
     public int YearOfRelease
     {
         get
@@ -52,6 +77,9 @@
         }
     }
 
+    /// <summary>
+    /// Возвращает и задает автора книги. Не должно быть пустым значением.
+    /// </summary>
     public string Author
     {
         get
@@ -67,6 +95,10 @@
             _author = value;
         }
     }
+
+    /// <summary>
+    /// Возвращает и задет количество страниц книги. Не должно быть отрицательным числом.
+    /// </summary>
     public int PageCount
     {
         get
@@ -85,6 +117,14 @@
         }
     }
 
+    /// <summary>
+    /// Создает экземпляр класса <see cref="Book"/>.
+    /// </summary>
+    /// <param name="bookTitle">Название.</param>
+    /// <param name="yearOfRelease">Год выпуска</param>
+    /// <param name="author">Автор.</param>
+    /// <param name="pageCount">Количество страниц.</param>
+    /// <param name="genre">Жанр.</param>
     public Book(string bookTitle, int yearOfRelease, string author, int pageCount, Genre genre)
     {
         BookTitle = bookTitle;

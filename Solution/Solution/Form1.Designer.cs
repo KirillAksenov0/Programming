@@ -1,6 +1,6 @@
 ﻿namespace Solution
 {
-    partial class Form1
+    partial class BookHub
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookHub));
             BooksListBox = new ListBox();
             BookGroupBox = new GroupBox();
             GenreComboBox = new ComboBox();
@@ -202,7 +203,7 @@
             EditPictureBox.TabStop = false;
             EditPictureBox.Click += EditPictureBox_Click;
             // 
-            // Form1
+            // BookHub
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -212,10 +213,11 @@
             Controls.Add(AddPictureBox);
             Controls.Add(BooksListBox);
             Controls.Add(BookGroupBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(963, 497);
             MinimumSize = new Size(963, 497);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "BookHub";
+            Text = "BookHub";
             BookGroupBox.ResumeLayout(false);
             BookGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AddPictureBox).EndInit();

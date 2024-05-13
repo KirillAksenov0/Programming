@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Solution
 {
-    public partial class Form1 : Form
+    public partial class BookHub : Form
     {
         private List<Book> books;
 
@@ -13,21 +13,23 @@ namespace Solution
         private string filePath;
 
         private Book _currentBook;
-        public Form1()
+        public BookHub()
         {
 
             InitializeComponent();
             FillingGenreComboBox();
+
             filePath = @"C:\Users\HONOR01\source\repos\Programming\Solution\Solution\books.txt";
             books = new List<Book>();
+
             LoadBooksFromFile();
 
-
-
             booksInfo = new List<string[]>();
-
         }
 
+        /// <summary>
+        /// Заполняет GenreComboBox.
+        /// </summary>
         private void FillingGenreComboBox()
         {
             foreach (Genre genreName in Enum.GetValues(typeof(Genre)))
@@ -35,6 +37,11 @@ namespace Solution
                 GenreComboBox.Items.Add(genreName);
         }
 
+        /// <summary>
+        /// Отображает и очищает данные о книге в текстбоксах.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (BooksListBox.SelectedIndex != -1)
@@ -48,6 +55,9 @@ namespace Solution
             }
         }
 
+        /// <summary>
+        /// Отображает данные о книге в текстбоксах.
+        /// </summary>
         private void UpdateTextBox()
         {
             _currentBook = books[BooksListBox.SelectedIndex];
@@ -59,6 +69,9 @@ namespace Solution
 
         }
 
+        /// <summary>
+        /// Очищает текстбоксы.
+        /// </summary>
         private void ClearTextBox()
         {
             BookTitleTextBox.Text = "";
@@ -68,20 +81,31 @@ namespace Solution
             GenreComboBox.SelectedItem = null;
         }
 
+        /// <summary>
+        /// Подсвечивает неправильно введенные данные в YearOfReleaseTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void YearOfReleaseTextBox_TextChanged(object sender, EventArgs e)
         {
-            // Проверяем, является ли введенное значение годом в диапазоне от 0 до 2024
+            
             if ((int.TryParse(YearOfReleaseTextBox.Text, out int year) && year >= 0 && year <= 2024))
             {
-                // Если значение верное, устанавливаем цвет текстового поля в обычный
+                
                 YearOfReleaseTextBox.BackColor = SystemColors.Window;
             }
             else
             {
-                // Если значение неверное, устанавливаем красный цвет текстового поля
+                
                 YearOfReleaseTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
+        /// <summary>
+        /// Подсвечивает неправильно введенные данные в BookTitleTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookTitleTextBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -97,52 +121,68 @@ namespace Solution
             }
 
         }
+
+        /// <summary>
+        /// Подсвечивает неправильно введенные данные в PageCountTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PageCountTextBox_TextChanged(object sender, EventArgs e)
         {
-            // Проверяем, является ли введенное значение положительным целым числом
             if ((int.TryParse(PageCountTextBox.Text, out int pages) && pages > 0))
             {
-                // Если значение верное, устанавливаем белый цвет фона текстового поля
+                
                 PageCountTextBox.BackColor = SystemColors.Window;
-
             }
             else
             {
-                // Если значение неверное, устанавливаем красный цвет фона текстового поля
                 PageCountTextBox.BackColor = System.Drawing.Color.LightPink;
             }
 
         }
 
+        /// <summary>
+        /// Подсвечивает неправильно введенные данные в AuthorTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AuthorTextBox_TextChanged(object sender, EventArgs e)
         {
             if (AuthorTextBox.Text == "")
             {
-                // Если значение неверное, устанавливаем красный цвет фона текстового поля
+                
                 AuthorTextBox.BackColor = System.Drawing.Color.LightPink;
             }
             else
             {
-                // Если значение верное, устанавливаем белый цвет фона текстового поля
+                
                 AuthorTextBox.BackColor = SystemColors.Window;
             }
         }
 
+        /// <summary>
+        /// Подсвечивает неправильно введенные данные в GenreComboBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GenreComboBox_TextChanged(object sender, EventArgs e)
         {
-            // Проверяем, существует ли введенное пользователем значение в списке предложенных значений ComboBox
             if (GenreComboBox.SelectedIndex == -1)
             {
-                // Если введенное значение отсутствует в списке, окрашиваем ComboBox в красный
                 GenreComboBox.BackColor = System.Drawing.Color.LightPink;
             }
             else
             {
-                // Если введенное значение совпадает с одним из предложенных, устанавливаем стандартный цвет
                 GenreComboBox.BackColor = SystemColors.Window;
             }
         }
 
+        /// <summary>
+        /// Добавляет данные о новой книге в список и отображает ее в BooksListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="Exception"></exception>
         private void AddPictureBox_Click(object sender, EventArgs e)
         {
             if ((!int.TryParse(PageCountTextBox.Text, out int pageCount) && PageCountTextBox.Text != "") ||
@@ -180,6 +220,11 @@ namespace Solution
             SaveBooksToFile();
         }
 
+        /// <summary>
+        /// Удаляет выбранный экземпляр книги.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DelPictureBox_Click(object sender, EventArgs e)
         {
             if (BooksListBox.SelectedIndex != -1)
@@ -187,6 +232,13 @@ namespace Solution
                 books.RemoveAt(BooksListBox.SelectedIndex);
                 BooksListBox.Items.Remove(BooksListBox.SelectedIndex);
                 ClearTextBox();
+
+                YearOfReleaseTextBox.BackColor = SystemColors.Window;
+                AuthorTextBox.BackColor = SystemColors.Window;
+                BookTitleTextBox.BackColor = SystemColors.Window;
+                PageCountTextBox.BackColor = SystemColors.Window;
+                GenreComboBox.BackColor = SystemColors.Window;
+
                 books.Sort((book1, book2) => string.Compare(book1.BookTitle, book2.BookTitle));
 
                 BooksListBox.Items.Clear();
@@ -201,6 +253,12 @@ namespace Solution
 
         }
 
+        /// <summary>
+        /// Изменяет данные о выбранной книге.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="Exception"></exception>
         private void EditPictureBox_Click(object sender, EventArgs e)
         {
             if (BooksListBox.SelectedIndex != -1)
@@ -233,6 +291,10 @@ namespace Solution
                 }
             }
         }
+
+        /// <summary>
+        /// Сохраняет данные о книгах в файл.
+        /// </summary>
         private void SaveBooksToFile()
         {
             File.WriteAllText(filePath, string.Empty);
@@ -247,6 +309,9 @@ namespace Solution
             }
         }
 
+        /// <summary>
+        /// Загружает данные о книгах из файла.
+        /// </summary>
         private void LoadBooksFromFile()
         {
             string[] lines = File.ReadAllLines(filePath);
