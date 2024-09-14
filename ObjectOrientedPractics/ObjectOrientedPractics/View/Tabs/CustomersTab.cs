@@ -19,7 +19,11 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Добавляет новых клиентов в список и CustomerListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             selectedCustomer = new Customer(FullNameTextBox.Text, AddressTextBox.Text);
@@ -29,6 +33,11 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.Items.Add($"{selectedCustomer.Fullname}");
         }
 
+        /// <summary>
+        /// Отображает изменения в данных клиентов.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
@@ -41,6 +50,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет данныее в TextBox.
+        /// </summary>
         private void UpdateTextBox()
         {
             Customer SelectedValue = _customers[CustomersListBox.SelectedIndex];
@@ -50,6 +62,9 @@ namespace ObjectOrientedPractics.View.Tabs
             IDTextBox.Text = Convert.ToString(SelectedValue.ID);
         }
 
+        /// <summary>
+        /// Очищает данные в TextBox.
+        /// </summary>
         private void ClearTextBox()
         {
             FullNameTextBox.Text = "";
@@ -60,6 +75,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обеспечивает валидацию значений в FullNameTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (FullNameTextBox.Text.Length > 200 || FullNameTextBox.Text.Length == 0)
@@ -72,6 +92,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обеспечивает валидацию значений в AddressTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddressTextBox_TextChanged(object sender, EventArgs e)
         {
             if (AddressTextBox.Text.Length > 500)
@@ -84,6 +109,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Удаляет выбранного клиента из списка и ListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             _customers.RemoveAt(CustomersListBox.SelectedIndex);
@@ -93,6 +123,11 @@ namespace ObjectOrientedPractics.View.Tabs
             ClearTextBox();
         }
 
+        /// <summary>
+        /// Сохраняет изменениия в TextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditButton_Click(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)

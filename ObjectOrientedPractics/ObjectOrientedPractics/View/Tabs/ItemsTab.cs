@@ -20,6 +20,12 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Добавляет новые товары в список и ItemsListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="Exception"></exception>
         private void AddButton_Click(object sender, EventArgs e)
         {
             try
@@ -38,6 +44,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Отображает изменения в данных товаров.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -50,6 +61,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет данныее в TextBox.
+        /// </summary>
         private void UpdateTextBox()
         {
             Item SelectedValue = _items[ItemsListBox.SelectedIndex];
@@ -60,6 +74,9 @@ namespace ObjectOrientedPractics.View.Tabs
             IDTextBox.Text = Convert.ToString(SelectedValue.ID);
         }
 
+        /// <summary>
+        /// Очищает данные в TextBox.
+        /// </summary>
         private void ClearTextBox()
         {
             NameTextBox.Text = "";
@@ -72,6 +89,11 @@ namespace ObjectOrientedPractics.View.Tabs
             IDTextBox.Text = "";
         }
 
+        /// <summary>
+        /// Обеспечивает валидацию значений в CostTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -94,6 +116,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обеспечивает валидацию значений в NameTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (NameTextBox.Text.Length > 200 || NameTextBox.Text.Length == 0)
@@ -106,6 +133,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обеспечивает валидацию значений в DescriptionTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             if (DescriptionTextBox.Text.Length > 1000)
@@ -119,6 +151,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Удаляет выбранный товар из списка и ListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             _items.RemoveAt(ItemsListBox.SelectedIndex);
@@ -128,6 +165,12 @@ namespace ObjectOrientedPractics.View.Tabs
             ClearTextBox();
         }
 
+        /// <summary>
+        /// Сохраняет изменениия в TextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="Exception"></exception>
         private void EditButton_Click(object sender, EventArgs e)
         {
             try
