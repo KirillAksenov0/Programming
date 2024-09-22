@@ -24,6 +24,11 @@ public class Item
     private double _cost;
 
     /// <summary>
+    /// Категория товара.
+    /// </summary>
+    public Category Category { get; set; }
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
     public int ID { get; private set; }
@@ -97,13 +102,15 @@ public class Item
     /// <param name="name">Название товара. Длина не должна привышать 200 символво.</param>
     /// <param name="info">Описание товара. Длина не должна привышать 1000 символов.</param>
     /// <param name="cost">Стоимость товара. Вещественное число. От 0 до 100000. </param>
-    public Item(string name, string info, double cost)
+    /// <param name="category">Категория товара. Принадлежит к соответствующему перечислению. </param>
+    public Item(string name, string info, double cost, Category category)
     {
         
         ID = _id++;
         Name = name;
         Info = info;
         Cost = cost;
+        Category = category;
     }
 }
 

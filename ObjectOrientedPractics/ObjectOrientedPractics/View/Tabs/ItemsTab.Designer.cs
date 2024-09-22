@@ -42,6 +42,8 @@
             IDTextBox = new TextBox();
             CostLabel = new Label();
             IDLabel = new Label();
+            CategoryLabel = new Label();
+            CategoryComboBox = new ComboBox();
             ItemsGroupBox.SuspendLayout();
             SelectedItemGroupBox.SuspendLayout();
             SuspendLayout();
@@ -107,6 +109,8 @@
             // SelectedItemGroupBox
             // 
             SelectedItemGroupBox.BackColor = SystemColors.ButtonHighlight;
+            SelectedItemGroupBox.Controls.Add(CategoryComboBox);
+            SelectedItemGroupBox.Controls.Add(CategoryLabel);
             SelectedItemGroupBox.Controls.Add(DescriptionTextBox);
             SelectedItemGroupBox.Controls.Add(DescriptionLabel);
             SelectedItemGroupBox.Controls.Add(NameTextBox);
@@ -125,7 +129,7 @@
             // 
             // DescriptionTextBox
             // 
-            DescriptionTextBox.Location = new Point(16, 343);
+            DescriptionTextBox.Location = new Point(16, 387);
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(712, 211);
             DescriptionTextBox.TabIndex = 7;
@@ -135,7 +139,7 @@
             // DescriptionLabel
             // 
             DescriptionLabel.AutoSize = true;
-            DescriptionLabel.Location = new Point(16, 312);
+            DescriptionLabel.Location = new Point(16, 356);
             DescriptionLabel.Name = "DescriptionLabel";
             DescriptionLabel.Size = new Size(116, 28);
             DescriptionLabel.TabIndex = 6;
@@ -143,7 +147,7 @@
             // 
             // NameTextBox
             // 
-            NameTextBox.Location = new Point(16, 186);
+            NameTextBox.Location = new Point(16, 230);
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(712, 108);
             NameTextBox.TabIndex = 5;
@@ -153,7 +157,7 @@
             // NameLabel
             // 
             NameLabel.AutoSize = true;
-            NameLabel.Location = new Point(16, 155);
+            NameLabel.Location = new Point(16, 199);
             NameLabel.Name = "NameLabel";
             NameLabel.Size = new Size(68, 28);
             NameLabel.TabIndex = 4;
@@ -161,7 +165,7 @@
             // 
             // CostTextBox
             // 
-            CostTextBox.Location = new Point(93, 97);
+            CostTextBox.Location = new Point(140, 97);
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(179, 34);
             CostTextBox.TabIndex = 3;
@@ -169,7 +173,7 @@
             // 
             // IDTextBox
             // 
-            IDTextBox.Location = new Point(93, 43);
+            IDTextBox.Location = new Point(140, 43);
             IDTextBox.Name = "IDTextBox";
             IDTextBox.ReadOnly = true;
             IDTextBox.Size = new Size(179, 34);
@@ -192,6 +196,23 @@
             IDLabel.Size = new Size(35, 28);
             IDLabel.TabIndex = 0;
             IDLabel.Text = "ID:";
+            // 
+            // CategoryLabel
+            // 
+            CategoryLabel.AutoSize = true;
+            CategoryLabel.Location = new Point(16, 152);
+            CategoryLabel.Name = "CategoryLabel";
+            CategoryLabel.Size = new Size(96, 28);
+            CategoryLabel.TabIndex = 8;
+            CategoryLabel.Text = "Category:";
+            // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(140, 152);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(179, 36);
+            CategoryComboBox.TabIndex = 9;
             // 
             // ItemsTab
             // 
@@ -223,5 +244,7 @@
         private Label NameLabel;
         private RichTextBox DescriptionTextBox;
         private Button EditButton;
+        private ComboBox CategoryComboBox;
+        private Label CategoryLabel;
     }
 }

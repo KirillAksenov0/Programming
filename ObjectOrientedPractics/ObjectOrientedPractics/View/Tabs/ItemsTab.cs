@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -18,6 +19,14 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            FillingCategoryComboBox();
+        }
+
+        private void FillingCategoryComboBox()
+        {
+            foreach (Category category in Enum.GetValues(typeof(Category)))
+
+                CategoryComboBox.Items.Add(category);
         }
 
         /// <summary>
@@ -31,7 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 selectedItem = new Item(NameTextBox.Text, DescriptionTextBox.Text,
-                    Convert.ToDouble(CostTextBox.Text));
+                    Convert.ToDouble(CostTextBox.Text), (Category)CategoryComboBox.SelectedItem);
 
                 _items.Add(selectedItem);
 
