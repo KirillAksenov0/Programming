@@ -207,7 +207,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 throw new Exception("Cost должен быть больше 0 и меньше 100000");
             }
         }
-
+        /// <summary>
+        /// Выполняет валидацию значении в CategoryComboBox.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         private void ValidateCategoryComboBox()
         {
             if (string.IsNullOrWhiteSpace(CategoryComboBox.Text))
@@ -221,7 +224,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CategoryComboBox.BackColor = SystemColors.Window;
             }
         }
-        
+
 
 
 
