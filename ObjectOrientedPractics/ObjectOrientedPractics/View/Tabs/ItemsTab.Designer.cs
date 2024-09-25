@@ -34,6 +34,8 @@
             AddButton = new Button();
             ItemsListBox = new ListBox();
             SelectedItemGroupBox = new GroupBox();
+            CategoryComboBox = new ComboBox();
+            CategoryLabel = new Label();
             DescriptionTextBox = new RichTextBox();
             DescriptionLabel = new Label();
             NameTextBox = new RichTextBox();
@@ -42,8 +44,6 @@
             IDTextBox = new TextBox();
             CostLabel = new Label();
             IDLabel = new Label();
-            CategoryLabel = new Label();
-            CategoryComboBox = new ComboBox();
             ItemsGroupBox.SuspendLayout();
             SelectedItemGroupBox.SuspendLayout();
             SuspendLayout();
@@ -127,6 +127,23 @@
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
             // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(140, 152);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(179, 36);
+            CategoryComboBox.TabIndex = 9;
+            // 
+            // CategoryLabel
+            // 
+            CategoryLabel.AutoSize = true;
+            CategoryLabel.Location = new Point(16, 152);
+            CategoryLabel.Name = "CategoryLabel";
+            CategoryLabel.Size = new Size(96, 28);
+            CategoryLabel.TabIndex = 8;
+            CategoryLabel.Text = "Category:";
+            // 
             // DescriptionTextBox
             // 
             DescriptionTextBox.Location = new Point(16, 387);
@@ -196,23 +213,6 @@
             IDLabel.Size = new Size(35, 28);
             IDLabel.TabIndex = 0;
             IDLabel.Text = "ID:";
-            // 
-            // CategoryLabel
-            // 
-            CategoryLabel.AutoSize = true;
-            CategoryLabel.Location = new Point(16, 152);
-            CategoryLabel.Name = "CategoryLabel";
-            CategoryLabel.Size = new Size(96, 28);
-            CategoryLabel.TabIndex = 8;
-            CategoryLabel.Text = "Category:";
-            // 
-            // CategoryComboBox
-            // 
-            CategoryComboBox.FormattingEnabled = true;
-            CategoryComboBox.Location = new Point(140, 152);
-            CategoryComboBox.Name = "CategoryComboBox";
-            CategoryComboBox.Size = new Size(179, 36);
-            CategoryComboBox.TabIndex = 9;
             // 
             // ItemsTab
             // 

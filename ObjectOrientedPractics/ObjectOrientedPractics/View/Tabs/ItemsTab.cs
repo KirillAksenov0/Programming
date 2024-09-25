@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -37,6 +38,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <exception cref="Exception"></exception>
         private void AddButton_Click(object sender, EventArgs e)
         {
+            ValidateCategoryComboBox();
             try
             {
                 selectedItem = new Item(NameTextBox.Text, DescriptionTextBox.Text,
@@ -81,6 +83,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Text = Convert.ToString(SelectedValue.Cost);
             DescriptionTextBox.Text = SelectedValue.Info;
             IDTextBox.Text = Convert.ToString(SelectedValue.ID);
+            CategoryComboBox.SelectedItem = SelectedValue.Category;
         }
 
         /// <summary>
@@ -96,6 +99,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             DescriptionTextBox.Text = "";
             IDTextBox.Text = "";
+
+            CategoryComboBox.SelectedItem = null;
         }
 
         /// <summary>
@@ -167,11 +172,14 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            _items.RemoveAt(ItemsListBox.SelectedIndex);
+            if (ItemsListBox.SelectedIndex != -1)
+            {
+                _items.RemoveAt(ItemsListBox.SelectedIndex);
 
-            ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
+                ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
 
-            ClearTextBox();
+                ClearTextBox();
+            }
         }
 
         /// <summary>
@@ -182,6 +190,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <exception cref="Exception"></exception>
         private void EditButton_Click(object sender, EventArgs e)
         {
+            ValidateCategoryComboBox();
             try
             {
                 if (ItemsListBox.SelectedIndex != -1)
@@ -189,6 +198,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     _items[ItemsListBox.SelectedIndex].Name = NameTextBox.Text;
                     _items[ItemsListBox.SelectedIndex].Info = DescriptionTextBox.Text;
                     _items[ItemsListBox.SelectedIndex].Cost = Convert.ToDouble(CostTextBox.Text);
+                    _items[ItemsListBox.SelectedIndex].Category = (Category)CategoryComboBox.SelectedItem;
                     ItemsListBox.Items[ItemsListBox.SelectedIndex] = NameTextBox.Text;
                 }
             }
@@ -197,5 +207,23 @@ namespace ObjectOrientedPractics.View.Tabs
                 throw new Exception("Cost должен быть больше 0 и меньше 100000");
             }
         }
+
+        private void ValidateCategoryComboBox()
+        {
+            if (string.IsNullOrWhiteSpace(CategoryComboBox.Text))
+            {
+                CategoryComboBox.BackColor = Color.LightPink;
+                throw new Exception("Выберите значение Category");
+
+            }
+            else
+            {
+                CategoryComboBox.BackColor = SystemColors.Window;
+            }
+        }
+        
+
+
+
     }
 }
