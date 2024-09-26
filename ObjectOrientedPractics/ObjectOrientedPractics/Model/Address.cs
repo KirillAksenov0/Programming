@@ -140,14 +140,14 @@ public class Address
     /// </summary>
     public Address()
     {
-        Index = 100000;
+        Index = 123456;
         Country = "";
         City = "";
         Street = "";
         Building = "";
         Apartment = "";
     }
-
+   
     /// <summary>
     /// Создает экземпляр класса <see cref="Address">.
     /// </summary>

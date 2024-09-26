@@ -33,15 +33,13 @@
             AddButton = new Button();
             CustomersListBox = new ListBox();
             CustomersGroupBox = new GroupBox();
-            panel1 = new Panel();
             SelectedItemGroupBox = new GroupBox();
-            panel2 = new Panel();
-            AddressTextBox = new RichTextBox();
-            AddressLabel = new Label();
+            panel1 = new Panel();
             FullNameTextBox = new TextBox();
             IDTextBox = new TextBox();
             FullNameLabel = new Label();
             IDLabel = new Label();
+            addressControl1 = new Controls.AddressControl();
             CustomersGroupBox.SuspendLayout();
             SelectedItemGroupBox.SuspendLayout();
             SuspendLayout();
@@ -92,7 +90,6 @@
             // CustomersGroupBox
             // 
             CustomersGroupBox.BackColor = SystemColors.ControlLight;
-            CustomersGroupBox.Controls.Add(panel1);
             CustomersGroupBox.Controls.Add(CustomersListBox);
             CustomersGroupBox.Controls.Add(EditButton);
             CustomersGroupBox.Controls.Add(AddButton);
@@ -105,19 +102,10 @@
             CustomersGroupBox.TabStop = false;
             CustomersGroupBox.Text = "Customers";
             // 
-            // panel1
-            // 
-            panel1.Location = new Point(478, 334);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(569, 261);
-            panel1.TabIndex = 6;
-            // 
             // SelectedItemGroupBox
             // 
             SelectedItemGroupBox.BackColor = SystemColors.ButtonHighlight;
-            SelectedItemGroupBox.Controls.Add(panel2);
-            SelectedItemGroupBox.Controls.Add(AddressTextBox);
-            SelectedItemGroupBox.Controls.Add(AddressLabel);
+            SelectedItemGroupBox.Controls.Add(panel1);
             SelectedItemGroupBox.Controls.Add(FullNameTextBox);
             SelectedItemGroupBox.Controls.Add(IDTextBox);
             SelectedItemGroupBox.Controls.Add(FullNameLabel);
@@ -125,37 +113,17 @@
             SelectedItemGroupBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             SelectedItemGroupBox.Location = new Point(481, 3);
             SelectedItemGroupBox.Name = "SelectedItemGroupBox";
-            SelectedItemGroupBox.Size = new Size(775, 313);
+            SelectedItemGroupBox.Size = new Size(589, 116);
             SelectedItemGroupBox.TabIndex = 5;
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
             // 
-            // panel2
+            // panel1
             // 
-            panel2.Location = new Point(0, 308);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(775, 299);
-            panel2.TabIndex = 6;
-            // 
-            // AddressTextBox
-            // 
-            AddressTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            AddressTextBox.Location = new Point(101, 126);
-            AddressTextBox.Name = "AddressTextBox";
-            AddressTextBox.Size = new Size(479, 176);
-            AddressTextBox.TabIndex = 5;
-            AddressTextBox.Text = "";
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
-            // 
-            // AddressLabel
-            // 
-            AddressLabel.AutoSize = true;
-            AddressLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            AddressLabel.Location = new Point(16, 126);
-            AddressLabel.Name = "AddressLabel";
-            AddressLabel.Size = new Size(65, 20);
-            AddressLabel.TabIndex = 4;
-            AddressLabel.Text = "Address:";
+            panel1.Location = new Point(0, 313);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(590, 280);
+            panel1.TabIndex = 6;
             // 
             // FullNameTextBox
             // 
@@ -195,14 +163,24 @@
             IDLabel.TabIndex = 0;
             IDLabel.Text = "ID:";
             // 
+            // addressControl1
+            // 
+            addressControl1.Address = null;
+            addressControl1.BackColor = SystemColors.ButtonHighlight;
+            addressControl1.Location = new Point(481, 112);
+            addressControl1.Name = "addressControl1";
+            addressControl1.Size = new Size(590, 486);
+            addressControl1.TabIndex = 6;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(SelectedItemGroupBox);
+            Controls.Add(addressControl1);
             Controls.Add(CustomersGroupBox);
+            Controls.Add(SelectedItemGroupBox);
             Name = "CustomersTab";
-            Size = new Size(1061, 596);
+            Size = new Size(1070, 597);
             CustomersGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();
@@ -217,13 +195,11 @@
         private ListBox CustomersListBox;
         private GroupBox CustomersGroupBox;
         private GroupBox SelectedItemGroupBox;
-        private RichTextBox AddressTextBox;
-        private Label AddressLabel;
         private TextBox FullNameTextBox;
         private TextBox IDTextBox;
         private Label FullNameLabel;
         private Label IDLabel;
         private Panel panel1;
-        private Panel panel2;
+        private Controls.AddressControl addressControl1;
     }
 }

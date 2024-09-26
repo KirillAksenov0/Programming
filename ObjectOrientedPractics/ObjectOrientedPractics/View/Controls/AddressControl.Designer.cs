@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             AddressGroupBox = new GroupBox();
-            IndexLabel = new Label();
-            BuildingLabel = new Label();
-            CityLabel = new Label();
-            ApartmentLabel = new Label();
-            StreetLabel = new Label();
-            CountryLabel = new Label();
-            IndexTextBox = new TextBox();
-            BuildingTextBox = new TextBox();
-            ApartmentTextBox = new TextBox();
-            StreetTextBox = new TextBox();
-            CityTextBox = new TextBox();
             CountryTextBox = new TextBox();
+            CityTextBox = new TextBox();
+            StreetTextBox = new TextBox();
+            ApartmentTextBox = new TextBox();
+            BuildingTextBox = new TextBox();
+            IndexTextBox = new TextBox();
+            CountryLabel = new Label();
+            StreetLabel = new Label();
+            ApartmentLabel = new Label();
+            CityLabel = new Label();
+            BuildingLabel = new Label();
+            IndexLabel = new Label();
             AddressGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,50 +65,53 @@
             AddressGroupBox.TabStop = false;
             AddressGroupBox.Text = "Delivery Address";
             // 
-            // IndexLabel
+            // CountryTextBox
             // 
-            IndexLabel.AutoSize = true;
-            IndexLabel.Location = new Point(26, 46);
-            IndexLabel.Name = "IndexLabel";
-            IndexLabel.Size = new Size(79, 20);
-            IndexLabel.TabIndex = 0;
-            IndexLabel.Text = "Post Index:";
+            CountryTextBox.Location = new Point(120, 90);
+            CountryTextBox.Name = "CountryTextBox";
+            CountryTextBox.Size = new Size(245, 27);
+            CountryTextBox.TabIndex = 11;
+            CountryTextBox.TextChanged += CountryTextBox_TextChanged;
             // 
-            // BuildingLabel
+            // CityTextBox
             // 
-            BuildingLabel.AutoSize = true;
-            BuildingLabel.Location = new Point(26, 188);
-            BuildingLabel.Name = "BuildingLabel";
-            BuildingLabel.Size = new Size(67, 20);
-            BuildingLabel.TabIndex = 1;
-            BuildingLabel.Text = "Building:";
+            CityTextBox.Location = new Point(436, 93);
+            CityTextBox.Name = "CityTextBox";
+            CityTextBox.Size = new Size(160, 27);
+            CityTextBox.TabIndex = 10;
+            CityTextBox.TextChanged += CityTextBox_TextChanged;
             // 
-            // CityLabel
+            // StreetTextBox
             // 
-            CityLabel.AutoSize = true;
-            CityLabel.Location = new Point(393, 97);
-            CityLabel.Name = "CityLabel";
-            CityLabel.Size = new Size(37, 20);
-            CityLabel.TabIndex = 2;
-            CityLabel.Text = "City:";
+            StreetTextBox.Location = new Point(120, 139);
+            StreetTextBox.Name = "StreetTextBox";
+            StreetTextBox.Size = new Size(476, 27);
+            StreetTextBox.TabIndex = 9;
+            StreetTextBox.TextChanged += StreetTextBox_TextChanged;
             // 
-            // ApartmentLabel
+            // ApartmentTextBox
             // 
-            ApartmentLabel.AutoSize = true;
-            ApartmentLabel.Location = new Point(282, 195);
-            ApartmentLabel.Name = "ApartmentLabel";
-            ApartmentLabel.Size = new Size(83, 20);
-            ApartmentLabel.TabIndex = 3;
-            ApartmentLabel.Text = "Apartment:";
+            ApartmentTextBox.Location = new Point(382, 192);
+            ApartmentTextBox.Name = "ApartmentTextBox";
+            ApartmentTextBox.Size = new Size(118, 27);
+            ApartmentTextBox.TabIndex = 8;
+            ApartmentTextBox.TextChanged += ApartmentTextBox_TextChanged;
             // 
-            // StreetLabel
+            // BuildingTextBox
             // 
-            StreetLabel.AutoSize = true;
-            StreetLabel.Location = new Point(26, 139);
-            StreetLabel.Name = "StreetLabel";
-            StreetLabel.Size = new Size(51, 20);
-            StreetLabel.TabIndex = 4;
-            StreetLabel.Text = "Street:";
+            BuildingTextBox.Location = new Point(120, 188);
+            BuildingTextBox.Name = "BuildingTextBox";
+            BuildingTextBox.Size = new Size(118, 27);
+            BuildingTextBox.TabIndex = 7;
+            BuildingTextBox.TextChanged += BuildingTextBox_TextChanged;
+            // 
+            // IndexTextBox
+            // 
+            IndexTextBox.Location = new Point(120, 46);
+            IndexTextBox.Name = "IndexTextBox";
+            IndexTextBox.Size = new Size(170, 27);
+            IndexTextBox.TabIndex = 6;
+            IndexTextBox.TextChanged += IndexTextBox_TextChanged;
             // 
             // CountryLabel
             // 
@@ -119,47 +122,50 @@
             CountryLabel.TabIndex = 5;
             CountryLabel.Text = "Country:";
             // 
-            // IndexTextBox
+            // StreetLabel
             // 
-            IndexTextBox.Location = new Point(120, 46);
-            IndexTextBox.Name = "IndexTextBox";
-            IndexTextBox.Size = new Size(170, 27);
-            IndexTextBox.TabIndex = 6;
+            StreetLabel.AutoSize = true;
+            StreetLabel.Location = new Point(26, 139);
+            StreetLabel.Name = "StreetLabel";
+            StreetLabel.Size = new Size(51, 20);
+            StreetLabel.TabIndex = 4;
+            StreetLabel.Text = "Street:";
             // 
-            // BuildingTextBox
+            // ApartmentLabel
             // 
-            BuildingTextBox.Location = new Point(120, 188);
-            BuildingTextBox.Name = "BuildingTextBox";
-            BuildingTextBox.Size = new Size(118, 27);
-            BuildingTextBox.TabIndex = 7;
+            ApartmentLabel.AutoSize = true;
+            ApartmentLabel.Location = new Point(282, 195);
+            ApartmentLabel.Name = "ApartmentLabel";
+            ApartmentLabel.Size = new Size(83, 20);
+            ApartmentLabel.TabIndex = 3;
+            ApartmentLabel.Text = "Apartment:";
             // 
-            // ApartmentTextBox
+            // CityLabel
             // 
-            ApartmentTextBox.Location = new Point(382, 192);
-            ApartmentTextBox.Name = "ApartmentTextBox";
-            ApartmentTextBox.Size = new Size(118, 27);
-            ApartmentTextBox.TabIndex = 8;
+            CityLabel.AutoSize = true;
+            CityLabel.Location = new Point(393, 97);
+            CityLabel.Name = "CityLabel";
+            CityLabel.Size = new Size(37, 20);
+            CityLabel.TabIndex = 2;
+            CityLabel.Text = "City:";
             // 
-            // StreetTextBox
+            // BuildingLabel
             // 
-            StreetTextBox.Location = new Point(120, 139);
-            StreetTextBox.Name = "StreetTextBox";
-            StreetTextBox.Size = new Size(486, 27);
-            StreetTextBox.TabIndex = 9;
+            BuildingLabel.AutoSize = true;
+            BuildingLabel.Location = new Point(26, 188);
+            BuildingLabel.Name = "BuildingLabel";
+            BuildingLabel.Size = new Size(67, 20);
+            BuildingLabel.TabIndex = 1;
+            BuildingLabel.Text = "Building:";
             // 
-            // CityTextBox
+            // IndexLabel
             // 
-            CityTextBox.Location = new Point(436, 93);
-            CityTextBox.Name = "CityTextBox";
-            CityTextBox.Size = new Size(170, 27);
-            CityTextBox.TabIndex = 10;
-            // 
-            // CountryTextBox
-            // 
-            CountryTextBox.Location = new Point(120, 90);
-            CountryTextBox.Name = "CountryTextBox";
-            CountryTextBox.Size = new Size(245, 27);
-            CountryTextBox.TabIndex = 11;
+            IndexLabel.AutoSize = true;
+            IndexLabel.Location = new Point(26, 46);
+            IndexLabel.Name = "IndexLabel";
+            IndexLabel.Size = new Size(79, 20);
+            IndexLabel.TabIndex = 0;
+            IndexLabel.Text = "Post Index:";
             // 
             // AddressControl
             // 
@@ -167,7 +173,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(AddressGroupBox);
             Name = "AddressControl";
-            Size = new Size(613, 240);
+            Size = new Size(614, 242);
             AddressGroupBox.ResumeLayout(false);
             AddressGroupBox.PerformLayout();
             ResumeLayout(false);
