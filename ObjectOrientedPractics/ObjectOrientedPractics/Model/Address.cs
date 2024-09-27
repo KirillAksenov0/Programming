@@ -44,14 +44,11 @@ public class Address
         }
         set
         {
-            if (value < 99999 || value > 999999 || value <= 0)
+            if (value.ToString().Length != 6)
             {
-                throw new Exception("Index должен быть целым шестизначным числом");
+                throw new ArgumentException("Индекс должен быть шестизначным числом.");
             }
-            else
-            {
-                _index = value;
-            }
+            _index = value;
         }
     }
 

@@ -17,13 +17,25 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private Customer selectedCustomer;
 
-        private Address selectedAddress;
-
-        private AddressControl addressControl;
         public CustomersTab()
         {
             InitializeComponent();
-            addressControl = new AddressControl();
+            
+        }
+
+        /// <summary>
+        /// Заполняет листбокс покупателями.
+        /// </summary>
+        private void FillCustomersListbox()
+        {
+            //Очищает.
+            CustomersListBox.Items.Clear();
+
+            //Заполняет.
+            foreach (Customer customer in _customers)
+            {
+                CustomersListBox.Items.Add($"{customer.FullName}");
+            }
         }
         /// <summary>
         /// Добавляет новых клиентов в список и CustomerListBox.
@@ -32,12 +44,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-
-            selectedCustomer = new Customer(FullNameTextBox.Text, new Address());
+            selectedCustomer = new Customer("Name", new Address());
 
             _customers.Add(selectedCustomer);
 
-            CustomersListBox.Items.Add($"{selectedCustomer.Fullname}");
+           FillCustomersListbox();
+
         }
 
         /// <summary>
@@ -62,13 +74,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateTextBox()
         {
-            Customer SelectedValue = _customers[CustomersListBox.SelectedIndex];
-            addressControl.OurAddress = selectedCustomer.CustomerAddress;
-            FullNameTextBox.Text = SelectedValue.Fullname;
-            IDTextBox.Text = Convert.ToString(SelectedValue.ID);
+            selectedCustomer = _customers[CustomersListBox.SelectedIndex];
+            customerAddressControl1.OurAddress = selectedCustomer.CustomerAddress;
+            FullNameTextBox.Text = selectedCustomer.FullName;
+            IDTextBox.Text = Convert.ToString(selectedCustomer.ID);
+            customerAddressControl1.UpdateTextBoxs();
 
-            addressControl.UpdateAddressData();
-
+            FillCustomersListbox();
         }
 
         /// <summary>
@@ -79,7 +91,8 @@ namespace ObjectOrientedPractics.View.Tabs
             FullNameTextBox.Text = "";
             FullNameTextBox.BackColor = SystemColors.Window;
             IDTextBox.Text = "";
-            addressControl.ClearTextBoxs();
+            customerAddressControl1.ClearTextBoxs();
+            FillCustomersListbox();
         }
 
         /// <summary>
@@ -95,6 +108,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
+                selectedCustomer.FullName = FullNameTextBox.Text;
                 FullNameTextBox.BackColor = SystemColors.Window;
             }
         }
@@ -122,7 +136,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CustomersListBox.SelectedIndex != -1)
             {
-                _customers[CustomersListBox.SelectedIndex].Fullname = FullNameTextBox.Text;
+                _customers[CustomersListBox.SelectedIndex].FullName = FullNameTextBox.Text;
 
                 CustomersListBox.Items[CustomersListBox.SelectedIndex] = FullNameTextBox.Text;
             }

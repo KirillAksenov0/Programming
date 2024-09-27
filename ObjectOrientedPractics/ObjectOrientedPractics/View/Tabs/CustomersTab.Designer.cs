@@ -39,7 +39,7 @@
             IDTextBox = new TextBox();
             FullNameLabel = new Label();
             IDLabel = new Label();
-            addressControl1 = new Controls.AddressControl();
+            customerAddressControl1 = new Controls.CustomerAddressControl();
             CustomersGroupBox.SuspendLayout();
             SelectedItemGroupBox.SuspendLayout();
             SuspendLayout();
@@ -128,7 +128,7 @@
             // FullNameTextBox
             // 
             FullNameTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            FullNameTextBox.Location = new Point(101, 76);
+            FullNameTextBox.Location = new Point(101, 81);
             FullNameTextBox.Name = "FullNameTextBox";
             FullNameTextBox.Size = new Size(479, 27);
             FullNameTextBox.TabIndex = 3;
@@ -163,24 +163,23 @@
             IDLabel.TabIndex = 0;
             IDLabel.Text = "ID:";
             // 
-            // addressControl1
+            // customerAddressControl1
             // 
-            addressControl1.Address = null;
-            addressControl1.BackColor = SystemColors.ButtonHighlight;
-            addressControl1.Location = new Point(481, 112);
-            addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(590, 486);
-            addressControl1.TabIndex = 6;
+            customerAddressControl1.Location = new Point(483, 117);
+            customerAddressControl1.Name = "customerAddressControl1";
+            customerAddressControl1.OurAddress = null;
+            customerAddressControl1.Size = new Size(588, 444);
+            customerAddressControl1.TabIndex = 6;
             // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(addressControl1);
+            Controls.Add(customerAddressControl1);
             Controls.Add(CustomersGroupBox);
             Controls.Add(SelectedItemGroupBox);
             Name = "CustomersTab";
-            Size = new Size(1070, 597);
+            Size = new Size(1072, 597);
             CustomersGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();
@@ -200,6 +199,7 @@
         private Label FullNameLabel;
         private Label IDLabel;
         private Panel panel1;
-        private Controls.AddressControl addressControl1;
+        private Controls.CustomerAddressControl addressControl1;
+        private Controls.CustomerAddressControl customerAddressControl1;
     }
 }

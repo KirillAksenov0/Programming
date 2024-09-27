@@ -25,7 +25,7 @@ public class Customer
     /// <summary>
     /// Возвращает и задает полное имя покупателя.
     /// </summary>
-    public string Fullname
+    public string FullName
     {
         get
         {
@@ -60,7 +60,7 @@ public class Customer
     public Customer(string  fullname, Address address)
     {
         ID = _id++;
-        Fullname = fullname;
+        FullName = fullname;
         CustomerAddress = address;
     }
 }
