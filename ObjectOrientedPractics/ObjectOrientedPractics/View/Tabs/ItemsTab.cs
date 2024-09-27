@@ -17,6 +17,13 @@ namespace ObjectOrientedPractics.View.Tabs
         List<Item> _items = new List<Item>();
 
         private Item selectedItem;
+
+        public List<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
+
         public ItemsTab()
         {
             InitializeComponent();

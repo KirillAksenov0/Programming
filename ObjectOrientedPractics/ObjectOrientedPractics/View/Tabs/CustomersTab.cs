@@ -17,6 +17,12 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private Customer selectedCustomer;
 
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set { _customers = value; }
+        }
+
         public CustomersTab()
         {
             InitializeComponent();
