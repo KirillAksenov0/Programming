@@ -26,7 +26,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-            
+
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _customers.Add(selectedCustomer);
 
-           FillCustomersListbox();
+            FillCustomersListbox();
 
         }
 
@@ -126,26 +126,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            _customers.RemoveAt(CustomersListBox.SelectedIndex);
-
-            CustomersListBox.Items.RemoveAt(CustomersListBox.SelectedIndex);
+            _customers.Remove(selectedCustomer);
 
             ClearTextBox();
-        }
-
-        /// <summary>
-        /// Сохраняет изменениия в TextBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            if (CustomersListBox.SelectedIndex != -1)
-            {
-                _customers[CustomersListBox.SelectedIndex].FullName = FullNameTextBox.Text;
-
-                CustomersListBox.Items[CustomersListBox.SelectedIndex] = FullNameTextBox.Text;
-            }
         }
     }
 }

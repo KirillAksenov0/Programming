@@ -31,6 +31,9 @@ public class Store
         set { _customeers = value; }
     }
 
+    /// <summary>
+    /// Создает экземпляр класса <see cref="Store">.
+    /// </summary>
     public Store()
     {
         Items = new List<Item>();

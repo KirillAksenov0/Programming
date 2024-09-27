@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            EditButton = new Button();
             RemoveButton = new Button();
             AddButton = new Button();
             CustomersListBox = new ListBox();
@@ -43,17 +42,6 @@
             CustomersGroupBox.SuspendLayout();
             SelectedItemGroupBox.SuspendLayout();
             SuspendLayout();
-            // 
-            // EditButton
-            // 
-            EditButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EditButton.Location = new Point(327, 528);
-            EditButton.Name = "EditButton";
-            EditButton.Size = new Size(124, 44);
-            EditButton.TabIndex = 3;
-            EditButton.Text = "Edit";
-            EditButton.UseVisualStyleBackColor = true;
-            EditButton.Click += EditButton_Click;
             // 
             // RemoveButton
             // 
@@ -91,7 +79,6 @@
             // 
             CustomersGroupBox.BackColor = SystemColors.ControlLight;
             CustomersGroupBox.Controls.Add(CustomersListBox);
-            CustomersGroupBox.Controls.Add(EditButton);
             CustomersGroupBox.Controls.Add(AddButton);
             CustomersGroupBox.Controls.Add(RemoveButton);
             CustomersGroupBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -187,8 +174,6 @@
         }
 
         #endregion
-
-        private Button EditButton;
         private Button RemoveButton;
         private Button AddButton;
         private ListBox CustomersListBox;

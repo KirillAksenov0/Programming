@@ -106,7 +106,7 @@ public class Item
     public Item(string name, string info, double cost, Category category)
     {
         
-        ID = _id++;
+        ID = _id++; 
         Name = name;
         Info = info;
         Cost = cost;

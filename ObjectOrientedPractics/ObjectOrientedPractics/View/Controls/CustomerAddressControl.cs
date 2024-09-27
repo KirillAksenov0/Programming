@@ -25,6 +25,11 @@ namespace ObjectOrientedPractics.View.Controls
             _address = new Address();
         }
 
+        /// <summary>
+        /// Выполняет валидацию PostIndexTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -36,11 +41,16 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 if (PostIndexTextBox.Text != "")
                 {
-                    PostIndexTextBox.BackColor = Color.Orange;
+                    PostIndexTextBox.BackColor = Color.LightPink;
                 }
             }
         }
 
+        /// <summary>
+        /// Выполняет валидацию CountryTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -50,10 +60,15 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch (Exception)
             {
-                CountryTextBox.BackColor = Color.Orange;
+                CountryTextBox.BackColor = Color.LightPink; 
             }
         }
 
+        /// <summary>
+        /// Выполняет валидацию CityTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -63,10 +78,15 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch (Exception)
             {
-                CityTextBox.BackColor = Color.Orange;
+                CityTextBox.BackColor = Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Выполняет валидацию StreetTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -77,10 +97,15 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch (Exception)
             {
-                StreetTextBox.BackColor = Color.Orange;
+                StreetTextBox.BackColor = Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Выполняет валидацию BuildingTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -90,10 +115,15 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch (Exception)
             {
-                BuildingTextBox.BackColor = Color.Orange;
+                BuildingTextBox.BackColor = Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Выполняет валидацию ApartmentTextBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -103,7 +133,7 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch (Exception)
             {
-                ApartmentTextBox.BackColor = Color.Orange;
+                ApartmentTextBox.BackColor = Color.LightPink;
             }
         }
 
