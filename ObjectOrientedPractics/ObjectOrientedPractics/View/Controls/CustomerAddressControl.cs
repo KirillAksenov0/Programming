@@ -60,7 +60,7 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch (Exception)
             {
-                CountryTextBox.BackColor = Color.LightPink; 
+                CountryTextBox.BackColor = Color.LightPink;
             }
         }
 
@@ -93,7 +93,7 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 _address.Street = StreetTextBox.Text;
                 StreetTextBox.BackColor = Color.White;
-                
+
             }
             catch (Exception)
             {

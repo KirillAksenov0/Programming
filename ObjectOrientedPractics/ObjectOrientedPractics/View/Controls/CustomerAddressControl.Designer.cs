@@ -172,7 +172,7 @@
             Controls.Add(StreetLabel);
             Controls.Add(DeliveryAddressLabel);
             Name = "CustomerAddressControl";
-            Size = new Size(552, 316);
+            Size = new Size(527, 316);
             ResumeLayout(false);
             PerformLayout();
         }

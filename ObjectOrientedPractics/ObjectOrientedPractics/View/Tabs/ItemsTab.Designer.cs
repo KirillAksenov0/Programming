@@ -122,7 +122,7 @@
             SelectedItemGroupBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             SelectedItemGroupBox.Location = new Point(478, 0);
             SelectedItemGroupBox.Name = "SelectedItemGroupBox";
-            SelectedItemGroupBox.Size = new Size(734, 631);
+            SelectedItemGroupBox.Size = new Size(594, 631);
             SelectedItemGroupBox.TabIndex = 1;
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
@@ -148,7 +148,7 @@
             // 
             DescriptionTextBox.Location = new Point(16, 387);
             DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(712, 211);
+            DescriptionTextBox.Size = new Size(562, 211);
             DescriptionTextBox.TabIndex = 7;
             DescriptionTextBox.Text = "";
             DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
@@ -166,7 +166,7 @@
             // 
             NameTextBox.Location = new Point(16, 230);
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(712, 108);
+            NameTextBox.Size = new Size(562, 108);
             NameTextBox.TabIndex = 5;
             NameTextBox.Text = "";
             NameTextBox.TextChanged += NameTextBox_TextChanged;
@@ -221,7 +221,7 @@
             Controls.Add(SelectedItemGroupBox);
             Controls.Add(ItemsGroupBox);
             Name = "ItemsTab";
-            Size = new Size(1218, 631);
+            Size = new Size(1072, 631);
             ItemsGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();

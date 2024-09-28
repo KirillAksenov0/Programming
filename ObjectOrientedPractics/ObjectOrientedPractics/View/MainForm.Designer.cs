@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
@@ -46,7 +47,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1224, 642);
+            tabControl1.Size = new Size(1054, 642);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -74,7 +75,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1216, 609);
+            tabPage2.Size = new Size(1046, 609);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Customers";
             tabPage2.UseVisualStyleBackColor = true;
@@ -84,14 +85,14 @@
             customersTab1.Dock = DockStyle.Fill;
             customersTab1.Location = new Point(3, 3);
             customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(1210, 603);
+            customersTab1.Size = new Size(1040, 603);
             customersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1224, 642);
+            ClientSize = new Size(1054, 642);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Form1";
