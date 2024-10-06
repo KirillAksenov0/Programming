@@ -19,9 +19,15 @@ public class Customer
     private Address _address = new Address();
 
     /// <summary>
+    /// Корзина покупателя.
+    /// </summary>
+    private Cart _cart;
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
     public int ID { get; private set; }
+
     /// <summary>
     /// Возвращает и задает полное имя покупателя.
     /// </summary>
@@ -43,12 +49,30 @@ public class Customer
         }
     }
 
+    /// <summary>
+    /// Возвращает и задает адресс доставки.
+    /// </summary>
     public Address CustomerAddress
     {
         get { return _address; }
         set
         {
             _address = value;
+        }
+    }
+
+    /// <summary>
+    /// Возвращает и задает корзину покупателя.
+    /// </summary>
+    public Cart CustomerCart
+    {
+        get
+        {
+            return _cart;
+        }
+        set
+        {
+            _cart = value;
         }
     }
 
@@ -62,5 +86,6 @@ public class Customer
         ID = _id++; 
         FullName = fullname;
         CustomerAddress = address;
+        CustomerCart = new Cart();
     }
 }
