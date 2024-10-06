@@ -6,7 +6,7 @@ public class Cart
     /// <summary>
     /// Список товаров покупателя.
     /// </summary>
-    private List<Item> _items;
+    private List<Item> _items = new List<Item>();
 
     /// <summary>
     /// Возвращает и задает список товаров покупателя.

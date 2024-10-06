@@ -24,6 +24,11 @@ public class Customer
     private Cart _cart;
 
     /// <summary>
+    /// Список заказов.
+    /// </summary>
+    private List<Order> _orderLists = new List<Order>();
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
     public int ID { get; private set; }
@@ -74,6 +79,15 @@ public class Customer
         {
             _cart = value;
         }
+    }
+
+    /// <summary>
+    /// Возвращает и заадет список заказов.
+    /// </summary>
+    public List<Order> OrderLists
+    {
+        get { return _orderLists; }
+        set { _orderLists = value; }
     }
 
     /// <summary>
