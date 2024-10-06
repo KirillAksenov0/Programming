@@ -59,7 +59,7 @@ public class Customer
     /// <param name="address">Адресс доставки. Должен иметь тип Address.</param>
     public Customer(string  fullname, Address address)
     {
-        ID = _id++;
+        ID = _id++; 
         FullName = fullname;
         CustomerAddress = address;
     }
