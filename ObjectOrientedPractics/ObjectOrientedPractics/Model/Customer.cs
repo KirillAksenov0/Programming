@@ -16,7 +16,7 @@ public class Customer
     /// <summary>
     /// Адресс доставки.
     /// </summary>
-    private string _address;
+    private Address _address = new Address();
 
     /// <summary>
     /// Возвращает и задает ID.
@@ -25,7 +25,7 @@ public class Customer
     /// <summary>
     /// Возвращает и задает полное имя покупателя.
     /// </summary>
-    public string Fullname
+    public string FullName
     {
         get
         {
@@ -43,19 +43,11 @@ public class Customer
         }
     }
 
-    /// <summary>
-    /// Возвращает и задает адресс доставки.
-    /// </summary>
-    public string Address
+    public Address CustomerAddress
     {
-        get
-        {
-            return _address;
-        }
-
+        get { return _address; }
         set
         {
-            ValueValidator.AssertStringOnLength(value, 500, "Address");
             _address = value;
         }
     }
@@ -64,11 +56,11 @@ public class Customer
     /// Создает экземпляр класса <see cref="Customer">
     /// </summary>
     /// <param name="fullname">Полное имя покупателя. Длина не должна привышать 200 символов.</param>
-    /// <param name="address">Адресс доставки. Длина не должна привышать 500 символов.</param>
-    public Customer(string  fullname, string address)
+    /// <param name="address">Адресс доставки. Должен иметь тип Address.</param>
+    public Customer(string  fullname, Address address)
     {
         ID = _id++;
-        Fullname = fullname;
-        Address = address;
+        FullName = fullname;
+        CustomerAddress = address;
     }
 }

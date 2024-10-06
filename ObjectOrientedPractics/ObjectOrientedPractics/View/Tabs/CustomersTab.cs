@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.View.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,32 @@ namespace ObjectOrientedPractics.View.Tabs
         List<Customer> _customers = new List<Customer>();
 
         private Customer selectedCustomer;
+
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set { _customers = value; }
+        }
+
         public CustomersTab()
         {
             InitializeComponent();
+
+        }
+
+        /// <summary>
+        /// Заполняет листбокс покупателями.
+        /// </summary>
+        private void FillCustomersListbox()
+        {
+            //Очищает.
+            CustomersListBox.Items.Clear();
+
+            //Заполняет.
+            foreach (Customer customer in _customers)
+            {
+                CustomersListBox.Items.Add($"{customer.FullName}");
+            }
         }
         /// <summary>
         /// Добавляет новых клиентов в список и CustomerListBox.
@@ -26,11 +50,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            selectedCustomer = new Customer(FullNameTextBox.Text, AddressTextBox.Text);
+            selectedCustomer = new Customer("Name", new Address());
 
             _customers.Add(selectedCustomer);
 
-            CustomersListBox.Items.Add($"{selectedCustomer.Fullname}");
+            FillCustomersListbox();
+
         }
 
         /// <summary>
@@ -55,11 +80,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateTextBox()
         {
-            Customer SelectedValue = _customers[CustomersListBox.SelectedIndex];
+            selectedCustomer = _customers[CustomersListBox.SelectedIndex];
+            customerAddressControl1.OurAddress = selectedCustomer.CustomerAddress;
+            FullNameTextBox.Text = selectedCustomer.FullName;
+            IDTextBox.Text = Convert.ToString(selectedCustomer.ID);
+            customerAddressControl1.UpdateTextBoxs();
 
-            FullNameTextBox.Text = SelectedValue.Fullname;
-            AddressTextBox.Text = SelectedValue.Address;
-            IDTextBox.Text = Convert.ToString(SelectedValue.ID);
+            FillCustomersListbox();
         }
 
         /// <summary>
@@ -69,10 +96,9 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             FullNameTextBox.Text = "";
             FullNameTextBox.BackColor = SystemColors.Window;
-
-            AddressTextBox.Text = "";
             IDTextBox.Text = "";
-
+            customerAddressControl1.ClearTextBoxs();
+            FillCustomersListbox();
         }
 
         /// <summary>
@@ -88,24 +114,8 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
+                selectedCustomer.FullName = FullNameTextBox.Text;
                 FullNameTextBox.BackColor = SystemColors.Window;
-            }
-        }
-
-        /// <summary>
-        /// Обеспечивает валидацию значений в AddressTextBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (AddressTextBox.Text.Length > 500)
-            {
-                AddressTextBox.BackColor = Color.LightPink;
-            }
-            else
-            {
-                AddressTextBox.BackColor = SystemColors.Window;
             }
         }
 
@@ -116,26 +126,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            _customers.RemoveAt(CustomersListBox.SelectedIndex);
-
-            CustomersListBox.Items.RemoveAt(CustomersListBox.SelectedIndex);
+            _customers.Remove(selectedCustomer);
 
             ClearTextBox();
-        }
-
-        /// <summary>
-        /// Сохраняет изменениия в TextBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            if (CustomersListBox.SelectedIndex != -1)
-            {
-                _customers[CustomersListBox.SelectedIndex].Fullname = FullNameTextBox.Text;
-                _customers[CustomersListBox.SelectedIndex].Address = AddressTextBox.Text;
-                CustomersListBox.Items[CustomersListBox.SelectedIndex] = FullNameTextBox.Text;
-            }
         }
     }
 }
