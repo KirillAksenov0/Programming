@@ -26,7 +26,7 @@ public class Customer
     /// <summary>
     /// Список заказов.
     /// </summary>
-    private List<Order> _orderLists = new List<Order>();
+    private List<Order> _orderList = new List<Order>();
 
     /// <summary>
     /// Возвращает и задает ID.
@@ -82,12 +82,12 @@ public class Customer
     }
 
     /// <summary>
-    /// Возвращает и заадет список заказов.
+    /// Возвращает и задает список заказов.
     /// </summary>
-    public List<Order> OrderLists
+    public List<Order> OrderList
     {
-        get { return _orderLists; }
-        set { _orderLists = value; }
+        get { return _orderList; }
+        set { _orderList = value; }
     }
 
     /// <summary>

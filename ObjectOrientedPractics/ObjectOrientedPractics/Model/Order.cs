@@ -9,24 +9,77 @@ public class Order
     private static int _id = 0;
 
     /// <summary>
-    /// Дата создания закааз.
+    /// Адресс доставки.
+    /// </summary>
+    private Address _deliveryAddress;
+
+    /// <summary>
+    /// Дата создания заказа.
     /// </summary>
     private static DateTime _orderData;
 
     /// <summary>
-    /// Возвращает и задает адресс доставки.
+    /// Список товаров.
     /// </summary>
-    public string Address { get; set; }
+    private List<Item> _items;
+
+    /// <summary>
+    /// Общая стоимость товаров.
+    /// </summary>
+    private double _amountCost;
+
+    /// <summary>
+    /// Возвращает и задает ID.
+    /// </summary>
+    public int ID
+    {
+        get
+        {
+            return _id;
+        }
+        private set
+        {
+            _id = value;
+        }
+        
+    }
+
+    /// <summary>
+    /// Возвращает адресс доставки.
+    /// </summary>
+    public Address DeliveryAddress
+    {
+        get
+        { return _deliveryAddress; }
+        set { _deliveryAddress = value; }
+    }
+
+    /// <summary>
+    /// Возвращает и задает дату создания заказа.
+    /// </summary>
+    public DateTime OrderDate
+    { 
+        get 
+        {
+            return _orderData;
+        }
+        set
+        { _orderData = value; }
+    }
 
     /// <summary>
     /// Возвращает и задает список товаров.
     /// </summary>
-    public List<Item> Items { get; set; }
+    public List<Item> Items
+    {
+        get { return _items; }
+        set { _items = value; }
+    }
 
     /// <summary>
-    /// Возвращает и задает общую стоимость товаров.
+    /// Возвразщает общую стоимость товаров.
     /// </summary>
-    public double AmountCostItems
+    public double AmountCost
     {
         get
         {
@@ -48,45 +101,17 @@ public class Order
     }
 
     /// <summary>
-    /// Возвращает и задает ID заказа.
-    /// </summary>
-    public int ID 
-    {
-        get { return _id; }
-        private set { _id = value; }
-    }
-
-    /// <summary>
-    /// Возвращает и задает дату создания заказа.
-    /// </summary>
-    public DateTime OrderDate
-    {
-        get
-        {
-            return _orderData;
-        }
-        private set
-        {
-            _orderData = value;
-        }
-    }
-
-    /// <summary>
-    /// Возвращает и задает статус заказа.
-    /// </summary>
-    public OrderStatus Status { get; set; }
-
-    /// <summary>
     /// Создает экземпляр класса <see cref="Order">
     /// </summary>
     /// <param name="address">Адресс доставки заказа.</param>
     /// <param name="items">Список товаров.</param>
-    public Order(string address, List<Item> items)
+    public Order( List<Item> items, Address deliveryAddress)
     {
         ID = _id++;
         OrderDate = DateTime.Now;
-        Address = address;
+        DeliveryAddress = deliveryAddress;
         Items = items;
+        DeliveryAddress = deliveryAddress;
     }
 
 }

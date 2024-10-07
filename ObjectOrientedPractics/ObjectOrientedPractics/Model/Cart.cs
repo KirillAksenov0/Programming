@@ -41,4 +41,11 @@ public class Cart
         }
     }
 
+    /// <summary>
+    /// Создает экземпляр класса <see cref="Cart">
+    /// </summary>
+    public Cart()
+    {
+        _items = new List<Item>();
+    }
 }
