@@ -6,7 +6,7 @@ public class Cart
     /// <summary>
     /// Список товаров покупателя.
     /// </summary>
-    private List<Item> _items = new List<Item>();
+    private List<Item> _items;
 
     /// <summary>
     /// Возвращает и задает список товаров покупателя.
@@ -24,7 +24,7 @@ public class Cart
     {
         get
         {
-            double amountCostItems = 0;
+            double amountCostItems = 0.0;
             if (Items.Count == 0 || Items == null)
             {
                 return 0.0;

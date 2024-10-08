@@ -101,6 +101,11 @@ public class Order
     }
 
     /// <summary>
+    /// Возвращает и задает статус заказа.
+    /// </summary>
+    public OrderStatus OrderStatus { get; set; }
+
+    /// <summary>
     /// Создает экземпляр класса <see cref="Order">
     /// </summary>
     /// <param name="address">Адресс доставки заказа.</param>
@@ -112,6 +117,7 @@ public class Order
         DeliveryAddress = deliveryAddress;
         Items = items;
         DeliveryAddress = deliveryAddress;
+        OrderStatus = OrderStatus.New;
     }
 
 }

@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             CartSplitContainer = new SplitContainer();
-            CartItemsListBox = new ListBox();
-            ItemsLabel = new Label();
             AddToCartButton = new Button();
-            CreateOrderButton = new Button();
-            RemoveItemButton = new Button();
-            ClearCartButton = new Button();
-            CustomerLabel = new Label();
-            CustomerComboBox = new ComboBox();
-            CartLabel = new Label();
-            richTextBox1 = new RichTextBox();
-            AmountLabel = new Label();
+            ItemsLabel = new Label();
+            CartItemsListBox = new ListBox();
+            CartListBox = new ListBox();
             TotalCostLabel = new Label();
+            AmountLabel = new Label();
+            CartLabel = new Label();
+            CustomerComboBox = new ComboBox();
+            CustomerLabel = new Label();
+            ClearCartButton = new Button();
+            RemoveItemButton = new Button();
+            CreateOrderButton = new Button();
             ((System.ComponentModel.ISupportInitialize)CartSplitContainer).BeginInit();
             CartSplitContainer.Panel1.SuspendLayout();
             CartSplitContainer.Panel2.SuspendLayout();
@@ -61,9 +61,9 @@
             // 
             // CartSplitContainer.Panel2
             // 
+            CartSplitContainer.Panel2.Controls.Add(CartListBox);
             CartSplitContainer.Panel2.Controls.Add(TotalCostLabel);
             CartSplitContainer.Panel2.Controls.Add(AmountLabel);
-            CartSplitContainer.Panel2.Controls.Add(richTextBox1);
             CartSplitContainer.Panel2.Controls.Add(CartLabel);
             CartSplitContainer.Panel2.Controls.Add(CustomerComboBox);
             CartSplitContainer.Panel2.Controls.Add(CustomerLabel);
@@ -74,14 +74,15 @@
             CartSplitContainer.SplitterDistance = 411;
             CartSplitContainer.TabIndex = 0;
             // 
-            // CartItemsListBox
+            // AddToCartButton
             // 
-            CartItemsListBox.FormattingEnabled = true;
-            CartItemsListBox.ItemHeight = 20;
-            CartItemsListBox.Location = new Point(20, 36);
-            CartItemsListBox.Name = "CartItemsListBox";
-            CartItemsListBox.Size = new Size(368, 484);
-            CartItemsListBox.TabIndex = 0;
+            AddToCartButton.Location = new Point(35, 539);
+            AddToCartButton.Name = "AddToCartButton";
+            AddToCartButton.Size = new Size(106, 39);
+            AddToCartButton.TabIndex = 2;
+            AddToCartButton.Text = "Add To Cart";
+            AddToCartButton.UseVisualStyleBackColor = true;
+            AddToCartButton.Click += AddToCartButton_Click;
             // 
             // ItemsLabel
             // 
@@ -92,75 +93,32 @@
             ItemsLabel.TabIndex = 1;
             ItemsLabel.Text = "Items";
             // 
-            // AddToCartButton
+            // CartItemsListBox
             // 
-            AddToCartButton.Location = new Point(35, 539);
-            AddToCartButton.Name = "AddToCartButton";
-            AddToCartButton.Size = new Size(106, 39);
-            AddToCartButton.TabIndex = 2;
-            AddToCartButton.Text = "Add To Cart";
-            AddToCartButton.UseVisualStyleBackColor = true;
+            CartItemsListBox.FormattingEnabled = true;
+            CartItemsListBox.ItemHeight = 20;
+            CartItemsListBox.Location = new Point(20, 36);
+            CartItemsListBox.Name = "CartItemsListBox";
+            CartItemsListBox.Size = new Size(368, 484);
+            CartItemsListBox.TabIndex = 0;
             // 
-            // CreateOrderButton
+            // CartListBox
             // 
-            CreateOrderButton.Location = new Point(19, 414);
-            CreateOrderButton.Name = "CreateOrderButton";
-            CreateOrderButton.Size = new Size(106, 39);
-            CreateOrderButton.TabIndex = 3;
-            CreateOrderButton.Text = "Create Order";
-            CreateOrderButton.UseVisualStyleBackColor = true;
+            CartListBox.FormattingEnabled = true;
+            CartListBox.ItemHeight = 20;
+            CartListBox.Location = new Point(19, 130);
+            CartListBox.Name = "CartListBox";
+            CartListBox.Size = new Size(613, 204);
+            CartListBox.TabIndex = 12;
             // 
-            // RemoveItemButton
+            // TotalCostLabel
             // 
-            RemoveItemButton.Location = new Point(414, 414);
-            RemoveItemButton.Name = "RemoveItemButton";
-            RemoveItemButton.Size = new Size(106, 39);
-            RemoveItemButton.TabIndex = 4;
-            RemoveItemButton.Text = "Remove Item";
-            RemoveItemButton.UseVisualStyleBackColor = true;
-            // 
-            // ClearCartButton
-            // 
-            ClearCartButton.Location = new Point(526, 414);
-            ClearCartButton.Name = "ClearCartButton";
-            ClearCartButton.Size = new Size(106, 39);
-            ClearCartButton.TabIndex = 5;
-            ClearCartButton.Text = "Clear Cart";
-            ClearCartButton.UseVisualStyleBackColor = true;
-            // 
-            // CustomerLabel
-            // 
-            CustomerLabel.AutoSize = true;
-            CustomerLabel.Location = new Point(19, 36);
-            CustomerLabel.Name = "CustomerLabel";
-            CustomerLabel.Size = new Size(75, 20);
-            CustomerLabel.TabIndex = 6;
-            CustomerLabel.Text = "Customer:";
-            // 
-            // CustomerComboBox
-            // 
-            CustomerComboBox.FormattingEnabled = true;
-            CustomerComboBox.Location = new Point(100, 33);
-            CustomerComboBox.Name = "CustomerComboBox";
-            CustomerComboBox.Size = new Size(532, 28);
-            CustomerComboBox.TabIndex = 7;
-            // 
-            // CartLabel
-            // 
-            CartLabel.AutoSize = true;
-            CartLabel.Location = new Point(19, 98);
-            CartLabel.Name = "CartLabel";
-            CartLabel.Size = new Size(39, 20);
-            CartLabel.TabIndex = 8;
-            CartLabel.Text = "Cart:";
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.Location = new Point(19, 121);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(613, 200);
-            richTextBox1.TabIndex = 9;
-            richTextBox1.Text = "";
+            TotalCostLabel.AutoSize = true;
+            TotalCostLabel.Location = new Point(582, 375);
+            TotalCostLabel.Name = "TotalCostLabel";
+            TotalCostLabel.Size = new Size(50, 20);
+            TotalCostLabel.TabIndex = 11;
+            TotalCostLabel.Text = "label1";
             // 
             // AmountLabel
             // 
@@ -171,14 +129,61 @@
             AmountLabel.TabIndex = 10;
             AmountLabel.Text = "Amount:";
             // 
-            // TotalCostLabel
+            // CartLabel
             // 
-            TotalCostLabel.AutoSize = true;
-            TotalCostLabel.Location = new Point(582, 375);
-            TotalCostLabel.Name = "TotalCostLabel";
-            TotalCostLabel.Size = new Size(50, 20);
-            TotalCostLabel.TabIndex = 11;
-            TotalCostLabel.Text = "label1";
+            CartLabel.AutoSize = true;
+            CartLabel.Location = new Point(19, 98);
+            CartLabel.Name = "CartLabel";
+            CartLabel.Size = new Size(39, 20);
+            CartLabel.TabIndex = 8;
+            CartLabel.Text = "Cart:";
+            // 
+            // CustomerComboBox
+            // 
+            CustomerComboBox.FormattingEnabled = true;
+            CustomerComboBox.Location = new Point(100, 33);
+            CustomerComboBox.Name = "CustomerComboBox";
+            CustomerComboBox.Size = new Size(532, 28);
+            CustomerComboBox.TabIndex = 7;
+            CustomerComboBox.SelectedIndexChanged += CustomerComboBox_SelectedIndexChanged;
+            // 
+            // CustomerLabel
+            // 
+            CustomerLabel.AutoSize = true;
+            CustomerLabel.Location = new Point(19, 36);
+            CustomerLabel.Name = "CustomerLabel";
+            CustomerLabel.Size = new Size(75, 20);
+            CustomerLabel.TabIndex = 6;
+            CustomerLabel.Text = "Customer:";
+            // 
+            // ClearCartButton
+            // 
+            ClearCartButton.Location = new Point(526, 414);
+            ClearCartButton.Name = "ClearCartButton";
+            ClearCartButton.Size = new Size(106, 39);
+            ClearCartButton.TabIndex = 5;
+            ClearCartButton.Text = "Clear Cart";
+            ClearCartButton.UseVisualStyleBackColor = true;
+            // 
+            // RemoveItemButton
+            // 
+            RemoveItemButton.Location = new Point(414, 414);
+            RemoveItemButton.Name = "RemoveItemButton";
+            RemoveItemButton.Size = new Size(106, 39);
+            RemoveItemButton.TabIndex = 4;
+            RemoveItemButton.Text = "Remove Item";
+            RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
+            // 
+            // CreateOrderButton
+            // 
+            CreateOrderButton.Location = new Point(19, 414);
+            CreateOrderButton.Name = "CreateOrderButton";
+            CreateOrderButton.Size = new Size(106, 39);
+            CreateOrderButton.TabIndex = 3;
+            CreateOrderButton.Text = "Create Order";
+            CreateOrderButton.UseVisualStyleBackColor = true;
+            CreateOrderButton.Click += CreateOrderButton_Click;
             // 
             // CartsTab
             // 
@@ -204,12 +209,12 @@
         private ListBox CartItemsListBox;
         private Label TotalCostLabel;
         private Label AmountLabel;
-        private RichTextBox richTextBox1;
         private Label CartLabel;
         private ComboBox CustomerComboBox;
         private Label CustomerLabel;
         private Button ClearCartButton;
         private Button RemoveItemButton;
         private Button CreateOrderButton;
+        private ListBox CartListBox;
     }
 }
