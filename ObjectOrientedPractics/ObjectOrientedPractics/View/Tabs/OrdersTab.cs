@@ -125,7 +125,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     OrderItemsListBox.Items.Add(Orders[selectedIndex].Items[i].Name);
                 }
-                
+
 
             }
             catch (ArgumentOutOfRangeException)

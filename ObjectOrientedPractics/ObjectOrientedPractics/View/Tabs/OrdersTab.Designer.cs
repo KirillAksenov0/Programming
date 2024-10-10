@@ -32,12 +32,6 @@
             splitContainer1 = new SplitContainer();
             OrdersLabel = new Label();
             OrdersDataGridView = new DataGridView();
-            IDColumn = new DataGridViewTextBoxColumn();
-            CreatedColumn = new DataGridViewTextBoxColumn();
-            OrderStatusColumn = new DataGridViewTextBoxColumn();
-            CustomerFullNameColumn = new DataGridViewTextBoxColumn();
-            DeliveryAddressColumn1 = new DataGridViewTextBoxColumn();
-            AmountColumn = new DataGridViewTextBoxColumn();
             TotalCostLabel = new Label();
             AmountLabel = new Label();
             OrderItemsListBox = new ListBox();
@@ -50,6 +44,12 @@
             StatusLabel = new Label();
             SelectedOrderLabel = new Label();
             customerAddressControl1 = new Controls.CustomerAddressControl();
+            IDColumn = new DataGridViewTextBoxColumn();
+            CreatedColumn = new DataGridViewTextBoxColumn();
+            OrderStatusColumn = new DataGridViewTextBoxColumn();
+            CustomerFullNameColumn = new DataGridViewTextBoxColumn();
+            DeliveryAddressColumn1 = new DataGridViewTextBoxColumn();
+            AmountColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -97,6 +97,7 @@
             // 
             // OrdersDataGridView
             // 
+            OrdersDataGridView.AllowUserToResizeRows = false;
             OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrdersDataGridView.Columns.AddRange(new DataGridViewColumn[] { IDColumn, CreatedColumn, OrderStatusColumn, CustomerFullNameColumn, DeliveryAddressColumn1, AmountColumn });
             OrdersDataGridView.Location = new Point(17, 46);
@@ -107,54 +108,6 @@
             OrdersDataGridView.Size = new Size(414, 537);
             OrdersDataGridView.TabIndex = 0;
             OrdersDataGridView.SelectionChanged += OrdersDataGridView_SelectionChanged;
-            // 
-            // IDColumn
-            // 
-            IDColumn.HeaderText = "ID";
-            IDColumn.MinimumWidth = 6;
-            IDColumn.Name = "IDColumn";
-            IDColumn.ReadOnly = true;
-            IDColumn.Width = 125;
-            // 
-            // CreatedColumn
-            // 
-            CreatedColumn.HeaderText = "Created";
-            CreatedColumn.MinimumWidth = 6;
-            CreatedColumn.Name = "CreatedColumn";
-            CreatedColumn.ReadOnly = true;
-            CreatedColumn.Width = 125;
-            // 
-            // OrderStatusColumn
-            // 
-            OrderStatusColumn.HeaderText = "Order Status";
-            OrderStatusColumn.MinimumWidth = 6;
-            OrderStatusColumn.Name = "OrderStatusColumn";
-            OrderStatusColumn.ReadOnly = true;
-            OrderStatusColumn.Width = 125;
-            // 
-            // CustomerFullNameColumn
-            // 
-            CustomerFullNameColumn.HeaderText = "Customer Full Name";
-            CustomerFullNameColumn.MinimumWidth = 6;
-            CustomerFullNameColumn.Name = "CustomerFullNameColumn";
-            CustomerFullNameColumn.ReadOnly = true;
-            CustomerFullNameColumn.Width = 125;
-            // 
-            // DeliveryAddressColumn1
-            // 
-            DeliveryAddressColumn1.HeaderText = "Delivery Address";
-            DeliveryAddressColumn1.MinimumWidth = 6;
-            DeliveryAddressColumn1.Name = "DeliveryAddressColumn1";
-            DeliveryAddressColumn1.ReadOnly = true;
-            DeliveryAddressColumn1.Width = 125;
-            // 
-            // AmountColumn
-            // 
-            AmountColumn.HeaderText = "Amount";
-            AmountColumn.MinimumWidth = 6;
-            AmountColumn.Name = "AmountColumn";
-            AmountColumn.ReadOnly = true;
-            AmountColumn.Width = 125;
             // 
             // TotalCostLabel
             // 
@@ -264,6 +217,60 @@
             customerAddressControl1.OurAddress = address1;
             customerAddressControl1.Size = new Size(587, 217);
             customerAddressControl1.TabIndex = 0;
+            // 
+            // IDColumn
+            // 
+            IDColumn.HeaderText = "ID";
+            IDColumn.MinimumWidth = 6;
+            IDColumn.Name = "IDColumn";
+            IDColumn.ReadOnly = true;
+            IDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            IDColumn.Width = 125;
+            // 
+            // CreatedColumn
+            // 
+            CreatedColumn.HeaderText = "Created";
+            CreatedColumn.MinimumWidth = 6;
+            CreatedColumn.Name = "CreatedColumn";
+            CreatedColumn.ReadOnly = true;
+            CreatedColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            CreatedColumn.Width = 125;
+            // 
+            // OrderStatusColumn
+            // 
+            OrderStatusColumn.HeaderText = "Order Status";
+            OrderStatusColumn.MinimumWidth = 6;
+            OrderStatusColumn.Name = "OrderStatusColumn";
+            OrderStatusColumn.ReadOnly = true;
+            OrderStatusColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            OrderStatusColumn.Width = 125;
+            // 
+            // CustomerFullNameColumn
+            // 
+            CustomerFullNameColumn.HeaderText = "Customer Full Name";
+            CustomerFullNameColumn.MinimumWidth = 6;
+            CustomerFullNameColumn.Name = "CustomerFullNameColumn";
+            CustomerFullNameColumn.ReadOnly = true;
+            CustomerFullNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            CustomerFullNameColumn.Width = 125;
+            // 
+            // DeliveryAddressColumn1
+            // 
+            DeliveryAddressColumn1.HeaderText = "Delivery Address";
+            DeliveryAddressColumn1.MinimumWidth = 6;
+            DeliveryAddressColumn1.Name = "DeliveryAddressColumn1";
+            DeliveryAddressColumn1.ReadOnly = true;
+            DeliveryAddressColumn1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            DeliveryAddressColumn1.Width = 125;
+            // 
+            // AmountColumn
+            // 
+            AmountColumn.HeaderText = "Amount";
+            AmountColumn.MinimumWidth = 6;
+            AmountColumn.Name = "AmountColumn";
+            AmountColumn.ReadOnly = true;
+            AmountColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AmountColumn.Width = 125;
             // 
             // OrdersTab
             // 
