@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -162,7 +163,20 @@ namespace ObjectOrientedPractics.View.Controls
             StreetTextBox.Clear();
             BuildingTextBox.Clear();
             ApartmentTextBox.Clear();
+        }
 
+        /// <summary>
+        /// Делает текстбоксы доступными только на чтение.
+        /// </summary>
+        public void AddressReadOnlyOn()
+        {
+            PostIndexTextBox.ReadOnly = true;
+            CountryTextBox.ReadOnly = true;
+            CityTextBox.ReadOnly = true;
+            StreetTextBox.ReadOnly = true;
+            BuildingTextBox.ReadOnly = true;
+            ApartmentTextBox.ReadOnly = true;
         }
     }
+
 }

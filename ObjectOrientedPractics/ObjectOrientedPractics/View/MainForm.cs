@@ -1,3 +1,4 @@
+using ObjectOrientedPractics.View.Controls;
 using ObjectOrientedPractics.View.Tabs;
 
 namespace ObjectOrientedPractics
@@ -17,6 +18,7 @@ namespace ObjectOrientedPractics
             cartsTab1.Items = _store.Items;
             cartsTab1.Customers = _store.Customers;
 
+            ordersTab1.Customers= _store.Customers;
 
         }
 
@@ -27,6 +29,12 @@ namespace ObjectOrientedPractics
                 case 2:
                     {
                         cartsTab1.RefreshData();
+                        break;
+                    }
+                case 3:
+                    {
+                        ordersTab1.RefreshData();
+                        ordersTab1.AddressReadOnlyOn();
                         break;
                     }
 

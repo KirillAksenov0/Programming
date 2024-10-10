@@ -180,10 +180,14 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             CurrentCustomer = Customers[CustomerComboBox.SelectedIndex];
-            Order = new Order(CurrentCustomer.CustomerCart.Items, CurrentCustomer.CustomerAddress);
+            Order = new Order(CurrentCustomer.CustomerCart.Items, CurrentCustomer.CustomerAddress
+                , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount);
 
             CartListBox.Items.Clear();
+            
             CurrentCustomer.OrderList.Add(Order);
+            CurrentCustomer.CustomerCart.Items.Clear();
+            TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
         }
 
         /// <summary>

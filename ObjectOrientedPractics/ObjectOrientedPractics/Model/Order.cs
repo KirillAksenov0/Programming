@@ -21,7 +21,7 @@ public class Order
     /// <summary>
     /// Список товаров.
     /// </summary>
-    private List<Item> _items;
+    private List<Item> _items = new List<Item>();
 
     /// <summary>
     /// Общая стоимость товаров.
@@ -29,21 +29,15 @@ public class Order
     private double _amountCost;
 
     /// <summary>
+    /// Имя покупателя.
+    /// </summary>
+    private string _customerFullName;
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
-    public int ID
-    {
-        get
-        {
-            return _id;
-        }
-        private set
-        {
-            _id = value;
-        }
-        
-    }
-
+    public int ID { get; private set; }
+    
     /// <summary>
     /// Возвращает адресс доставки.
     /// </summary>
@@ -77,47 +71,46 @@ public class Order
     }
 
     /// <summary>
-    /// Возвразщает общую стоимость товаров.
-    /// </summary>
-    public double AmountCost
-    {
-        get
-        {
-            double amountCostItems = 0;
-            if (Items.Count == 0 || Items == null)
-            {
-                return 0.0;
-            }
-            else
-            {
-                for (int i = 0; i < Items.Count; i++)
-                {
-                    amountCostItems += Items[i].Cost;
-                }
-
-                return amountCostItems;
-            }
-        }
-    }
-
-    /// <summary>
     /// Возвращает и задает статус заказа.
     /// </summary>
     public OrderStatus OrderStatus { get; set; }
+
+    /// <summary>
+    /// Возвращает и задает имя покупателя.
+    /// </summary>
+    public string CustomerFullName
+    {
+        get
+        { return _customerFullName; }
+        set
+        { _customerFullName = value; }
+    }
+
+    /// <summary>
+    /// Возвращает и задает общую стоимость товаров заказа.
+    /// </summary>
+    public double ItemsAmount { get;set;}
 
     /// <summary>
     /// Создает экземпляр класса <see cref="Order">
     /// </summary>
     /// <param name="address">Адресс доставки заказа.</param>
     /// <param name="items">Список товаров.</param>
-    public Order( List<Item> items, Address deliveryAddress)
+    public Order( List<Item> items, Address deliveryAddress, string customerFullName, double itemsAmount)
     {
         ID = _id++;
         OrderDate = DateTime.Now;
         DeliveryAddress = deliveryAddress;
-        Items = items;
+
+        foreach (Item item in items)
+        {
+            Items.Add(item);
+        }
+
         DeliveryAddress = deliveryAddress;
         OrderStatus = OrderStatus.New;
+        CustomerFullName = customerFullName;
+        ItemsAmount = itemsAmount;
     }
 
 }
