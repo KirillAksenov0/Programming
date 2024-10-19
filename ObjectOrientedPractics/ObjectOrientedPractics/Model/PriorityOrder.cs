@@ -14,12 +14,12 @@ public class PriorityOrder : Order
     /// <summary>
     /// Желаемое время доставки.
     /// </summary>
-    private string _desiredDeliveryTime;
+    private DeliveryTime _desiredDeliveryTime;
 
     /// <summary>
     /// Возвращает и задает желаемое время доставки.
     /// </summary>
-    public string DesiredDeliveryTime
+    public DeliveryTime DesiredDeliveryTime
     {
         get
         {
@@ -28,25 +28,7 @@ public class PriorityOrder : Order
 
         set
         {
-            var validTimes = new List<string>
-            {
-                "9:00 – 11:00",
-                "11:00 – 13:00",
-                "13:00 – 15:00",
-                "15:00 – 17:00",
-                "17:00 – 19:00",
-                "19:00 – 21:00"
-            };
-
-            if (validTimes.Contains(value))
-            {
-                _desiredDeliveryTime = value;
-            }
-            else
-            {
-                throw new ArgumentException("Неверный диапазон времени доставки.");
-            }
-            
+            _desiredDeliveryTime = value; 
         }
     }
 
@@ -60,7 +42,7 @@ public class PriorityOrder : Order
     /// <param name="desiredDeliveryDate">Желаемая дата доставки.</param>
     /// <param name="desiredDeliveryTime">Желаемое время доставки.</param>
     public PriorityOrder(List<Item> items, Address deliveryAddress, string customerFullName, 
-        double itemsAmount, DateTime desiredDeliveryDate, string desiredDeliveryTime)
+        double itemsAmount, DateTime desiredDeliveryDate, DeliveryTime desiredDeliveryTime)
         : base ( items, deliveryAddress, customerFullName, itemsAmount)
     {
         DesiredDeliveryDate = desiredDeliveryDate;

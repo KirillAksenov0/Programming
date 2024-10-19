@@ -28,6 +28,14 @@ namespace ObjectOrientedPractics.View.Tabs
             set { _orders = value; }
         }
 
+        private int _selectedOrderIndex;
+
+        private string _selectedDeliveryTime;
+
+        private Order _selectedOrder;
+
+        private PriorityOrder _selectedPriorityOrder;
+
         public OrdersTab()
         {
             InitializeComponent();
@@ -110,20 +118,34 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                int selectedIndex = OrdersDataGridView.SelectedRows[0].Index;
+                _selectedOrderIndex = OrdersDataGridView.SelectedRows[0].Index;
+                _selectedOrder = Orders[_selectedOrderIndex];
 
-                IDTextBox.Text = Orders[selectedIndex].ID.ToString();
-                CreatedTextBox.Text = Orders[selectedIndex].OrderDate.ToString();
-                StatusComboBox.SelectedItem = Orders[selectedIndex].OrderStatus;
+                if (_selectedOrder is PriorityOrder)
+                {
+                    PriorityOptionsPanel.Visible = true;
+                    _selectedPriorityOrder = _orders[_selectedOrderIndex] as PriorityOrder;
+                    DeliveryTimeComboBox.SelectedIndex = ((int)_selectedPriorityOrder.DesiredDeliveryTime);
+                }
 
-                customerAddressControl1.OurAddress = Orders[selectedIndex].DeliveryAddress;
+                else if (_selectedOrder is Order)
+                {
+                    PriorityOptionsPanel.Visible = false;
+                    _selectedPriorityOrder = null;
+                }
+
+                IDTextBox.Text = _selectedOrder.ID.ToString();
+                CreatedTextBox.Text = _selectedOrder.OrderDate.ToString();
+                StatusComboBox.SelectedItem = _selectedOrder.OrderStatus;
+
+                customerAddressControl1.OurAddress = _selectedOrder.DeliveryAddress;
                 customerAddressControl1.UpdateTextBoxs();
-                TotalCostLabel.Text = Orders[selectedIndex].ItemsAmount.ToString();
+                TotalCostLabel.Text = _selectedOrder.ItemsAmount.ToString();
 
                 OrderItemsListBox.Items.Clear();
-                for (int i = 0; i < Orders[selectedIndex].Items.Count; i++)
+                for (int i = 0; i < _selectedOrder.Items.Count; i++)
                 {
-                    OrderItemsListBox.Items.Add(Orders[selectedIndex].Items[i].Name);
+                    OrderItemsListBox.Items.Add(_selectedOrder.Items[i].Name);
                 }
 
 
@@ -153,6 +175,41 @@ namespace ObjectOrientedPractics.View.Tabs
         public void AddressReadOnlyOn()
         {
             customerAddressControl1.AddressReadOnlyOn();
+        }
+
+        /// <summary>
+        /// Обновляет время доставки текущего заказа.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _selectedDeliveryTime = DeliveryTimeComboBox.Text;
+                switch (_selectedDeliveryTime)
+                {
+                    case "9:00 - 11:00":
+                        _selectedPriorityOrder.DesiredDeliveryTime = DeliveryTime.Morning;
+                        break;
+                    case "11:00 - 13:00":
+                        _selectedPriorityOrder.DesiredDeliveryTime = DeliveryTime.Lunch;
+                        break;
+                    case "13:00 - 15:00":
+                        _selectedPriorityOrder.DesiredDeliveryTime = DeliveryTime.Afternoon;
+                        break;
+                    case "15:00 - 17:00":
+                        _selectedPriorityOrder.DesiredDeliveryTime = DeliveryTime.Evening;
+                        break;
+                    case "17:00 - 19:00":
+                        _selectedPriorityOrder.DesiredDeliveryTime = DeliveryTime.LateEvening;
+                        break;
+                    case "19:00 - 21:00":
+                        _selectedPriorityOrder.DesiredDeliveryTime = DeliveryTime.Night;
+                        break;
+                }
+            }
+            catch (Exception) { }
         }
     }
 }

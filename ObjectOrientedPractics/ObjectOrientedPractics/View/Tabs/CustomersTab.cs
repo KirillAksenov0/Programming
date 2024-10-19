@@ -84,6 +84,7 @@ namespace ObjectOrientedPractics.View.Tabs
             customerAddressControl1.OurAddress = selectedCustomer.CustomerAddress;
             FullNameTextBox.Text = selectedCustomer.FullName;
             IDTextBox.Text = Convert.ToString(selectedCustomer.ID);
+            IsPriorityCheckBox.Checked = selectedCustomer.IsPriority;
             customerAddressControl1.UpdateTextBoxs();
 
             FillCustomersListbox();
@@ -129,6 +130,16 @@ namespace ObjectOrientedPractics.View.Tabs
             _customers.Remove(selectedCustomer);
 
             ClearTextBox();
+        }
+
+        /// <summary>
+        /// Обновляет значение приорететности.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            selectedCustomer.IsPriority = IsPriorityCheckBox.Checked;
         }
     }
 }
