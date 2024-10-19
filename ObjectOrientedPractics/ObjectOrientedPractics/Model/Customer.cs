@@ -19,9 +19,20 @@ public class Customer
     private Address _address = new Address();
 
     /// <summary>
+    /// Корзина покупателя.
+    /// </summary>
+    private Cart _cart;
+
+    /// <summary>
+    /// Список заказов.
+    /// </summary>
+    private List<Order> _orderList = new List<Order>();
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
     public int ID { get; private set; }
+
     /// <summary>
     /// Возвращает и задает полное имя покупателя.
     /// </summary>
@@ -43,6 +54,9 @@ public class Customer
         }
     }
 
+    /// <summary>
+    /// Возвращает и задает адресс доставки.
+    /// </summary>
     public Address CustomerAddress
     {
         get { return _address; }
@@ -53,14 +67,39 @@ public class Customer
     }
 
     /// <summary>
+    /// Возвращает и задает корзину покупателя.
+    /// </summary>
+    public Cart CustomerCart
+    {
+        get
+        {
+            return _cart;
+        }
+        set
+        {
+            _cart = value;
+        }
+    }
+
+    /// <summary>
+    /// Возвращает и задает список заказов.
+    /// </summary>
+    public List<Order> OrderList
+    {
+        get { return _orderList; }
+        set { _orderList = value; }
+    }
+
+    /// <summary>
     /// Создает экземпляр класса <see cref="Customer">
     /// </summary>
     /// <param name="fullname">Полное имя покупателя. Длина не должна привышать 200 символов.</param>
     /// <param name="address">Адресс доставки. Должен иметь тип Address.</param>
     public Customer(string  fullname, Address address)
     {
-        ID = _id++;
+        ID = _id++; 
         FullName = fullname;
         CustomerAddress = address;
+        CustomerCart = new Cart();
     }
 }

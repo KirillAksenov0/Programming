@@ -14,7 +14,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
-        List<Item> _items = new List<Item>();
+        private List<Item> _items;
 
         private Item selectedItem;
 
@@ -27,6 +27,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            _items = new List<Item>();
             FillingCategoryComboBox();
         }
 
@@ -51,7 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 selectedItem = new Item(NameTextBox.Text, DescriptionTextBox.Text,
                     Convert.ToDouble(CostTextBox.Text), (Category)CategoryComboBox.SelectedItem);
 
-                _items.Add(selectedItem);
+                Items.Add(selectedItem);
 
                 ItemsListBox.Items.Add($"{selectedItem.Name}");
             }
@@ -84,7 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateTextBox()
         {
-            Item SelectedValue = _items[ItemsListBox.SelectedIndex];
+            Item SelectedValue = Items[ItemsListBox.SelectedIndex];
 
             NameTextBox.Text = SelectedValue.Name;
             CostTextBox.Text = Convert.ToString(SelectedValue.Cost);
