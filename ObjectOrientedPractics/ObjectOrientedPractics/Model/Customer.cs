@@ -29,6 +29,11 @@ public class Customer
     private List<Order> _orderList = new List<Order>();
 
     /// <summary>
+    /// Преоритетность покупателя.
+    /// </summary>
+    private bool _isPriority = false;  
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
     public int ID { get; private set; }
@@ -88,6 +93,21 @@ public class Customer
     {
         get { return _orderList; }
         set { _orderList = value; }
+    }
+
+    /// <summary>
+    /// Возвращает и задает преоритетность покупателя.
+    /// </summary>
+    public bool IsPriority
+    {
+        get
+        {
+            return _isPriority;
+        }
+        set
+        {
+            _isPriority = value;
+        }
     }
 
     /// <summary>

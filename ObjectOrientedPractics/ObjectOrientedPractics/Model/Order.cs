@@ -11,27 +11,27 @@ public class Order
     /// <summary>
     /// Адресс доставки.
     /// </summary>
-    private Address _deliveryAddress;
+    private protected Address _deliveryAddress;
 
     /// <summary>
     /// Дата создания заказа.
     /// </summary>
-    private static DateTime _orderData;
+    private protected DateTime _orderData;
 
     /// <summary>
     /// Список товаров.
     /// </summary>
-    private List<Item> _items = new List<Item>();
+    private protected List<Item> _items = new List<Item>();
 
     /// <summary>
     /// Общая стоимость товаров.
     /// </summary>
-    private double _amountCost;
+    private protected double _amountCost;
 
     /// <summary>
     /// Имя покупателя.
     /// </summary>
-    private string _customerFullName;
+    private protected string _customerFullName;
 
     /// <summary>
     /// Возвращает и задает ID.

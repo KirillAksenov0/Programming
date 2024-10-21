@@ -33,6 +33,7 @@
             CustomersListBox = new ListBox();
             CustomersGroupBox = new GroupBox();
             SelectedItemGroupBox = new GroupBox();
+            IsPriorityCheckBox = new CheckBox();
             panel1 = new Panel();
             FullNameTextBox = new TextBox();
             IDTextBox = new TextBox();
@@ -92,6 +93,7 @@
             // SelectedItemGroupBox
             // 
             SelectedItemGroupBox.BackColor = SystemColors.ButtonHighlight;
+            SelectedItemGroupBox.Controls.Add(IsPriorityCheckBox);
             SelectedItemGroupBox.Controls.Add(panel1);
             SelectedItemGroupBox.Controls.Add(FullNameTextBox);
             SelectedItemGroupBox.Controls.Add(IDTextBox);
@@ -100,10 +102,21 @@
             SelectedItemGroupBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             SelectedItemGroupBox.Location = new Point(481, 3);
             SelectedItemGroupBox.Name = "SelectedItemGroupBox";
-            SelectedItemGroupBox.Size = new Size(589, 116);
+            SelectedItemGroupBox.Size = new Size(589, 157);
             SelectedItemGroupBox.TabIndex = 5;
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
+            // 
+            // IsPriorityCheckBox
+            // 
+            IsPriorityCheckBox.AutoSize = true;
+            IsPriorityCheckBox.Location = new Point(101, 117);
+            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            IsPriorityCheckBox.Size = new Size(92, 24);
+            IsPriorityCheckBox.TabIndex = 7;
+            IsPriorityCheckBox.Text = "Is Priority";
+            IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            IsPriorityCheckBox.CheckedChanged += IsPriorityCheckBox_CheckedChanged;
             // 
             // panel1
             // 
@@ -152,10 +165,10 @@
             // 
             // customerAddressControl1
             // 
-            customerAddressControl1.Location = new Point(483, 117);
+            customerAddressControl1.Location = new Point(483, 166);
             customerAddressControl1.Name = "customerAddressControl1";
             customerAddressControl1.OurAddress = null;
-            customerAddressControl1.Size = new Size(588, 444);
+            customerAddressControl1.Size = new Size(588, 395);
             customerAddressControl1.TabIndex = 6;
             // 
             // CustomersTab
@@ -186,5 +199,6 @@
         private Panel panel1;
         private Controls.CustomerAddressControl addressControl1;
         private Controls.CustomerAddressControl customerAddressControl1;
+        private CheckBox IsPriorityCheckBox;
     }
 }

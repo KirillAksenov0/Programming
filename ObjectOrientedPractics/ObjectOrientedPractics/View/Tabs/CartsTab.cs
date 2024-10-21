@@ -179,15 +179,38 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            CurrentCustomer = Customers[CustomerComboBox.SelectedIndex];
-            Order = new Order(CurrentCustomer.CustomerCart.Items, CurrentCustomer.CustomerAddress
-                , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount);
+            if (CustomerComboBox.SelectedIndex != -1 && CurrentCustomer.CustomerCart.Items.Count != 0)
+            {
+                CurrentCustomer = Customers[CustomerComboBox.SelectedIndex];
 
-            CartListBox.Items.Clear();
+                if (CurrentCustomer.IsPriority)
+                {
+                    DateTime deliveryDate = DateTime.Now.Date;
+                    Order = new PriorityOrder(CurrentCustomer.CustomerCart.Items, CurrentCustomer.CustomerAddress
+               , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount, deliveryDate, 
+               DeliveryTime.Morning);
+
+                    CartListBox.Items.Clear();
+
+                    CurrentCustomer.OrderList.Add(Order);
+                    CurrentCustomer.CustomerCart.Items.Clear();
+                    TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
+                }
+
+                else
+                {
+                    Order = new Order(CurrentCustomer.CustomerCart.Items, CurrentCustomer.CustomerAddress
+               , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount);
+
+                    CartListBox.Items.Clear();
+
+                    CurrentCustomer.OrderList.Add(Order);
+                    CurrentCustomer.CustomerCart.Items.Clear();
+                    TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
+                }
+            }
             
-            CurrentCustomer.OrderList.Add(Order);
-            CurrentCustomer.CustomerCart.Items.Clear();
-            TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
+           
         }
 
         /// <summary>
