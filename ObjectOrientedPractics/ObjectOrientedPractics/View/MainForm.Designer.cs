@@ -38,11 +38,14 @@
             cartsTab1 = new View.Tabs.CartsTab();
             tabPage4 = new TabPage();
             ordersTab1 = new View.Tabs.OrdersTab();
+            tabPage5 = new TabPage();
+            discountsTab1 = new View.Tabs.DiscountsTab();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -51,6 +54,7 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -135,6 +139,23 @@
             ordersTab1.Size = new Size(1046, 609);
             ordersTab1.TabIndex = 0;
             // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(discountsTab1);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1046, 609);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "tabPage5";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // discountsTab1
+            // 
+            discountsTab1.Location = new Point(81, 3);
+            discountsTab1.Name = "discountsTab1";
+            discountsTab1.Size = new Size(725, 465);
+            discountsTab1.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -148,6 +169,7 @@
             tabPage2.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -162,5 +184,7 @@
         private View.Tabs.CartsTab cartsTab1;
         private TabPage tabPage4;
         private View.Tabs.OrdersTab ordersTab1;
+        private TabPage tabPage5;
+        private View.Tabs.DiscountsTab discountsTab1;
     }
 }
