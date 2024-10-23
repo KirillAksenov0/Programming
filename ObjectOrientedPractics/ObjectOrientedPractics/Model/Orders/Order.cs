@@ -34,6 +34,16 @@ public class Order
     private protected string _customerFullName;
 
     /// <summary>
+    /// Размер примененной скидки.
+    /// </summary>
+    private double _discountAmount;
+
+    /// <summary>
+    /// Конечная стоимость заказа.
+    /// </summary>
+    private double _total;
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
     public int ID { get; private set; }
@@ -90,6 +100,31 @@ public class Order
     /// Возвращает и задает общую стоимость товаров заказа.
     /// </summary>
     public double ItemsAmount { get;set;}
+
+    /// <summary>
+    /// Возвращает и задает размер примененной скидки.
+    /// </summary>
+    public double DiscountAmount
+    {
+        get
+        {
+            return _discountAmount;
+        }
+        set
+        { _discountAmount = value; }
+    }
+
+    /// <summary>
+    /// Возвращает и задает конечную стоимость заказа.
+    /// </summary>
+    public double Total
+    {
+        get
+        {
+            return ItemsAmount - DiscountAmount;
+        }
+       
+    }
 
     /// <summary>
     /// Создает экземпляр класса <see cref="Order">
