@@ -1,7 +1,16 @@
-﻿public class PointsDiscount
+﻿/// <summary>
+/// Хранит данные о скидке накопительных баллов.
+/// </summary>
+public class PointsDiscount
 {
+    /// <summary>
+    /// Количество баллов.
+    /// </summary>
     private int _pointsCount;
 
+    /// <summary>
+    /// Возвращает и задает количество баллов.
+    /// </summary>
     public int PointsCount
     {
         get { return _pointsCount; }
@@ -11,6 +20,11 @@
         }
     }
 
+    /// <summary>
+    /// Рассчитывает размер скидки, доступной с текущим количеством баллов.
+    /// </summary>
+    /// <param name="items">Список товаров.</param>
+    /// <returns>Скидка в виде количества баллов.</returns>
     public double Calculate(List<Item> items)
     {
         double totalCost = 0;
@@ -25,6 +39,11 @@
         return discount;
     }
 
+    /// <summary>
+    /// Применяет скидку к товарам.
+    /// </summary>
+    /// <param name="items">Список товаров.</param>
+    /// <returns>Скидка в виде количества баллов.</returns>
     public double Apply(List<Item> items)
     {
         double discount = Calculate(items);
@@ -36,6 +55,10 @@
         return 0;
     }
 
+    /// <summary>
+    /// Добавляет баллы на основе списка товаров.
+    /// </summary>
+    /// <param name="items">Список товаров.</param>
     public void Update(List<Item> items)
     {
         double totalCost = 0;
@@ -48,5 +71,8 @@
         PointsCount += earnedPoints;
     }
 
+    /// <summary>
+    /// Информация о текущих баллах.
+    /// </summary>
     public string Info => $"Накопительная – {PointsCount} баллов";
 }
