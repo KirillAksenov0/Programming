@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Хранит данные о процентной скидки.
 /// </summary>
-public class PercentDiscount
+public class PercentDiscount : IDiscount
 {
     /// <summary>
     /// Текущая скидка в процентах.

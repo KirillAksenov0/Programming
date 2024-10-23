@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Хранит данные о скидке накопительных баллов.
 /// </summary>
-public class PointsDiscount
+public class PointsDiscount : IDiscount
 {
     /// <summary>
     /// Количество баллов.
