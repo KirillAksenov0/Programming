@@ -73,7 +73,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     Orders[i].CustomerFullName, $"{Orders[i].DeliveryAddress.Country}, " +
                     $"{Orders[i].DeliveryAddress.City}, {Orders[i].DeliveryAddress.Street}, " +
                     $"{Orders[i].DeliveryAddress.Building}, {Orders[i].DeliveryAddress.Apartment}",
-                    Orders[i].ItemsAmount);
+                    Orders[i].ItemsAmount, $"{Orders[i].ItemsAmount - Orders[i].DiscountAmount}");
             }
         }
 

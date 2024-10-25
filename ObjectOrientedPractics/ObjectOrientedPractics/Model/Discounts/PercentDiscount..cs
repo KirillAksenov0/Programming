@@ -44,10 +44,10 @@ public class PercentDiscount : IDiscount
 
         foreach (var item in categoryItems)
         {
-            discount += item.Cost * CurrentDiscountPercent / 100;
+            discount += item.Cost;
         }
 
-        return discount;
+        return (discount / 100) * _currentDiscountPercent;
     }
 
     /// <summary>
@@ -57,10 +57,16 @@ public class PercentDiscount : IDiscount
     /// <returns>Значение скидки.</returns>
     public double Apply(List<Item> items)
     {
-        double discount = Calculate(items);
-        TotalSpentInCategory += items.Where(item => item.Category == Category).Sum(item => item.Cost);
-        CurrentDiscountPercent = Math.Min(10, 1 + (int)(TotalSpentInCategory / 1000));
-        return discount;
+        double discount = 0;
+        var categoryItems = items.Where(item => item.Category == Category).ToList();
+
+        foreach (var item in categoryItems)
+        {
+            discount += item.Cost;
+        }
+
+        return (discount / 100) * _currentDiscountPercent;
+
     }
 
     /// <summary>
@@ -69,8 +75,21 @@ public class PercentDiscount : IDiscount
     /// <param name="items"></param>
     public void Update(List<Item> items)
     {
-        TotalSpentInCategory += items.Where(item => item.Category == Category).Sum(item => item.Cost);
-        CurrentDiscountPercent = Math.Min(10, 1 + (int)(TotalSpentInCategory / 1000));
+
+        foreach (var item in items)
+        {
+            if (item.Category == Category)
+            {
+                TotalSpentInCategory += item.Cost;
+            }
+        }
+        double total = TotalSpentInCategory;
+        while ((total >= 1000) && (CurrentDiscountPercent < 10))
+        {
+            total -= 1000;
+            CurrentDiscountPercent++;
+        }
+
     }
 
     /// <summary>

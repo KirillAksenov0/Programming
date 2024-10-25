@@ -32,6 +32,12 @@
             AddToCartButton = new Button();
             ItemsLabel = new Label();
             CartItemsListBox = new ListBox();
+            TotalDisplayLabel = new Label();
+            TotalLabel = new Label();
+            DiscountAmountDisplayLabel = new Label();
+            DiscountAmountLabel = new Label();
+            DiscountsLabel = new Label();
+            DiscountsCheckedListBox = new CheckedListBox();
             CartListBox = new ListBox();
             TotalCostLabel = new Label();
             AmountLabel = new Label();
@@ -61,6 +67,12 @@
             // 
             // CartSplitContainer.Panel2
             // 
+            CartSplitContainer.Panel2.Controls.Add(TotalDisplayLabel);
+            CartSplitContainer.Panel2.Controls.Add(TotalLabel);
+            CartSplitContainer.Panel2.Controls.Add(DiscountAmountDisplayLabel);
+            CartSplitContainer.Panel2.Controls.Add(DiscountAmountLabel);
+            CartSplitContainer.Panel2.Controls.Add(DiscountsLabel);
+            CartSplitContainer.Panel2.Controls.Add(DiscountsCheckedListBox);
             CartSplitContainer.Panel2.Controls.Add(CartListBox);
             CartSplitContainer.Panel2.Controls.Add(TotalCostLabel);
             CartSplitContainer.Panel2.Controls.Add(AmountLabel);
@@ -102,11 +114,66 @@
             CartItemsListBox.Size = new Size(368, 484);
             CartItemsListBox.TabIndex = 0;
             // 
+            // TotalDisplayLabel
+            // 
+            TotalDisplayLabel.AutoSize = true;
+            TotalDisplayLabel.Location = new Point(582, 548);
+            TotalDisplayLabel.Name = "TotalDisplayLabel";
+            TotalDisplayLabel.Size = new Size(50, 20);
+            TotalDisplayLabel.TabIndex = 18;
+            TotalDisplayLabel.Text = "label1";
+            // 
+            // TotalLabel
+            // 
+            TotalLabel.AutoSize = true;
+            TotalLabel.Location = new Point(587, 515);
+            TotalLabel.Name = "TotalLabel";
+            TotalLabel.Size = new Size(45, 20);
+            TotalLabel.TabIndex = 17;
+            TotalLabel.Text = "Total:";
+            // 
+            // DiscountAmountDisplayLabel
+            // 
+            DiscountAmountDisplayLabel.AutoSize = true;
+            DiscountAmountDisplayLabel.Location = new Point(582, 463);
+            DiscountAmountDisplayLabel.Name = "DiscountAmountDisplayLabel";
+            DiscountAmountDisplayLabel.Size = new Size(50, 20);
+            DiscountAmountDisplayLabel.TabIndex = 16;
+            DiscountAmountDisplayLabel.Text = "label1";
+            // 
+            // DiscountAmountLabel
+            // 
+            DiscountAmountLabel.AutoSize = true;
+            DiscountAmountLabel.Location = new Point(505, 427);
+            DiscountAmountLabel.Name = "DiscountAmountLabel";
+            DiscountAmountLabel.Size = new Size(127, 20);
+            DiscountAmountLabel.TabIndex = 15;
+            DiscountAmountLabel.Text = "Discount Amount:";
+            // 
+            // DiscountsLabel
+            // 
+            DiscountsLabel.AutoSize = true;
+            DiscountsLabel.Location = new Point(19, 427);
+            DiscountsLabel.Name = "DiscountsLabel";
+            DiscountsLabel.Size = new Size(76, 20);
+            DiscountsLabel.TabIndex = 14;
+            DiscountsLabel.Text = "Discounts:";
+            // 
+            // DiscountsCheckedListBox
+            // 
+            DiscountsCheckedListBox.BackColor = SystemColors.Control;
+            DiscountsCheckedListBox.BorderStyle = BorderStyle.None;
+            DiscountsCheckedListBox.FormattingEnabled = true;
+            DiscountsCheckedListBox.Location = new Point(19, 450);
+            DiscountsCheckedListBox.Name = "DiscountsCheckedListBox";
+            DiscountsCheckedListBox.Size = new Size(310, 132);
+            DiscountsCheckedListBox.TabIndex = 13;
+            // 
             // CartListBox
             // 
             CartListBox.FormattingEnabled = true;
             CartListBox.ItemHeight = 20;
-            CartListBox.Location = new Point(19, 130);
+            CartListBox.Location = new Point(19, 103);
             CartListBox.Name = "CartListBox";
             CartListBox.Size = new Size(613, 204);
             CartListBox.TabIndex = 12;
@@ -114,7 +181,7 @@
             // TotalCostLabel
             // 
             TotalCostLabel.AutoSize = true;
-            TotalCostLabel.Location = new Point(582, 375);
+            TotalCostLabel.Location = new Point(582, 340);
             TotalCostLabel.Name = "TotalCostLabel";
             TotalCostLabel.Size = new Size(50, 20);
             TotalCostLabel.TabIndex = 11;
@@ -123,7 +190,7 @@
             // AmountLabel
             // 
             AmountLabel.AutoSize = true;
-            AmountLabel.Location = new Point(567, 337);
+            AmountLabel.Location = new Point(567, 310);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(65, 20);
             AmountLabel.TabIndex = 10;
@@ -132,7 +199,7 @@
             // CartLabel
             // 
             CartLabel.AutoSize = true;
-            CartLabel.Location = new Point(19, 98);
+            CartLabel.Location = new Point(19, 80);
             CartLabel.Name = "CartLabel";
             CartLabel.Size = new Size(39, 20);
             CartLabel.TabIndex = 8;
@@ -158,7 +225,7 @@
             // 
             // ClearCartButton
             // 
-            ClearCartButton.Location = new Point(526, 414);
+            ClearCartButton.Location = new Point(526, 374);
             ClearCartButton.Name = "ClearCartButton";
             ClearCartButton.Size = new Size(106, 39);
             ClearCartButton.TabIndex = 5;
@@ -167,7 +234,7 @@
             // 
             // RemoveItemButton
             // 
-            RemoveItemButton.Location = new Point(414, 414);
+            RemoveItemButton.Location = new Point(414, 374);
             RemoveItemButton.Name = "RemoveItemButton";
             RemoveItemButton.Size = new Size(106, 39);
             RemoveItemButton.TabIndex = 4;
@@ -177,7 +244,7 @@
             // 
             // CreateOrderButton
             // 
-            CreateOrderButton.Location = new Point(19, 414);
+            CreateOrderButton.Location = new Point(19, 374);
             CreateOrderButton.Name = "CreateOrderButton";
             CreateOrderButton.Size = new Size(106, 39);
             CreateOrderButton.TabIndex = 3;
@@ -216,5 +283,11 @@
         private Button RemoveItemButton;
         private Button CreateOrderButton;
         private ListBox CartListBox;
+        private CheckedListBox DiscountsCheckedListBox;
+        private Label DiscountsLabel;
+        private Label TotalDisplayLabel;
+        private Label TotalLabel;
+        private Label DiscountAmountDisplayLabel;
+        private Label DiscountAmountLabel;
     }
 }

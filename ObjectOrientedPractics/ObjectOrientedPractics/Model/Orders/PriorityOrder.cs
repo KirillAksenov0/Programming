@@ -42,8 +42,8 @@ public class PriorityOrder : Order
     /// <param name="desiredDeliveryDate">Желаемая дата доставки.</param>
     /// <param name="desiredDeliveryTime">Желаемое время доставки.</param>
     public PriorityOrder(List<Item> items, Address deliveryAddress, string customerFullName, 
-        double itemsAmount, DateTime desiredDeliveryDate, DeliveryTime desiredDeliveryTime)
-        : base ( items, deliveryAddress, customerFullName, itemsAmount)
+        double itemsAmount, double discountAmount, DateTime desiredDeliveryDate, DeliveryTime desiredDeliveryTime)
+        : base ( items, deliveryAddress, customerFullName, itemsAmount, discountAmount)
     {
         DesiredDeliveryDate = desiredDeliveryDate;
         DesiredDeliveryTime = desiredDeliveryTime;

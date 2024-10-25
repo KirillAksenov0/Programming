@@ -85,6 +85,32 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Заполняет DiscountsCheckedListBox.
+        /// </summary>
+        public void FillingDiscountsCheckedListBox()
+        {
+            DiscountsCheckedListBox.Items.Clear();
+
+            foreach (var discount in CurrentCustomer.Discounts)
+            {
+                DiscountsCheckedListBox.Items.Add(discount.Info);
+            }
+            for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
+            {
+                DiscountsCheckedListBox.SetItemChecked(i, true);
+            }
+
+        }
+
+        private void CheckedDiscountsCheckedListBox()
+        {
+            for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
+            {
+
+                DiscountsCheckedListBox.SetItemChecked(i, true);
+            }
+        }
+        /// <summary>
         /// Очищает CartItemsListBox.
         /// </summary>
         private void ClearCartItemsListBox()
@@ -129,6 +155,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.Items.Add(CartItemsListBox.Items[CartItemsListBox.SelectedIndex]);
 
                 TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
+
+                RefreshDiscountsChecked();
             }
         }
 
@@ -152,6 +180,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
 
+                RefreshDiscountsChecked();
+
+                FillingDiscountsCheckedListBox();
             }
         }
 
@@ -169,9 +200,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 CurrentCustomer.CustomerCart.Items.RemoveAt(CartListBox.SelectedIndex + 1);
 
                 TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
+
+                RefreshDiscountsChecked();
             }
         }
-        
+
         /// <summary>
         /// Создает заказ покупателя.
         /// </summary>
@@ -183,13 +216,39 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CurrentCustomer = Customers[CustomerComboBox.SelectedIndex];
 
+                double discountSum = 0;
                 if (CurrentCustomer.IsPriority)
                 {
+                    for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
+                    {
+                        if (DiscountsCheckedListBox.GetItemChecked(i))
+                        {
+                            discountSum += (CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.CustomerCart.Items));
+                        }
+                    }
+                    for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
+                    {
+                        if (DiscountsCheckedListBox.GetItemChecked(i))
+                        {
+                            CurrentCustomer.Discounts[i].Apply(CurrentCustomer.CustomerCart.Items);
+                        }
+                    }
+                    foreach (var discount in CurrentCustomer.Discounts)
+                    {
+                        discount.Update(CurrentCustomer.CustomerCart.Items);
+                    }
+
+                    FillingDiscountsCheckedListBox();
+
+                    DiscountAmountDisplayLabel.Text = "0";
+                    TotalDisplayLabel.Text = "0";
+
                     DateTime deliveryDate = DateTime.Now.Date;
                     Order = new PriorityOrder(CurrentCustomer.CustomerCart.Items, CurrentCustomer.CustomerAddress
-               , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount, deliveryDate, 
+               , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount, discountSum, deliveryDate,
                DeliveryTime.Morning);
 
+                    
                     CartListBox.Items.Clear();
 
                     CurrentCustomer.OrderList.Add(Order);
@@ -199,8 +258,25 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 else
                 {
+                    for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
+                    {
+                        if (DiscountsCheckedListBox.GetItemChecked(i))
+                        {
+                            CurrentCustomer.Discounts[i].Apply(CurrentCustomer.CustomerCart.Items);
+                        }
+                    }
+                    foreach (var discount in CurrentCustomer.Discounts)
+                    {
+                        discount.Update(CurrentCustomer.CustomerCart.Items);
+                    }
+                    FillingDiscountsCheckedListBox();
+
                     Order = new Order(CurrentCustomer.CustomerCart.Items, CurrentCustomer.CustomerAddress
-               , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount);
+               , CurrentCustomer.FullName, CurrentCustomer.CustomerCart.Amount, Convert.ToDouble
+                (DiscountAmountDisplayLabel.Text));
+
+                    DiscountAmountDisplayLabel.Text = "0";
+                    TotalDisplayLabel.Text = "0";
 
                     CartListBox.Items.Clear();
 
@@ -209,8 +285,25 @@ namespace ObjectOrientedPractics.View.Tabs
                     TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
                 }
             }
-            
-           
+
+
+        }
+
+        /// <summary>
+        /// Обновляет отмеченные скидки.
+        /// </summary>
+        private void RefreshDiscountsChecked()
+        {
+            double discountAmount = 0;
+            for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
+            {
+                if (DiscountsCheckedListBox.GetItemChecked(i))
+                {
+                    discountAmount += (CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.CustomerCart.Items));
+                }
+            }
+            DiscountAmountDisplayLabel.Text = $"{discountAmount}";
+            TotalDisplayLabel.Text = $"{CurrentCustomer.CustomerCart.Amount - discountAmount}";
         }
 
         /// <summary>
@@ -221,7 +314,6 @@ namespace ObjectOrientedPractics.View.Tabs
             FillingCartItemsListBox();
             FillingCustomerComboBox();
 
-            
             if (CustomerComboBox.SelectedItem == CustomerComboBox.Items[0])
             {
                 CurrentCustomer = Customers[CustomerComboBox.SelectedIndex];
@@ -234,6 +326,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 TotalCostLabel.Text = Convert.ToString(CurrentCustomer.CustomerCart.Amount);
             }
+
+            FillingDiscountsCheckedListBox();
         }
+
     }
 }

@@ -168,18 +168,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             DiscountForm discountForm = new DiscountForm(this);
             discountForm.Show();
-            /* 
-             if (discountForm.ShowDialog() == DialogResult.OK)
-             {
-                 Category selectedCategory = discountForm.SelectedCategory;
-
-                 selectedCustomer.Discounts.Add(new PercentDiscount(selectedCategory));
-
-                 FillDiscountsListBox();
-
-                 discountForm.ShowDialog();
-             }
-            */
+            
         }
 
         /// <summary>

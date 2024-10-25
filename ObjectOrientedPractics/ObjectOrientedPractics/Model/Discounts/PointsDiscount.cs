@@ -6,7 +6,7 @@ public class PointsDiscount : IDiscount
     /// <summary>
     /// Количество баллов.
     /// </summary>
-    private int _pointsCount;
+    private int _pointsCount = 0;
 
     /// <summary>
     /// Возвращает и задает количество баллов.
@@ -16,7 +16,19 @@ public class PointsDiscount : IDiscount
         get { return _pointsCount; }
         private set
         {
+            if (value >= 0)
             _pointsCount = value;
+        }
+    }
+
+    /// <summary>
+    /// Возвращает информацию о скидке.
+    /// </summary>
+    public string Info
+    {
+        get 
+        {
+            return $"Накопительная – {_pointsCount} баллов"; 
         }
     }
 
@@ -27,16 +39,23 @@ public class PointsDiscount : IDiscount
     /// <returns>Скидка в виде количества баллов.</returns>
     public double Calculate(List<Item> items)
     {
-        double totalCost = 0;
+       
+        double sum = 0;
         foreach (var item in items)
         {
-            totalCost += item.Cost;
+            sum += item.Cost;
         }
 
-        double maxDiscount = totalCost * 0.3;
-        double discount = Math.Min(PointsCount, maxDiscount);
+        double discount = (sum / 100) * 30;
 
-        return discount;
+        if (discount > _pointsCount)
+        {
+            return _pointsCount;
+        }
+        else
+        {
+            return discount;
+        }
     }
 
     /// <summary>
@@ -46,13 +65,26 @@ public class PointsDiscount : IDiscount
     /// <returns>Скидка в виде количества баллов.</returns>
     public double Apply(List<Item> items)
     {
-        double discount = Calculate(items);
-        if (discount > 0)
+       
+        double sum = 0;
+        foreach (var item in items)
         {
-            PointsCount -= (int)discount;
+            sum += item.Cost;
+        }
+
+        double discount = (sum / 100) * 30;
+
+        if (discount > _pointsCount)
+        {
+            discount = _pointsCount;
+            _pointsCount = 0;
             return discount;
         }
-        return 0;
+        else
+        {
+            _pointsCount -= Convert.ToInt32(discount);
+            return discount;
+        }
     }
 
     /// <summary>
@@ -61,18 +93,15 @@ public class PointsDiscount : IDiscount
     /// <param name="items">Список товаров.</param>
     public void Update(List<Item> items)
     {
-        double totalCost = 0;
+        
+        double sum = 0;
         foreach (var item in items)
         {
-            totalCost += item.Cost;
+            sum += item.Cost;
         }
 
-        int earnedPoints = (int)Math.Ceiling(totalCost * 0.1);
-        PointsCount += earnedPoints;
+        _pointsCount += Convert.ToInt32(sum / 10);
     }
 
-    /// <summary>
-    /// Информация о текущих баллах.
-    /// </summary>
-    public string Info => $"Накопительная – {PointsCount} баллов";
+    
 }
