@@ -31,7 +31,12 @@ public class Customer
     /// <summary>
     /// Преоритетность покупателя.
     /// </summary>
-    private bool _isPriority = false;  
+    private bool _isPriority = false;
+
+    /// <summary>
+    /// Список скидок.
+    /// </summary>
+    private List<IDiscount> _discounts;
 
     /// <summary>
     /// Возвращает и задает ID.
@@ -111,6 +116,18 @@ public class Customer
     }
 
     /// <summary>
+    /// Возвращает и задает список скидок.
+    /// </summary>
+    public List<IDiscount> Discounts
+    {
+        get
+        {
+            return _discounts;
+        }
+        set { _discounts = value; }
+    }
+
+    /// <summary>
     /// Создает экземпляр класса <see cref="Customer">
     /// </summary>
     /// <param name="fullname">Полное имя покупателя. Длина не должна привышать 200 символов.</param>
@@ -121,5 +138,9 @@ public class Customer
         FullName = fullname;
         CustomerAddress = address;
         CustomerCart = new Cart();
+        Discounts = new List<IDiscount>();
+
+        PointsDiscount pointsDiscount = new PointsDiscount();
+        Discounts.Add(pointsDiscount);
     }
 }

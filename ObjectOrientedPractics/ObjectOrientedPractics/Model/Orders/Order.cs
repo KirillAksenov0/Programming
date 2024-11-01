@@ -34,6 +34,16 @@ public class Order
     private protected string _customerFullName;
 
     /// <summary>
+    /// Размер примененной скидки.
+    /// </summary>
+    private protected double _discountAmount;
+
+    /// <summary>
+    /// Конечная стоимость заказа.
+    /// </summary>
+    private protected double _total;
+
+    /// <summary>
     /// Возвращает и задает ID.
     /// </summary>
     public int ID { get; private set; }
@@ -89,14 +99,47 @@ public class Order
     /// <summary>
     /// Возвращает и задает общую стоимость товаров заказа.
     /// </summary>
-    public double ItemsAmount { get;set;}
+    public double ItemsAmount
+    {
+        get
+        {
+            return _amountCost;
+        }
+        set { _amountCost = value; }
+    }
+
+    /// <summary>
+    /// Возвращает и задает размер примененной скидки.
+    /// </summary>
+    public double DiscountAmount
+    {
+        get
+        {
+            return _discountAmount;
+        }
+        set
+        { _discountAmount = value; }
+    }
+
+    /// <summary>
+    /// Возвращает и задает конечную стоимость заказа.
+    /// </summary>
+    public double Total
+    {
+        get
+        {
+            return _amountCost - _discountAmount;
+        }
+       
+    }
 
     /// <summary>
     /// Создает экземпляр класса <see cref="Order">
     /// </summary>
     /// <param name="address">Адресс доставки заказа.</param>
     /// <param name="items">Список товаров.</param>
-    public Order( List<Item> items, Address deliveryAddress, string customerFullName, double itemsAmount)
+    public Order( List<Item> items, Address deliveryAddress, string customerFullName, double itemsAmount,
+        double discountAmount)
     {
         ID = _id++;
         OrderDate = DateTime.Now;
@@ -111,6 +154,8 @@ public class Order
         OrderStatus = OrderStatus.New;
         CustomerFullName = customerFullName;
         ItemsAmount = itemsAmount;
+
+        DiscountAmount = discountAmount;
     }
 
 }

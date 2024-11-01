@@ -40,8 +40,15 @@
             FullNameLabel = new Label();
             IDLabel = new Label();
             customerAddressControl1 = new Controls.CustomerAddressControl();
+            toolStripContainer1 = new ToolStripContainer();
+            RemoveDiscountButton = new Button();
+            AddDiscountButton = new Button();
+            DiscountsListBox = new ListBox();
+            DiscountsLabel = new Label();
             CustomersGroupBox.SuspendLayout();
             SelectedItemGroupBox.SuspendLayout();
+            toolStripContainer1.ContentPanel.SuspendLayout();
+            toolStripContainer1.SuspendLayout();
             SuspendLayout();
             // 
             // RemoveButton
@@ -171,10 +178,67 @@
             customerAddressControl1.Size = new Size(588, 395);
             customerAddressControl1.TabIndex = 6;
             // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            toolStripContainer1.ContentPanel.Controls.Add(RemoveDiscountButton);
+            toolStripContainer1.ContentPanel.Controls.Add(AddDiscountButton);
+            toolStripContainer1.ContentPanel.Controls.Add(DiscountsListBox);
+            toolStripContainer1.ContentPanel.Controls.Add(DiscountsLabel);
+            toolStripContainer1.ContentPanel.Size = new Size(564, 169);
+            toolStripContainer1.Location = new Point(497, 403);
+            toolStripContainer1.Name = "toolStripContainer1";
+            toolStripContainer1.Size = new Size(564, 194);
+            toolStripContainer1.TabIndex = 7;
+            toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // RemoveDiscountButton
+            // 
+            RemoveDiscountButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            RemoveDiscountButton.Location = new Point(395, 114);
+            RemoveDiscountButton.Name = "RemoveDiscountButton";
+            RemoveDiscountButton.Size = new Size(124, 44);
+            RemoveDiscountButton.TabIndex = 3;
+            RemoveDiscountButton.Text = "Remove";
+            RemoveDiscountButton.UseVisualStyleBackColor = true;
+            RemoveDiscountButton.Click += RemoveDiscountButton_Click;
+            // 
+            // AddDiscountButton
+            // 
+            AddDiscountButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AddDiscountButton.Location = new Point(395, 62);
+            AddDiscountButton.Name = "AddDiscountButton";
+            AddDiscountButton.Size = new Size(124, 45);
+            AddDiscountButton.TabIndex = 2;
+            AddDiscountButton.Text = "Add";
+            AddDiscountButton.UseVisualStyleBackColor = true;
+            AddDiscountButton.Click += AddDiscountButton_Click;
+            // 
+            // DiscountsListBox
+            // 
+            DiscountsListBox.FormattingEnabled = true;
+            DiscountsListBox.ItemHeight = 20;
+            DiscountsListBox.Location = new Point(6, 39);
+            DiscountsListBox.Name = "DiscountsListBox";
+            DiscountsListBox.Size = new Size(369, 144);
+            DiscountsListBox.TabIndex = 1;
+            // 
+            // DiscountsLabel
+            // 
+            DiscountsLabel.AutoSize = true;
+            DiscountsLabel.Location = new Point(6, 16);
+            DiscountsLabel.Name = "DiscountsLabel";
+            DiscountsLabel.Size = new Size(73, 20);
+            DiscountsLabel.TabIndex = 0;
+            DiscountsLabel.Text = "Discounts";
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(toolStripContainer1);
             Controls.Add(customerAddressControl1);
             Controls.Add(CustomersGroupBox);
             Controls.Add(SelectedItemGroupBox);
@@ -183,6 +247,10 @@
             CustomersGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();
+            toolStripContainer1.ContentPanel.ResumeLayout(false);
+            toolStripContainer1.ContentPanel.PerformLayout();
+            toolStripContainer1.ResumeLayout(false);
+            toolStripContainer1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -200,5 +268,10 @@
         private Controls.CustomerAddressControl addressControl1;
         private Controls.CustomerAddressControl customerAddressControl1;
         private CheckBox IsPriorityCheckBox;
+        private ToolStripContainer toolStripContainer1;
+        private ListBox DiscountsListBox;
+        private Label DiscountsLabel;
+        private Button RemoveDiscountButton;
+        private Button AddDiscountButton;
     }
 }
