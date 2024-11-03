@@ -134,6 +134,48 @@ public class Order
     }
 
     /// <summary>
+    /// Сравнивает объекты.
+    /// </summary>
+    /// <param name="other">Объект для сравнения.</param>
+    /// <returns></returns>
+    public bool Equals(Order other)
+    {
+        // Проверка на null
+        if (other == null)
+        {
+            return false;
+        }
+        // Сравнение значений
+        return this.ID == other.ID;
+    }
+
+    /// <summary>
+    /// Сравнивает объекты.
+    /// </summary>
+    /// <param name="other">Объект для сравнения.</param>
+    /// <returns></returns>
+    public override bool Equals(object other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+
+        if (other is not Order)
+        {
+            return false;
+        }
+
+        if (object.ReferenceEquals(this, other))
+        {
+            return true;
+        }
+        var order2 = (Order)other;
+
+        return (this.ID == order2.ID);
+    }
+
+    /// <summary>
     /// Создает экземпляр класса <see cref="Order">
     /// </summary>
     /// <param name="address">Адресс доставки заказа.</param>

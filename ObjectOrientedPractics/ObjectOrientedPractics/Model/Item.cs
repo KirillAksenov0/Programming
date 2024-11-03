@@ -1,6 +1,7 @@
-﻿ /// <summary>
- /// Хранит данные о товаре.
- /// </summary>
+﻿using System;
+/// <summary>
+/// Хранит данные о товаре.
+/// </summary>
 public class Item
 {
     /// <summary>
@@ -92,7 +93,72 @@ public class Item
                 }
             
             _cost = value;
-            
+        }
+    }
+
+    /// <summary>
+    /// Сравнивает объекты.
+    /// </summary>
+    /// <param name="other">Объект для сравнения.</param>
+    /// <returns></returns>
+    public bool Equals(Item other)
+    {
+        // Проверка на null
+        if (other == null)
+        {
+            return false;
+        }
+        // Сравнение значений
+        return this.ID == other.ID;
+    }
+
+    /// <summary>
+    /// Сравнивает объекты.
+    /// </summary>
+    /// <param name="other">Объект для сравнения.</param>
+    /// <returns></returns>
+    public override bool Equals(object other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+
+        if (other is not Item)
+        {
+            return false;
+        }
+
+        if (object.ReferenceEquals(this, other))
+        {
+            return true;
+        }
+        var item2 = (Item)other;
+        
+        return (this.ID == item2.ID);
+    }
+
+    /// <summary>
+    /// Сравнивает объекты через интерфейс IComparable.
+    /// </summary>
+    /// <param name="obj">Объект для сравнения.</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public int CompareTo(object obj)
+    {
+        if (obj == null)
+        {
+            return 1;
+        }
+
+        Item otherItem = obj as Item;
+        if (otherItem != null)
+        {
+            return this.Cost.CompareTo(otherItem.Cost);
+        }
+        else
+        {
+            throw new ArgumentException("Object is not a Item");
         }
     }
 
@@ -111,6 +177,12 @@ public class Item
         Info = info;
         Cost = cost;
         Category = category;
+    }
+
+    /// <inheritdoc cref="Item.Item(string, string, double, Category)" />
+    public object Clone()
+    {
+        return new Item(this.Name, this.Info, this.Cost, this.Category);
     }
 }
 

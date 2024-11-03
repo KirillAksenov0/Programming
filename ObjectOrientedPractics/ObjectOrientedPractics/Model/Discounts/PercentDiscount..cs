@@ -100,4 +100,28 @@ public class PercentDiscount : IDiscount
     {
         Category = category;
     }
+
+    /// <summary>
+    /// Сравнивает объекты через интерфейс IComparable.
+    /// </summary>
+    /// <param name="obj">Объект для сравнения.</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public int CompareTo(object obj)
+    {
+        if (obj == null)
+        {
+            return 1;
+        }
+
+        PercentDiscount otherPercentDiscount = obj as PercentDiscount;
+        if ( otherPercentDiscount!= null)
+        {
+            return this.CurrentDiscountPercent.CompareTo(otherPercentDiscount.CurrentDiscountPercent);
+        }
+        else
+        {
+            throw new ArgumentException("Object is not a PercentDiscount");
+        }
+    }
 }
