@@ -103,5 +103,27 @@ public class PointsDiscount : IDiscount
         _pointsCount += Convert.ToInt32(sum / 10);
     }
 
-    
+    /// <summary>
+    /// Сравнивает объекты через интерфейс IComparable.
+    /// </summary>
+    /// <param name="obj">Объект для сравнения.</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public int CompareTo(object obj)
+    {
+        if (obj == null)
+        {
+            return 1;
+        }
+
+        PointsDiscount otherPointsDiscount = obj as PointsDiscount;
+        if (otherPointsDiscount != null)
+        {
+            return this.PointsCount.CompareTo(otherPointsDiscount.PointsCount);
+        }
+        else
+        {
+            throw new ArgumentException("Object is not a PointsDiscount");
+        }
+    }
 }

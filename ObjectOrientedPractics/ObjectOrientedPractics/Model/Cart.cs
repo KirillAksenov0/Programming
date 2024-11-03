@@ -48,4 +48,10 @@ public class Cart
     {
         _items = new List<Item>();
     }
+
+    /// <inheritdoc cref="Cart.Cart" />
+    public object Clone()
+    {
+        return new Cart();
+    }
 }

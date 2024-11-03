@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System;
+/// <summary>
 /// Хранит данные об адрессе.
 /// </summary>
 public class Address
@@ -133,6 +134,48 @@ public class Address
     }
 
     /// <summary>
+    /// Сравнивает объекты.
+    /// </summary>
+    /// <param name="other">Объект для сравнения.</param>
+    /// <returns></returns>
+    public bool Equals(Address other)
+    {
+        // Проверка на null
+        if (other == null)
+        {
+            return false;
+        }
+        // Сравнение значений
+        return this.Index == other.Index;
+    }
+
+    /// <summary>
+    /// Сравнивает объекты.
+    /// </summary>
+    /// <param name="other">Объект для сравнения.</param>
+    /// <returns></returns>
+    public override bool Equals(object other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+
+        if (other is not Address)
+        {
+            return false;
+        }
+
+        if (object.ReferenceEquals(this, other))
+        {
+            return true;
+        }
+        var address2 = (Address)other;
+
+        return (this.Index == address2.Index);
+    }
+
+    /// <summary>
     /// Создает экземпляр класса <see cref="Address"> по умолчанию.
     /// </summary>
     public Address()
@@ -163,5 +206,11 @@ public class Address
         Street = street;
         Building = building;
         Apartment = apartment;
+    }
+
+    /// <inheritdoc cref="Address.Address(int, string, string, string, string, string)" />
+    public object Clone()
+    {
+        return new Address(this.Index, this.Country, this.City, this.Street, this.Building, this.Apartment);
     }
 }
