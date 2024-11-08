@@ -16,6 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private List<Item> _items;
 
+        private List<Item> _displayedItems;
         private Item selectedItem;
 
         public List<Item> Items
@@ -28,14 +29,65 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             _items = new List<Item>();
+            _displayedItems = new List<Item>();
+
+            SortingComboBox.SelectedIndex = 0;
             FillingCategoryComboBox();
         }
 
+        /// <summary>
+        /// Заполняет CategoryComboBox.
+        /// </summary>
         private void FillingCategoryComboBox()
         {
             foreach (Category category in Enum.GetValues(typeof(Category)))
 
                 CategoryComboBox.Items.Add(category);
+        }
+
+        /// <summary>
+        /// Обновляет данные в ItemsListBox.
+        /// </summary>
+        private void UpdateItemsListBox()
+        {
+            ItemsListBox.Items.Clear();
+            foreach (Item item in _displayedItems)
+            {
+                ItemsListBox.Items.Add($"{item.Name}");
+            }
+        }
+
+        /// <summary>
+        /// Сортирует список по выбранному методу.
+        /// </summary>
+        private void SortingMethodSelection()
+        {
+            if (SortingComboBox.SelectedIndex != -1)
+            {
+                switch (SortingComboBox.SelectedItem.ToString())
+                {
+                    case "Name":
+                        {
+                            DataTools.ItemSorting(_displayedItems, DataTools.CompareAscendingByName);
+                            break;
+                        }
+                    case "Cost (Ascending)":
+                        {
+                            DataTools.ItemSorting(_displayedItems, DataTools.CompareAscending);
+                            break;
+                        }
+                    case "Cost (Descending)":
+                        {
+                            DataTools.ItemSorting(_displayedItems, DataTools.CompareDescending);
+                            break;
+                        }
+                }
+
+            }
+            else
+            {
+                DataTools.ItemSorting(_displayedItems, DataTools.CompareAscendingByName);
+            }
         }
 
         /// <summary>
@@ -54,7 +106,12 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 Items.Add(selectedItem);
 
-                ItemsListBox.Items.Add($"{selectedItem.Name}");
+                _displayedItems.Add(selectedItem);
+
+                SortingMethodSelection();
+                UpdateItemsListBox();
+
+
             }
             catch (FormatException)
             {
@@ -85,7 +142,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateTextBox()
         {
-            Item SelectedValue = Items[ItemsListBox.SelectedIndex];
+
+            Item SelectedValue = _displayedItems[ItemsListBox.SelectedIndex];
 
             NameTextBox.Text = SelectedValue.Name;
             CostTextBox.Text = Convert.ToString(SelectedValue.Cost);
@@ -184,10 +242,15 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _items.RemoveAt(ItemsListBox.SelectedIndex);
 
+                _displayedItems.RemoveAt(ItemsListBox.SelectedIndex);
+
                 ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
 
                 ClearTextBox();
             }
+
+            SortingMethodSelection();
+            UpdateItemsListBox();
         }
 
         /// <summary>
@@ -201,13 +264,17 @@ namespace ObjectOrientedPractics.View.Tabs
             ValidateCategoryComboBox();
             try
             {
+
                 if (ItemsListBox.SelectedIndex != -1)
                 {
-                    _items[ItemsListBox.SelectedIndex].Name = NameTextBox.Text;
-                    _items[ItemsListBox.SelectedIndex].Info = DescriptionTextBox.Text;
-                    _items[ItemsListBox.SelectedIndex].Cost = Convert.ToDouble(CostTextBox.Text);
-                    _items[ItemsListBox.SelectedIndex].Category = (Category)CategoryComboBox.SelectedItem;
+                    _displayedItems[ItemsListBox.SelectedIndex].Name = NameTextBox.Text;
+                    _displayedItems[ItemsListBox.SelectedIndex].Info = DescriptionTextBox.Text;
+                    _displayedItems[ItemsListBox.SelectedIndex].Cost = Convert.ToDouble(CostTextBox.Text);
+                    _displayedItems[ItemsListBox.SelectedIndex].Category = (Category)CategoryComboBox.SelectedItem;
                     ItemsListBox.Items[ItemsListBox.SelectedIndex] = NameTextBox.Text;
+
+                    SortingMethodSelection();
+                    UpdateItemsListBox();
                 }
             }
             catch (FormatException)
@@ -215,6 +282,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 throw new Exception("Cost должен быть больше 0 и меньше 100000");
             }
         }
+
         /// <summary>
         /// Выполняет валидацию значении в CategoryComboBox.
         /// </summary>
@@ -233,8 +301,36 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Организует поисковую строку.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string subString = SearchTextBox.Text;
+            _displayedItems =
+                DataTools.ItemFiltering(Items, (item) => { return item.Name.Contains(subString); });
+
+            ItemsListBox.Items.Clear();
+
+            foreach (Item item in _displayedItems)
+            {
+                ItemsListBox.Items.Add(item.Name);
+            }
 
 
+        }
 
+        /// <summary>
+        /// Сортирует список при смене метода сортировки.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortingComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SortingMethodSelection();
+            UpdateItemsListBox();
+        }
     }
 }
