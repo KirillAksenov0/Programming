@@ -2,7 +2,7 @@
 /// <summary>
 /// Хранит данные о товаре.
 /// </summary>
-public class Item
+public class Item: ICloneable, IEquatable<Item>, IComparable<Object>
 {
     /// <summary>
     /// ID товара.
