@@ -31,8 +31,26 @@ namespace ObjectOrientedPractics.View.Tabs
             _items = new List<Item>();
             _displayedItems = new List<Item>();
 
+
             SortingComboBox.SelectedIndex = 0;
+
             FillingCategoryComboBox();
+
+        }
+
+        public event EventHandler ItemsChanged;
+
+        /// <summary>
+        /// Обновляет все данные в ItemsTab.
+        /// </summary>
+        public void RefreshData()
+        {
+            
+            ClearTextBox();
+            UpdateItemsListBox();
+            UpdateTextBox();
+            FillingCategoryComboBox();
+            
         }
 
         /// <summary>
@@ -111,6 +129,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 SortingMethodSelection();
                 UpdateItemsListBox();
 
+                ItemsChanged?.Invoke(this, new EventArgs());
 
             }
             catch (FormatException)
@@ -251,6 +270,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             SortingMethodSelection();
             UpdateItemsListBox();
+
+            ItemsChanged?.Invoke(this, new EventArgs());
         }
 
         /// <summary>
@@ -275,6 +296,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
                     SortingMethodSelection();
                     UpdateItemsListBox();
+
+                    ItemsChanged?.Invoke(this, new EventArgs());
                 }
             }
             catch (FormatException)

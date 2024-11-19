@@ -13,6 +13,9 @@ namespace ObjectOrientedPractics
             _store = new Store();
 
             itemsTab1.Items = _store.Items;
+
+            // Подписываемся на событие.
+            itemsTab1.ItemsChanged += (sender, args) => RefreshTabs();
             customersTab1.Customers = _store.Customers;
 
             cartsTab1.Items = _store.Items;
@@ -20,6 +23,16 @@ namespace ObjectOrientedPractics
 
             ordersTab1.Customers = _store.Customers;
 
+        }
+
+        /// <summary>
+        /// Обновляет данные в других вкладках.
+        /// </summary>
+        private void RefreshTabs()
+        {
+            itemsTab1.RefreshData();
+            cartsTab1.RefreshData();
+            ordersTab1.RefreshData();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
