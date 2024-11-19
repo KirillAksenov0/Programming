@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             ItemsGroupBox = new GroupBox();
+            SortingComboBox = new ComboBox();
+            OrderByLabel = new Label();
+            SearchTextBox = new TextBox();
+            FindLabel = new Label();
             EditButton = new Button();
             RemoveButton = new Button();
             AddButton = new Button();
@@ -51,6 +55,10 @@
             // ItemsGroupBox
             // 
             ItemsGroupBox.BackColor = SystemColors.ControlLight;
+            ItemsGroupBox.Controls.Add(SortingComboBox);
+            ItemsGroupBox.Controls.Add(OrderByLabel);
+            ItemsGroupBox.Controls.Add(SearchTextBox);
+            ItemsGroupBox.Controls.Add(FindLabel);
             ItemsGroupBox.Controls.Add(EditButton);
             ItemsGroupBox.Controls.Add(RemoveButton);
             ItemsGroupBox.Controls.Add(AddButton);
@@ -63,10 +71,46 @@
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Items";
             // 
+            // SortingComboBox
+            // 
+            SortingComboBox.FormattingEnabled = true;
+            SortingComboBox.Items.AddRange(new object[] { "Name", "Cost (Ascending)", "Cost (Descending)" });
+            SortingComboBox.Location = new Point(107, 535);
+            SortingComboBox.Name = "SortingComboBox";
+            SortingComboBox.Size = new Size(151, 28);
+            SortingComboBox.TabIndex = 7;
+            SortingComboBox.SelectedIndexChanged += SortingComboBox_SelectedIndexChanged;
+            // 
+            // OrderByLabel
+            // 
+            OrderByLabel.AutoSize = true;
+            OrderByLabel.Location = new Point(20, 538);
+            OrderByLabel.Name = "OrderByLabel";
+            OrderByLabel.Size = new Size(70, 20);
+            OrderByLabel.TabIndex = 6;
+            OrderByLabel.Text = "Order by:";
+            // 
+            // SearchTextBox
+            // 
+            SearchTextBox.Location = new Point(62, 24);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(291, 27);
+            SearchTextBox.TabIndex = 5;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
+            // 
+            // FindLabel
+            // 
+            FindLabel.AutoSize = true;
+            FindLabel.Location = new Point(6, 27);
+            FindLabel.Name = "FindLabel";
+            FindLabel.Size = new Size(40, 20);
+            FindLabel.TabIndex = 4;
+            FindLabel.Text = "Find:";
+            // 
             // EditButton
             // 
             EditButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EditButton.Location = new Point(327, 527);
+            EditButton.Location = new Point(326, 573);
             EditButton.Name = "EditButton";
             EditButton.Size = new Size(124, 45);
             EditButton.TabIndex = 3;
@@ -77,7 +121,7 @@
             // RemoveButton
             // 
             RemoveButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            RemoveButton.Location = new Point(173, 527);
+            RemoveButton.Location = new Point(170, 573);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(124, 45);
             RemoveButton.TabIndex = 2;
@@ -88,7 +132,7 @@
             // AddButton
             // 
             AddButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            AddButton.Location = new Point(20, 527);
+            AddButton.Location = new Point(20, 573);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(124, 45);
             AddButton.TabIndex = 1;
@@ -100,7 +144,7 @@
             // 
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 20;
-            ItemsListBox.Location = new Point(6, 33);
+            ItemsListBox.Location = new Point(6, 57);
             ItemsListBox.Name = "ItemsListBox";
             ItemsListBox.Size = new Size(466, 464);
             ItemsListBox.TabIndex = 0;
@@ -223,6 +267,7 @@
             Name = "ItemsTab";
             Size = new Size(1072, 631);
             ItemsGroupBox.ResumeLayout(false);
+            ItemsGroupBox.PerformLayout();
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();
             ResumeLayout(false);
@@ -246,5 +291,9 @@
         private Button EditButton;
         private ComboBox CategoryComboBox;
         private Label CategoryLabel;
+        private TextBox SearchTextBox;
+        private Label FindLabel;
+        private ComboBox SortingComboBox;
+        private Label OrderByLabel;
     }
 }
