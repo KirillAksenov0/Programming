@@ -5,6 +5,11 @@
 public class Address
 {
     /// <summary>
+    /// Возникает при изменении любого параметра адресса.
+    /// </summary>
+    public event EventHandler AddressChanged;
+
+    /// <summary>
     /// Почтовый индекс.
     /// </summary>
     private int _index;
@@ -49,7 +54,11 @@ public class Address
             {
                 throw new ArgumentException("Индекс должен быть шестизначным числом.");
             }
-            _index = value;
+            if (_index != value)
+            {
+                _index = value;
+                AddressChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
@@ -65,7 +74,11 @@ public class Address
         set
         {
             ValueValidator.AssertStringOnLength(value, 50, "Country");
-            _country = value;
+            if (_country != value)
+            {
+                _country = value;
+                AddressChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
@@ -81,7 +94,11 @@ public class Address
         set
         {
             ValueValidator.AssertStringOnLength(value, 50, "City");
-            _city = value;
+            if (_city != value)
+            {
+                _city = value;
+                AddressChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
@@ -97,7 +114,11 @@ public class Address
         set
         {
             ValueValidator.AssertStringOnLength(value, 100, "Street");
-            _street = value;
+            if (_street != value)
+            {
+                _street = value;
+                AddressChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
@@ -113,7 +134,11 @@ public class Address
         set
         {
             ValueValidator.AssertStringOnLength(value, 10, "Building");
-            _building = value;
+            if (_building != value)
+            {
+                _building = value;
+                AddressChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
@@ -129,7 +154,11 @@ public class Address
         set
         {
             ValueValidator.AssertStringOnLength(value, 10, "Apartment");
-            _apartment = value;
+            if (_apartment != value)
+            {
+                _apartment = value;
+                AddressChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 

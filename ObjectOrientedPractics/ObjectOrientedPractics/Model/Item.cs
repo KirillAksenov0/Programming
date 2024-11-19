@@ -5,10 +5,25 @@
 public class Item: ICloneable, IEquatable<Item>, IComparable<Object>
 {
     /// <summary>
+    /// Возникает при изменении имени.
+    /// </summary>
+    public event EventHandler NameChanged;
+
+    /// <summary>
+    /// Возникает при изменении цены.
+    /// </summary>
+    public event EventHandler CostChanged;
+
+    /// <summary>
+    /// Возникает при изменении информации.
+    /// </summary>
+    public event EventHandler InfoChanged;
+
+    /// <summary>
     /// ID товара.
     /// </summary>
     private static int _id = 0;
-
+    
     /// <summary>
     /// Название товара.
     /// </summary>
@@ -51,10 +66,12 @@ public class Item: ICloneable, IEquatable<Item>, IComparable<Object>
             {
                 throw new Exception("Name не должен быть пустым");
             }
-            else
+        
+            if (_name != value)
             {
                 _name = value;
-            }    
+                NameChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
@@ -71,7 +88,11 @@ public class Item: ICloneable, IEquatable<Item>, IComparable<Object>
         set
         {
             ValueValidator.AssertStringOnLength(value, 1000, "Info");
-            _info = value;
+            if (_info != value)
+            {
+                _info = value;
+                InfoChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
@@ -91,8 +112,12 @@ public class Item: ICloneable, IEquatable<Item>, IComparable<Object>
                 {
                   throw new Exception("Cost должен быть больше 0 и меньше 100000");
                 }
-            
-            _cost = value;
+
+            if (_cost != value)
+            {
+                _cost = value;
+                CostChanged?.Invoke(this, new EventArgs());
+            }
         }
     }
 
