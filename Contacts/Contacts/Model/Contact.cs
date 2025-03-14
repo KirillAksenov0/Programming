@@ -4,35 +4,19 @@
 public class Contact
 {
     /// <summary>
-    /// Имя контакта.
+    /// Возвращает и задает имя контакта.
     /// </summary>
     public string Name { get; set; }
 
     /// <summary>
-    /// Номер телефона.
-    /// </summary>
-    private string _phonNumber { get; set;}
-
-    /// <summary>
-    /// Электронная почта.
-    /// </summary>
-    public string Email { get; set; }
-
-    /// <summary>
     /// Возвращает и задает номер телефона.
     /// </summary>
-    public string PhonNumber
-    {
-        get
-        {
-            return _phonNumber;
-        }
+    public string PhoneNumber { get; set;}
 
-        set
-        {
-            _phonNumber = value;
-        }
-    }
+    /// <summary>
+    /// Возвращает и задает электронную почту.
+    /// </summary>
+    public string Email { get; set; }
 
     /// <summary>
     /// Создает экземпляр класса <see cref="Contact">.
@@ -43,7 +27,7 @@ public class Contact
     public Contact(string name, string phoneNumber, string email)
     {
         Name = name;
-        _phonNumber = phoneNumber;
+        PhoneNumber = phoneNumber;
         Email = email;
     }
 

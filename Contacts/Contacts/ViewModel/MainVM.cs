@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 /// <summary>
 /// Содержит VM для главного окна.
@@ -9,22 +10,27 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Имя контакта.
     /// </summary>
-    private string _name = "Юрий Смирнов";
+    private string _name = "Юрfg";
 
     /// <summary>
     /// Номер телефона.
     /// </summary>
-    private string _phoneNumber = "+7-913-233-67-23";
+    private string _phoneNumber = "+7-345-24";
 
     /// <summary>
     /// Электронная почта.
     /// </summary>
-    private string _email = "yri.smirnov@mail.com";
+    private string _email = "yrii.smirnov@jjf.com";
 
     /// <summary>
-    /// Контакт человека.
+    /// Текущий контакт человека.
     /// </summary>
-    private Contact _contact;
+    private Contact _currentContact;
+
+    /// <summary>
+    /// Команда сохранения контакта человека.
+    /// </summary>
+    private SaveCommand _saveCommand;
 
     /// <summary>
     /// Возвращает и задает имя контакта.
@@ -37,8 +43,8 @@ public class MainVM : INotifyPropertyChanged
         }
         set
         {
-           _name = value;
-            OnPropertyChanged("Name");
+            _name = value;
+            OnPropertyChanged(nameof(Name));
         }
     }
 
@@ -51,7 +57,7 @@ public class MainVM : INotifyPropertyChanged
         set
         {
             _phoneNumber = value;
-            OnPropertyChanged("PhoneNumber");
+            OnPropertyChanged(nameof(PhoneNumber));
         }
     }
 
@@ -68,26 +74,66 @@ public class MainVM : INotifyPropertyChanged
         set
         {
             _email = value;
-            OnPropertyChanged("Email");
+            OnPropertyChanged(nameof(Email));
         }
     }
 
     /// <summary>
-    /// Возвращает и задает контакт человека.
+    /// Возвращает и задает текущий контакт человека.
     /// </summary>
-    public Contact Contact
+    public Contact CurrentContact
     {
         get
         {
-            return _contact;
+            return _currentContact;
         }
         set
         {
-            _contact = new Contact(Name, PhoneNumber, Email);
+            _currentContact = new Contact(Name, PhoneNumber, Email);
+            OnPropertyChanged(nameof(Contact));
         }
     }
 
+    /// <summary>
+    /// Возвращает и задает команду сохранения контакта человека.
+    /// </summary>
+    public SaveCommand SaveCommand
+    {
+        get
+        {
+
+            return _saveCommand ?? (_saveCommand = new SaveCommand(obj =>
+            {
+                CurrentContact = new Contact(Name, PhoneNumber, Email);
+                ContactSerializer.SaveContact(CurrentContact);
+            }));
+        }
+    }
+
+    /// <summary>
+    /// Возвращает и задает команду загрузки контакта человека.
+    /// </summary>
+    public LoadCommand LoadCommand { get; }
+
+    /// <summary>
+    /// Извещает систему об изменении свойства.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
+
+    /// <summary>
+    /// Создает экземпляр класса <see cref="MainVM">.
+    /// </summary>
+    public MainVM()
+    {
+        CurrentContact = new Contact(Name, PhoneNumber, Email);
+
+        LoadCommand = new LoadCommand(this);
+    }
+
+    /// <summary>
+    /// Отслеживает изменение значении свойства.
+    /// </summary>
+    /// <param name="prop"></param>
     public void OnPropertyChanged([CallerMemberName] string prop = "")
     {
         if (PropertyChanged != null)

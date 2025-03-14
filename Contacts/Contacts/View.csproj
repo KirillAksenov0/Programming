@@ -8,7 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="books16.ico" />
+    <None Remove="ContactsApp_96x96.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="books16.ico" />
+    <Resource Include="ContactsApp_96x96.ico" />
   </ItemGroup>
 
 </Project>
