@@ -9,12 +9,12 @@ public class SaveCommand : ICommand
     /// <summary>
     /// Логика команды.
     /// </summary>
-    private Action<object> execute;
+    private Action<object> _execute;
 
     /// <summary>
     /// Условие выполнения команды.
     /// </summary>
-    private Func<object, bool> canExecute;
+    private Func<object, bool> _canExecute;
 
     /// <summary>
     /// Вызывается при изминении состояния команды.
@@ -31,8 +31,8 @@ public class SaveCommand : ICommand
     /// <param name="contact">Контакт человека.</param>
     public SaveCommand(Action<object> execute, Func<object, bool> canExecute = null)
     {
-        this.execute = execute;
-        this.canExecute = canExecute;
+        this._execute = execute;
+        this._canExecute = canExecute;
     }
 
     /// <summary>
@@ -51,6 +51,6 @@ public class SaveCommand : ICommand
     /// <param name="contact">контакт человека.</param>
     public void Execute(object parameter)
     {
-        this.execute(parameter);
+        this._execute(parameter);
     }
 }
