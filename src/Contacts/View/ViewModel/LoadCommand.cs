@@ -12,7 +12,7 @@ public class LoadCommand : ICommand
     private readonly MainVM _viewModel;
 
     /// <summary>
-    /// Вызывается при изминении состояния команды.
+    /// Вызывается при изменении состояния команды.
     /// </summary>
     public event EventHandler CanExecuteChanged;
 
