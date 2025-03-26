@@ -14,169 +14,64 @@
     <Window.Resources>
 
     </Window.Resources>
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="46*"></RowDefinition>
-            <RowDefinition Height="7*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox 
-            Grid.Row="0" 
-            Grid.Column="0" 
-            Header="Edit Contact" 
-            Margin="3,3,3,3"
-            HorizontalContentAlignment="Stretch"
-            >
 
-            <StackPanel>
-                <Label
-                    Content="Name:" 
-                    MinHeight="25" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3">
-                </Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                <TextBox  
-                    Text="{Binding Path=Name,
-                    UpdateSourceTrigger=PropertyChanged,
-                    Mode=TwoWay}" 
-                    MinWidth="275"
-                    Margin="3 3 3 3" 
-                    MinHeight="20">
+        <Canvas Grid.Row="0" Grid.Column="0" Background="#f8f8f8"/>
 
-                </TextBox>
-                <Label 
-                    Content="Phone Number:" 
-                    MinHeight="25" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3">
-                </Label>
+        <Canvas Grid.Row="1" Grid.Column="0" Background="#f8f8f8"/>
 
-                <TextBox 
-                    Text="{Binding Path=PhoneNumber, 
-                    UpdateSourceTrigger=PropertyChanged,
-                    Mode=TwoWay}" 
-                    MinWidth="275"
-                    MinHeight="20" 
-                    Margin="3 3 3 3">
-                </TextBox>
+        <Canvas Grid.Row="2" Grid.Column="0" Background="#f8f8f8"/>
 
-                <Label 
-                    Content="Email:" 
-                    MinHeight="25" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3">
-                </Label>
+        <GridSplitter Grid.Column="1" 
+             ShowsPreview="False"
+             Width="3"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Stretch"
+             Grid.RowSpan="3"/>
 
-                <TextBox  
-                    Text="{Binding Path=Email, 
-                    UpdateSourceTrigger=PropertyChanged,
-                    Mode=TwoWay}" 
-                    MinWidth="275"
-                    MinHeight="20" 
-                    Margin="3 3 3 3">
-                </TextBox>
+        <GroupBox Grid.Column="0"
+                  Grid.Row="0"
+                  Margin="3"
+                  HorizontalContentAlignment="Stretch"
+                  Background="#f8f8f8"
+                  VerticalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal">
+
+                <Label Content="Find:"
+                 Margin="3"
+                       HorizontalAlignment="Left"/>
+
+                <TextBox MinWidth="280"
+                         Margin="3"
+                         
+                 />
             </StackPanel>
         </GroupBox>
-        <GroupBox 
-            Grid.Row="0" 
-            Grid.Column="1" 
-            Header="Read Contact"
-            MinWidth="300" 
-            MinHeight="350"
-            Margin="3,3,3,3"
-            >
 
-            <StackPanel>
-                <Label
-                    Content="Name:" 
-                    MinHeight="25" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3">
-                </Label>
+        <ListBox Grid.Row="1"
+                 Grid.Column="0"
+                 Margin="3"
+                 HorizontalContentAlignment="Stretch"/>
 
-                <TextBox 
-                    Text="{Binding Path=Name, 
-                    Mode=OneWay, 
-                    UpdateSourceTrigger=PropertyChanged}" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3" 
-                    MinWidth="275" 
-                    MinHeight="20"
-                    BorderThickness="0" 
-                    FontWeight="Bold">
-                </TextBox>
-
-                <Label 
-                    Content="Phone Number:"
-                    MinHeight="25" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3">
-                </Label>
-
-                <TextBox
-                    Text="{Binding Path=PhoneNumber, 
-                    Mode=OneWay, 
-                    UpdateSourceTrigger=PropertyChanged}"
-                    MinHeight="20" 
-                    MinWidth="275" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3" 
-                    FontWeight="Bold"
-                    BorderThickness="0">
-                </TextBox>
-
-                <Label
-                    MinHeight="25"
-                    Content="Email:" 
-                    HorizontalAlignment="Left"
-                    Margin="3 3 3 3">
-                </Label>
-
-                <TextBox 
-                    Text=
-                    "{Binding Path=Email,
-                    Mode=OneWay,
-                    UpdateSourceTrigger=PropertyChanged}"
-                    MinHeight="20" 
-                    MinWidth="275" 
-                    HorizontalAlignment="Left" 
-                    Margin="3 3 3 3" 
-                    FontWeight="Bold"
-                    BorderThickness="0">
-                </TextBox>
-            </StackPanel>
-
-        </GroupBox>
-
-        <Button 
-            Grid.Row="1" 
-            Grid.Column="1" 
-            Width="75" 
-            Height="25"
-            Content="Load" 
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Margin="242,0,0,0"
-            Command="{Binding LoadCommand}">
-        </Button>
-        <Button 
-            Grid.Row="1" 
-            Grid.Column="1" 
-            Width="75" 
-            Height="25"
-            MinHeight="25" 
-            MinWidth="75" 
-            Content="Save" 
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Margin="3,3,100,0"
-            Command="{Binding SaveCommand}"
-            >
-        </Button>
-
+        <Button Grid.Column="0"
+                Grid.Row="2"
+                Content="Add"
+                Width="85"
+                Height="25"
+                MinHeight="25"
+                Margin="3"
+                HorizontalAlignment="Left"/>
     </Grid>
 </Window>
