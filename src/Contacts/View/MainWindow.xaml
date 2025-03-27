@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="6*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -40,38 +40,83 @@
              VerticalAlignment="Stretch"
              Grid.RowSpan="3"/>
 
-        <GroupBox Grid.Column="0"
-                  Grid.Row="0"
-                  Margin="3"
-                  HorizontalContentAlignment="Stretch"
-                  Background="#f8f8f8"
-                  VerticalAlignment="Center">
 
-            <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="3">
 
-                <Label Content="Find:"
-                 Margin="3"
-                       HorizontalAlignment="Left"/>
+            <Label Content="Find:"
+                   Margin="3">
+            </Label>
 
-                <TextBox MinWidth="280"
-                         Margin="3"
-                         
-                 />
-            </StackPanel>
-        </GroupBox>
+            <TextBox MinWidth="280"
+                     MinHeight="15"
+                     Margin="3">
+            </TextBox>
+
+        </StackPanel>
+
 
         <ListBox Grid.Row="1"
                  Grid.Column="0"
                  Margin="3"
                  HorizontalContentAlignment="Stretch"/>
 
-        <Button Grid.Column="0"
-                Grid.Row="2"
-                Content="Add"
-                Width="85"
-                Height="25"
-                MinHeight="25"
-                Margin="3"
-                HorizontalAlignment="Left"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="3"
+                    HorizontalAlignment="Center">
+
+            <Button Content="Add"
+                    Width="100"
+                    Height="25"
+                    Margin="3"/>
+
+            <Button Content="Edit"
+                    Width="100"
+                    Height="25"
+                    Margin="3"/>
+
+            <Button Content="Remove"
+                    Width="100"
+                    Height="25"
+                    Margin="3"/>
+
+        </StackPanel>
+
+        <Image Source="
+                C:\Users\HONOR01\Programming\src\Contacts\View\Resources\photo_placeholder_100x100.png"
+               Width="100"
+               Height="100"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="3"
+               Grid.Column="2"
+               Grid.Row="1">
+        </Image>
+
+        <StackPanel Grid.Column="2"
+                    Grid.RowSpan="2"
+                    Grid.Row="1"
+                    Margin="108,3,3,3">
+            
+            <Label Content="Name:"
+                   HorizontalAlignment="Left"
+                   Margin="3">
+            </Label>
+
+            <TextBox MinWidth="225"
+                     MinHeight="15"
+                     Margin="3">
+            </TextBox>
+
+            <Label Content="PhoneNumber:"
+                   HorizontalAlignment="Left"
+                   Margin="3">
+            </Label>
+
+        </StackPanel>
     </Grid>
 </Window>
