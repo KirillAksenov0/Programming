@@ -1,87 +1,97 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 
-/// <summary>
-/// Хранит методы для сериализации и десериализации объекта.
-/// </summary>
-public static class ContactSerializer
+namespace View.ViewModel.Services
 {
     /// <summary>
-    /// Путь к папке "Contacts".
+    /// Хранит методы для сериализации и десериализации объекта.
     /// </summary>
-    private static string _filePath = System.IO.Path.Combine(Environment.GetFolderPath(
-    Environment.SpecialFolder.MyDoc‌​uments), "Contacts", "contacts.json");
-
-    /// <summary>
-    /// Контакт человека.
-    /// </summary>
-    private static Contact _contact;
-
-    /// <summary>
-    /// Возвращает и задает путь к папке "Contacts".
-    /// </summary>
-    public static string FilePath
+    public static class ContactSerializer
     {
-        get { return _filePath; }
-        set { _filePath = value; }
-    }
+        /// <summary>
+        /// Путь к папке "Contacts".
+        /// </summary>
+        private static string _filePath = System.IO.Path.Combine(Environment.GetFolderPath(
+        Environment.SpecialFolder.MyDoc‌​uments), "Contacts", "contacts.json");
 
-    /// <summary>
-    /// Возвращает и задает контакт человека.
-    /// </summary>
-    public static Contact Contact
-    {
-        get
+        /// <summary>
+        /// Коллекция контактов.
+        /// </summary>
+        private static ObservableCollection<Contact> _contacts;
+
+        /// <summary>
+        /// Возвращает и задает путь к папке "Contacts".
+        /// </summary>
+        public static string FilePath
         {
-            return _contact;
+            get { return _filePath; }
+            set { _filePath = value; }
         }
-        set
+
+        /// <summary>
+        /// Возвращает и задает коллекцию контактов.
+        /// </summary>
+        public static ObservableCollection<Contact> Contacts
         {
-            _contact = value;
-        }
-    }
-
-    /// <summary>
-    /// Сохраняет контакт в файле json.
-    /// </summary>
-    /// <param name="contact"></param>
-    public static void SaveContact(Contact contact)
-    {
-        try
-        {
-            var json = JsonConvert.SerializeObject(contact);
-
-            string directory = Path.GetDirectoryName(FilePath);
-
-            if (!Directory.Exists(directory))
+            get
             {
-                Directory.CreateDirectory(directory);
+                return _contacts;
+            }
+            set
+            {
+                _contacts = value;
+            }
+        }
+
+        /// <summary>
+        /// Сохраняет контакты в файле json.
+        /// </summary>
+        /// <param name="contact"></param>
+        public static void SaveContact(ObservableCollection<Contact> contacts)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(contacts);
+
+                string directory = Path.GetDirectoryName(FilePath);
+
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                File.WriteAllText(FilePath, json);
+            }
+            catch
+            {
+                MessageBox.Show("Возникла ошибка!");
+            }
+        }
+
+        /// <summary>
+        /// Загружает контакты из файла json.
+        /// </summary>
+        /// <param name="filePath"></param>
+        public static ObservableCollection<Contact> LoadContact()
+        {
+            if (File.Exists(FilePath))
+            {
+                var json = File.ReadAllText(FilePath);
+
+                Contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(json);
+
+                return Contacts;
             }
 
-            File.WriteAllText(FilePath, json);
-        }
-        catch
-        {
-            MessageBox.Show("Возникла ошибка!");
-        }
-    }
-
-    /// <summary>
-    /// Загружает контакт из файла json.
-    /// </summary>
-    /// <param name="filePath"></param>
-    public static void LoadContact()
-    {
-        if (File.Exists(FilePath))
-        {
-            var json = File.ReadAllText(FilePath);
-
-            Contact = JsonConvert.DeserializeObject<Contact>(json);
+            else
+            {
+                return null;
+            }
 
         }
 
     }
-
- }
+}
