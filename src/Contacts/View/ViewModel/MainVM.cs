@@ -38,6 +38,11 @@ namespace View.ViewModel
         private bool _isAdding = false;
 
         /// <summary>
+        /// Извещает систему об изменении свойства.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Коллекция контактов.
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
@@ -170,11 +175,6 @@ namespace View.ViewModel
         public RelayCommand ApplyCommand { get; }
 
         /// <summary>
-        /// Извещает систему об изменении свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
         /// Создает экземпляр класса <see cref="MainVM">. 
         /// </summary>
         public MainVM()
@@ -295,9 +295,9 @@ namespace View.ViewModel
         /// Отслеживает изменение значении свойства.
         /// </summary>
         /// <param name="propertyName"></param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

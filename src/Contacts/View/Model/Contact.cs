@@ -24,6 +24,11 @@ namespace View.ViewModel.Services
         private string _email;
 
         /// <summary>
+        /// Извещает систему об изменении свойства.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Возвращает и задает имя контакта.
         /// </summary>
         public string Name
@@ -75,17 +80,12 @@ namespace View.ViewModel.Services
         }
 
         /// <summary>
-        /// Извещает систему об изменении свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
         /// Отслеживает изменение значении свойства.
         /// </summary>
-        /// <param name="propertyName"></param>
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        /// <param name="prop"></param>
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
     }
