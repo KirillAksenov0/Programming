@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
-        xmlns:viewModel="clr-namespace:View.ViewModel"
+        xmlns:Converters="clr-namespace:View.Converters"
         mc:Ignorable="d"
         Title="Contacts" 
         Height="500" 
@@ -13,10 +13,10 @@
         MinWidth="710"
         Icon="/books16.ico">
     <Window.Resources>
-        <viewModel:BoolToVisibilityConverter 
+        <Converters:BoolToVisibilityConverter 
             x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,11 +24,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.6*"/>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
         <Canvas Grid.Row="0" Grid.Column="0" Background="#f8f8f8"/>
 
@@ -43,128 +38,160 @@
              VerticalAlignment="Stretch"
              Grid.RowSpan="3"/>
 
-        <DockPanel LastChildFill="True"
+        <Grid Grid.Column="0"
+              Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel LastChildFill="True"
                    MinHeight="10"
                    Height="30"
-                   Margin="3">
-            
-            <Label Content="Find:"
-                   DockPanel.Dock="Left"
-                   Margin="3">
-            </Label>
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="3">
 
-            <TextBox MinHeight="15"
-                     Height="20"
-                     >
-            </TextBox>
-        </DockPanel>
-        
-        <ListBox Grid.Row="1"
+                <TextBlock Text="Find:"
+                   DockPanel.Dock="Left"
+                   Margin="3"
+                   Height="18">
+                </TextBlock>
+
+                <TextBox MinHeight="15"
+                     Height="18"
+                     Margin="3">
+                </TextBox>
+            </DockPanel>
+
+            <ListBox Grid.Row="1"
                  Grid.Column="0"
-                 Margin="3"
+                 Grid.ColumnSpan="3"
+                 Margin="0,3,0,3"
                  HorizontalContentAlignment="Stretch"
                  ItemsSource="{Binding Contacts}"
                  SelectedItem="{Binding SelectedContact}"
                  DisplayMemberPath="Name">
-        </ListBox>
+            </ListBox>
 
-        <StackPanel Orientation="Horizontal"
-                    Grid.Column="0"
-                    Grid.Row="2"
-                    Margin="3"
-                    HorizontalAlignment="Center">
 
             <Button Content="Add"
-                    Width="100"
                     Height="25"
                     Margin="3"
-                    Command="{Binding AddCommand}"/>
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Command="{Binding AddCommand}"
+             />
 
             <Button Content="Edit"
-                    Width="100"
                     Height="25"
                     Margin="3"
+                    Grid.Column="1"
+                    Grid.Row="2"
                     Command="{Binding EditCommand}"
                     />
 
             <Button Content="Remove"
-                    Width="100"
                     Height="25"
                     Margin="3"
+                    Grid.Column="2"
+                    Grid.Row="2"
                     Command="{Binding RemoveCommand}"
-                    />
+             />
+        </Grid>
 
-        </StackPanel>
+        <Grid Grid.Column="2"
+              Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Image Source="
-                C:\Users\HONOR01\Programming\src\Contacts\View\Resources\photo_placeholder_100x100.png"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="Resources\photo_placeholder_100x100.png"
                Width="100"
                Height="100"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Margin="3,39,3,3"
-               Grid.Column="2"
-               Grid.Row="1">
-        </Image>
+               Margin="0,35,3,0"/>
 
-        <StackPanel Grid.Column="2"
-                    Grid.Row="1"
-                    Margin="108,3,3,3">
+            <StackPanel Grid.Column="1"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    VerticalAlignment="Top"
+                    Height="auto"
+                    Margin="3,13,0,0">
 
-            <Label Content="Name:"
-                   HorizontalAlignment="Left"
-                   Margin="3">
-            </Label>
+                <TextBlock TextWrapping="Wrap" 
+                    Height="18"
+                    VerticalAlignment="Center"
+                    Text="Name:"
+                    Margin="0,0,0,3"/>
 
-            <TextBox MinWidth="225"
-                     MinHeight="15"
-                     Margin="3"
-                     Text="{Binding EditableContact.Name, 
+                <TextBox MinWidth="225"
+                     Height="18"
+                     Margin="0,0,0,3"
+                         TextWrapping="Wrap"
+                     Text="{Binding SelectedContact.Name,
                 UpdateSourceTrigger=PropertyChanged}"
                      IsReadOnly="{Binding IsReadOnly}">
-            </TextBox>
+                </TextBox>
 
-            <Label Content="PhoneNumber:"
-                   HorizontalAlignment="Left"
-                   Margin="3">
-            </Label>
+                <TextBlock TextWrapping="Wrap" 
+                    Height="18"
+                    VerticalAlignment="Center"
+                    Text="PhoneNumber:"
+                    Margin="0,0,0,3"/>
 
-            <TextBox MinWidth="225"
-                     MinHeight="15"
-                     Margin="3"
-                     Text="{Binding EditableContact.PhoneNumber,
+                <TextBox MinWidth="225"
+                     Height="18"
+                     Margin="0,0,0,3"
+                         TextWrapping="Wrap"
+                     Text="{Binding SelectedContact.PhoneNumber,
                 UpdateSourceTrigger=PropertyChanged}"
                      IsReadOnly="{Binding IsReadOnly}">
-            </TextBox>
+                </TextBox>
 
-            <Label Content="Email:"
-                   HorizontalAlignment="Left"
-                   Margin="3">
-            </Label>
+                <TextBlock Text="Email:"
+                   VerticalAlignment="Center"
+                   Margin="0,0,0,3"
+                   TextWrapping="Wrap">
+                </TextBlock>
 
-            <TextBox MinWidth="225"
-                     MinHeight="15"
-                     Margin="3"
-                     Text="{Binding EditableContact.Email,
+                <TextBox MinWidth="225"
+                     Height="18"
+                     Margin="0,0,0,3"
+                     TextWrapping="Wrap"
+                     Text="{Binding SelectedContact.Email,
                 UpdateSourceTrigger=PropertyChanged}"
                      IsReadOnly="{Binding IsReadOnly}">
-            </TextBox>
+                </TextBox>
 
-        </StackPanel>
+                <Button Content="Apply"
+    Grid.Column="1"
+    Grid.Row="1"
+    Width="75"
+    Height="25"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Margin="0,50,0,0"
+    Command="{Binding ApplyCommand}" 
+    Visibility="{Binding IsVisibility, 
+    Converter={StaticResource BoolToVisibilityConverter}}"/>
 
-        <StackPanel Grid.Row="1"
-                    Grid.Column="2"
-                    Margin="108,167,0,118">
+            </StackPanel>
 
-            <Button Content="Apply"
-                MinWidth="75"
-                Width="75"
-                MinHeight="25"
-                HorizontalAlignment="Left"
-                Margin="3,50,50,50"
-                Command="{Binding ApplyCommand}" 
-                Visibility="{Binding IsVisibility, 
-                Converter={StaticResource BoolToVisibilityConverter}}"/>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Window>

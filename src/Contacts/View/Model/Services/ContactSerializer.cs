@@ -14,8 +14,10 @@ namespace View.ViewModel.Services
         /// <summary>
         /// Путь к папке "Contacts".
         /// </summary>
-        private static string _filePath = System.IO.Path.Combine(Environment.GetFolderPath(
-        Environment.SpecialFolder.MyDoc‌​uments), "Contacts", "contacts.json");
+        private static string _filePath = "contacts.json";
+
+        private static string _directoryPath = Path.Combine(Environment.GetFolderPath(
+        Environment.SpecialFolder.MyDoc‌​uments), "Contacts");
 
         /// <summary>
         /// Коллекция контактов.
@@ -29,6 +31,12 @@ namespace View.ViewModel.Services
         {
             get { return _filePath; }
             set { _filePath = value; }
+        }
+
+        public static string DirectoryPath
+        {
+            get { return _directoryPath; }
+            set { _directoryPath = value; }
         }
 
         /// <summary>
@@ -56,14 +64,12 @@ namespace View.ViewModel.Services
             {
                 var json = JsonConvert.SerializeObject(contacts);
 
-                string directory = Path.GetDirectoryName(FilePath);
-
-                if (!Directory.Exists(directory))
+                if (!Directory.Exists(DirectoryPath))
                 {
-                    Directory.CreateDirectory(directory);
+                    Directory.CreateDirectory(DirectoryPath);
                 }
 
-                File.WriteAllText(FilePath, json);
+                File.WriteAllText(Path.Combine(DirectoryPath, FilePath), json);
             }
             catch
             {
@@ -77,9 +83,11 @@ namespace View.ViewModel.Services
         /// <param name="filePath"></param>
         public static ObservableCollection<Contact> LoadContact()
         {
-            if (File.Exists(FilePath))
+            string fullFilePath = Path.Combine(DirectoryPath, FilePath);
+
+            if (File.Exists(fullFilePath))
             {
-                var json = File.ReadAllText(FilePath);
+                var json = File.ReadAllText(fullFilePath);
 
                 Contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(json);
 

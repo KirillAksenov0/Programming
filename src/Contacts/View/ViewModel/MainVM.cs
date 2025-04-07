@@ -23,9 +23,9 @@ namespace View.ViewModel
         private Contact _selectedContact;
 
         /// <summary>
-        /// Редактируемый контакт человека.
+        /// Копия выбранного контакта.
         /// </summary>
-        private Contact _editableContact;
+        private Contact _originalContact;
 
         /// <summary>
         /// Флаг режима редактирования.
@@ -60,47 +60,27 @@ namespace View.ViewModel
         /// </summary>
         public Contact SelectedContact
         {
-            get => _selectedContact;
+            get
+            {
+                return _selectedContact;
+            }
             set
             {
-                if (_isEditing) // Отменяем изменения при выборе другого контакта
-                {
-                    CancelEdit();
-                }
 
-                _selectedContact = value;
-                OnPropertyChanged(nameof(SelectedContact));
-
-                if (!_isAdding && _selectedContact != null)
+                if (_selectedContact != value)
                 {
-                    _editableContact = new Contact
+                    if (IsAdding || IsEditing)
                     {
-                        Name = _selectedContact.Name,
-                        PhoneNumber = _selectedContact.PhoneNumber,
-                        Email = _selectedContact.Email
-                    };
-                }
-                else
-                {
-                    _editableContact = null;
-                }
+                        CancelEdit();
+                    }
 
-                OnPropertyChanged(nameof(EditableContact));
+                    _selectedContact = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        /// <summary>
-        /// Возвращает и задает редактируемый контакт человека.
-        /// </summary>
-        public Contact EditableContact
-        {
-            get => _editableContact;
-            set
-            {
-                _editableContact = value;
-                OnPropertyChanged(nameof(EditableContact));
-            }
-        }
+        
 
         /// <summary>
         /// Возвращает и задает флаг режима редактирования.
@@ -183,7 +163,8 @@ namespace View.ViewModel
 
             AddCommand = new RelayCommand(execute => AddContact(), canExecute => !IsEditing);
             EditCommand = new RelayCommand(execute => EditContact(), canExecute => IsEditEnabled);
-            RemoveCommand = new RelayCommand(execute => RemoveContact(), canExecute => SelectedContact != null);
+            RemoveCommand = new RelayCommand(execute => RemoveContact(), canExecute => 
+            SelectedContact != null);
             ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), canExecute => true);
         }
 
@@ -192,9 +173,8 @@ namespace View.ViewModel
         /// </summary>
         private void AddContact()
         {
-            CancelEdit(); 
-
-            EditableContact = new Contact();
+            _originalContact = null;
+            SelectedContact = new Contact();
             IsAdding = true;
             IsEditing = true;
         }
@@ -204,9 +184,12 @@ namespace View.ViewModel
         /// </summary>
         private void EditContact()
         {
-            if (SelectedContact == null) return;
+            if (SelectedContact == null)
+            {
+                return;
+            }
 
-            EditableContact = new Contact
+            _originalContact = new Contact
             {
                 Name = SelectedContact.Name,
                 PhoneNumber = SelectedContact.PhoneNumber,
@@ -221,31 +204,17 @@ namespace View.ViewModel
         /// </summary>
         private void ApplyContactChanges()
         {
-            if (EditableContact == null)
-                return;
-
-            if (IsAdding) 
+            if(IsAdding)
             {
-                Contacts.Add(EditableContact);
-                SelectedContact = EditableContact; 
-            }
-            else if (SelectedContact != null) 
-            {
-                SelectedContact.Name = EditableContact.Name;
-                SelectedContact.PhoneNumber = EditableContact.PhoneNumber;
-                SelectedContact.Email = EditableContact.Email;
-
-                var index = Contacts.IndexOf(SelectedContact);
-                if (index >= 0)
-                {
-                    Contacts[index] = SelectedContact; 
-                    OnPropertyChanged(nameof(Contacts));
-                }
+                Contacts.Add(SelectedContact);
+                IsAdding = false;
             }
 
-            ContactSerializer.SaveContact(Contacts);
-            IsEditing = false;
-            IsAdding = false;
+            if (IsEditing)
+            {
+                IsEditing = false;
+                _originalContact = null;
+            }
         }
 
         /// <summary>
@@ -254,7 +223,9 @@ namespace View.ViewModel
         private void RemoveContact()
         {
             if (SelectedContact == null)
+            {
                 return;
+            }
 
             int selectedIndex = Contacts.IndexOf(SelectedContact);
 
@@ -276,7 +247,6 @@ namespace View.ViewModel
                 SelectedContact = null;
             }
 
-            ContactSerializer.SaveContact(Contacts);
             OnPropertyChanged(nameof(Contacts));
         }
 
@@ -285,10 +255,22 @@ namespace View.ViewModel
         /// </summary>
         private void CancelEdit()
         {
+            if (_originalContact != null)
+            {
+                SelectedContact.Name = _originalContact.Name;
+                SelectedContact.PhoneNumber = _originalContact.PhoneNumber;
+                SelectedContact.Email = _originalContact.Email;
+            }
             IsEditing = false;
             IsAdding = false;
-            EditableContact = null;
+        }
 
+        /// <summary>
+        /// Сохраняет данные при закрытии приложения.
+        /// </summary>
+        public void SaveOnExit()
+        {
+           ContactSerializer.SaveContact(Contacts);
         }
 
         /// <summary>
