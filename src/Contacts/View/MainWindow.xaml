@@ -9,12 +9,32 @@
         Title="Contacts" 
         Height="500" 
         MinHeight="500" 
-        Width="665"
-        MinWidth="710"
+        Width="715"
+        MinWidth="715"
         Icon="/books16.ico">
+    
     <Window.Resources>
         <Converters:BoolToVisibilityConverter 
             x:Key="BoolToVisibilityConverter"/>
+
+        <DataTemplate x:Key="contactTemplate">
+            <DockPanel>
+                <Image Source="Resources\photo_placeholder_100x100.png"
+                       Width="40"
+                       Height="40">
+                    <Image.Clip>
+                        <EllipseGeometry Center="20, 20"
+                                         RadiusX="20"
+                                         RadiusY="20"/>
+                    </Image.Clip>
+                </Image>
+                <StackPanel Margin="3">
+                    <TextBlock FontWeight="Bold" 
+                               Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding PhoneNumber}"/>
+                </StackPanel>
+            </DockPanel>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -78,7 +98,7 @@
                  HorizontalContentAlignment="Stretch"
                  ItemsSource="{Binding Contacts}"
                  SelectedItem="{Binding SelectedContact}"
-                 DisplayMemberPath="Name">
+                 ItemTemplate="{StaticResource contactTemplate}">
             </ListBox>
 
 
@@ -179,12 +199,12 @@
                 </TextBox>
 
                 <Button Content="Apply"
-    Grid.Column="1"
-    Grid.Row="1"
-    Width="75"
-    Height="25"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Width="75"
+                        Height="25"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
     Margin="0,50,0,0"
     Command="{Binding ApplyCommand}" 
     Visibility="{Binding IsVisibility, 
