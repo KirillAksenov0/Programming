@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Linq;
 using View.ViewModel;
 using View.ViewModel.Services;
 
@@ -47,6 +48,7 @@ namespace View.ViewModel
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
 
+
         /// <summary>
         /// Возвращает условие для режима редактирования.
         /// </summary>
@@ -73,14 +75,10 @@ namespace View.ViewModel
                     {
                         CancelEdit();
                     }
-
-                    _selectedContact = value;
                     OnPropertyChanged();
                 }
             }
         }
-
-        
 
         /// <summary>
         /// Возвращает и задает флаг режима редактирования.

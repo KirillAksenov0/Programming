@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.Controls"
+             xmlns:validation="clr-namespace:View.ViewModel.Validation"
              xmlns:Converters="clr-namespace:View.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -11,6 +12,19 @@
     <UserControl.Resources>
         <Converters:BoolToVisibilityConverter 
      x:Key="BoolToVisibilityConverter"/>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self}, 
+                                    Path=(Validation.Errors)/ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     
     <Grid Grid.Column="2"
@@ -48,10 +62,19 @@
             <TextBox MinWidth="225"
               Height="18"
               Margin="0,0,0,3"
-                  TextWrapping="Wrap"
-              Text="{Binding SelectedContact.Name,
-         UpdateSourceTrigger=PropertyChanged}"
+              TextWrapping="Wrap"
+              Style="{StaticResource TextBoxStyle}"
               IsReadOnly="{Binding IsReadOnly}">
+
+                <TextBox.Text>
+                    <Binding Path ="SelectedContact.Name" 
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <validation:NameValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
 
             <TextBlock TextWrapping="Wrap" 

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System;
 
 namespace View.ViewModel.Services
 {
@@ -40,8 +41,11 @@ namespace View.ViewModel.Services
 
             set
             {
-                _name = value;
-                OnPropertyChanged();
+                if (_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged();
+                }   
             }
         }
 
