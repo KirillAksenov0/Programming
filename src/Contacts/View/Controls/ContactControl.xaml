@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.Controls"
              xmlns:viewModel="clr-namespace:View.ViewModel"
-             xmlns:validation="clr-namespace:View.ViewModel.Validation"
              xmlns:Converters="clr-namespace:View.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -21,13 +20,19 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
             <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="BorderBrush" Value="Red"/>
-                    <Setter Property="BorderThickness" Value="2"/>
-                    <Setter Property="Foreground" Value="Red"/>
+                <Trigger Property="Validation.HasError" 
+                         Value="True">
+                    <Setter Property="BorderBrush" 
+                            Value="Red"/>
+                    <Setter Property="BorderThickness" 
+                            Value="2"/>
+                    <Setter Property="Foreground" 
+                            Value="Red"/>
                     <Setter Property="ToolTip"
-                            Value="{Binding RelativeSource={RelativeSource Self}, 
-                                    Path=(Validation.Errors)/ErrorContent}" />
+                            Value="{Binding RelativeSource=
+                        {RelativeSource Self}, 
+                                    Path=
+                        (Validation.Errors)/ErrorContent}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -69,7 +74,8 @@
               Style="{StaticResource TextBoxStyle}">
                 <TextBox.Text>
                     <Binding Path ="SelectedContact.Name" 
-                                 UpdateSourceTrigger="PropertyChanged" 
+                                 UpdateSourceTrigger=
+                             "PropertyChanged" 
                                  Mode="TwoWay">
                         <Binding.ValidationRules>
                             <DataErrorValidationRule/>

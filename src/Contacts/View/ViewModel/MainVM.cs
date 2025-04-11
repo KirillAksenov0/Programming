@@ -164,7 +164,8 @@ namespace View.ViewModel
             EditCommand = new RelayCommand(execute => EditContact(), canExecute => IsEditEnabled);
             RemoveCommand = new RelayCommand(execute => RemoveContact(), canExecute => 
             SelectedContact != null);
-            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), canExecute => CanApply());
+            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), 
+                canExecute => CanApply());
         }
 
         /// <summary>
@@ -268,9 +269,12 @@ namespace View.ViewModel
             IsAdding = false;
         }
 
+        /// <summary>
+        /// Задает условия доступности кнопки Apply.
+        /// </summary>
+        /// <returns></returns>
         private bool CanApply()
         {
-            // Валидация напрямую из IDataErrorInfo
             return SelectedContact == null ||
                 (string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Name)])
                 && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.PhoneNumber)])
