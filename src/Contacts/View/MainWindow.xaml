@@ -9,8 +9,8 @@
         Title="Contacts" 
         Height="500" 
         MinHeight="500" 
-        Width="665"
-        MinWidth="710"
+        Width="720"
+        MinWidth="720"
         Icon="/books16.ico">
     <Window.Resources>
         <Converters:BoolToVisibilityConverter 
@@ -179,17 +179,16 @@
                 </TextBox>
 
                 <Button Content="Apply"
-    Grid.Column="1"
-    Grid.Row="1"
-    Width="75"
-    Height="25"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Margin="0,50,0,0"
-    Command="{Binding ApplyCommand}" 
-    Visibility="{Binding IsVisibility, 
-    Converter={StaticResource BoolToVisibilityConverter}}"/>
-
+                Grid.Column="1"
+                Grid.Row="1"
+                Width="75"
+                Height="25"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="0,50,0,0"
+                Command="{Binding ApplyCommand}" 
+                Visibility="{Binding IsVisibility, 
+                Converter={StaticResource BoolToVisibilityConverter}}"/>
             </StackPanel>
 
         </Grid>

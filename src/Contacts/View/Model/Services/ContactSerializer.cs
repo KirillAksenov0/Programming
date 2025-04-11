@@ -12,10 +12,13 @@ namespace View.ViewModel.Services
     public static class ContactSerializer
     {
         /// <summary>
-        /// Путь к папке "Contacts".
+        /// Json файл, хранящий контакты.
         /// </summary>
         private static string _filePath = "contacts.json";
 
+        /// <summary>
+        /// Путь к папке "Contacts".
+        /// </summary>
         private static string _directoryPath = Path.Combine(Environment.GetFolderPath(
         Environment.SpecialFolder.MyDoc‌​uments), "Contacts");
 
