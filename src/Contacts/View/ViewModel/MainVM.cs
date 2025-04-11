@@ -75,6 +75,7 @@ namespace View.ViewModel
                     {
                         CancelEdit();
                     }
+                    _selectedContact = value;
                     OnPropertyChanged();
                 }
             }
@@ -163,7 +164,7 @@ namespace View.ViewModel
             EditCommand = new RelayCommand(execute => EditContact(), canExecute => IsEditEnabled);
             RemoveCommand = new RelayCommand(execute => RemoveContact(), canExecute => 
             SelectedContact != null);
-            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), canExecute => true);
+            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), canExecute => CanApply());
         }
 
         /// <summary>
@@ -235,6 +236,10 @@ namespace View.ViewModel
                 {
                     SelectedContact = Contacts[Contacts.Count - 1];
                 }
+                else if (selectedIndex < 0)
+                {
+                    SelectedContact = Contacts[0];
+                }
                 else
                 {
                     SelectedContact = Contacts[selectedIndex];
@@ -261,6 +266,15 @@ namespace View.ViewModel
             }
             IsEditing = false;
             IsAdding = false;
+        }
+
+        private bool CanApply()
+        {
+            // Валидация напрямую из IDataErrorInfo
+            return SelectedContact == null ||
+                (string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Name)])
+                && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.PhoneNumber)])
+                && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Email)]));
         }
 
         /// <summary>

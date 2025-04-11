@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.Controls"
+             xmlns:viewModel="clr-namespace:View.ViewModel"
              xmlns:validation="clr-namespace:View.ViewModel.Validation"
              xmlns:Converters="clr-namespace:View.Converters"
              mc:Ignorable="d" 
@@ -11,9 +12,14 @@
     
     <UserControl.Resources>
         <Converters:BoolToVisibilityConverter 
-     x:Key="BoolToVisibilityConverter"/>
+    x:Key="BoolToVisibilityConverter"/>
 
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="18"/>
+            <Setter Property="MinWidth" Value="225"/>
+            <Setter Property="Margin" Value="0,0,0,3"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="BorderBrush" Value="Red"/>
@@ -59,19 +65,14 @@
              Text="Name:"
              Margin="0,0,0,3"/>
 
-            <TextBox MinWidth="225"
-              Height="18"
-              Margin="0,0,0,3"
-              TextWrapping="Wrap"
-              Style="{StaticResource TextBoxStyle}"
-              IsReadOnly="{Binding IsReadOnly}">
-
+            <TextBox 
+              Style="{StaticResource TextBoxStyle}">
                 <TextBox.Text>
                     <Binding Path ="SelectedContact.Name" 
                                  UpdateSourceTrigger="PropertyChanged" 
                                  Mode="TwoWay">
                         <Binding.ValidationRules>
-                            <validation:NameValidationRule/>
+                            <DataErrorValidationRule/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -83,13 +84,16 @@
              Text="PhoneNumber:"
              Margin="0,0,0,3"/>
 
-            <TextBox MinWidth="225"
-              Height="18"
-              Margin="0,0,0,3"
-                  TextWrapping="Wrap"
-              Text="{Binding SelectedContact.PhoneNumber,
-         UpdateSourceTrigger=PropertyChanged}"
-              IsReadOnly="{Binding IsReadOnly}">
+            <TextBox Style="{StaticResource TextBoxStyle}">
+                <TextBox.Text>
+                    <Binding Path ="SelectedContact.PhoneNumber" 
+                   UpdateSourceTrigger="PropertyChanged" 
+                   Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
 
             <TextBlock Text="Email:"
@@ -98,13 +102,16 @@
             TextWrapping="Wrap">
             </TextBlock>
 
-            <TextBox MinWidth="225"
-              Height="18"
-              Margin="0,0,0,3"
-              TextWrapping="Wrap"
-              Text="{Binding SelectedContact.Email,
-         UpdateSourceTrigger=PropertyChanged}"
-              IsReadOnly="{Binding IsReadOnly}">
+            <TextBox Style="{StaticResource TextBoxStyle}">
+                <TextBox.Text>
+                    <Binding Path ="SelectedContact.Email" 
+                   UpdateSourceTrigger="PropertyChanged" 
+                   Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
 
             <Button Content="Apply"
