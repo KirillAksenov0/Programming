@@ -90,7 +90,9 @@
              Text="PhoneNumber:"
              Margin="0,0,0,3"/>
 
-            <TextBox Style="{StaticResource TextBoxStyle}">
+            <TextBox Style="{StaticResource TextBoxStyle}"
+                     PreviewTextInput="PhoneNumberReviewTextInput"
+                     DataObject.Pasting="PhoneNumberPasting">
                 <TextBox.Text>
                     <Binding Path ="SelectedContact.PhoneNumber" 
                    UpdateSourceTrigger="PropertyChanged" 
