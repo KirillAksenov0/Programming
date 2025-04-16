@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Linq;
 using View.ViewModel;
 using View.ViewModel.Services;
 
@@ -47,6 +48,7 @@ namespace View.ViewModel
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
 
+
         /// <summary>
         /// Возвращает условие для режима редактирования.
         /// </summary>
@@ -73,14 +75,11 @@ namespace View.ViewModel
                     {
                         CancelEdit();
                     }
-
                     _selectedContact = value;
                     OnPropertyChanged();
                 }
             }
         }
-
-        
 
         /// <summary>
         /// Возвращает и задает флаг режима редактирования.
@@ -165,7 +164,8 @@ namespace View.ViewModel
             EditCommand = new RelayCommand(execute => EditContact(), canExecute => IsEditEnabled);
             RemoveCommand = new RelayCommand(execute => RemoveContact(), canExecute => 
             SelectedContact != null);
-            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), canExecute => true);
+            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), 
+                canExecute => CanApply());
         }
 
         /// <summary>
@@ -237,6 +237,10 @@ namespace View.ViewModel
                 {
                     SelectedContact = Contacts[Contacts.Count - 1];
                 }
+                else if (selectedIndex < 0)
+                {
+                    SelectedContact = Contacts[0];
+                }
                 else
                 {
                     SelectedContact = Contacts[selectedIndex];
@@ -263,6 +267,18 @@ namespace View.ViewModel
             }
             IsEditing = false;
             IsAdding = false;
+        }
+
+        /// <summary>
+        /// Задает условия доступности кнопки Apply.
+        /// </summary>
+        /// <returns></returns>
+        private bool CanApply()
+        {
+            return SelectedContact == null ||
+                (string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Name)])
+                && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.PhoneNumber)])
+                && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Email)]));
         }
 
         /// <summary>
