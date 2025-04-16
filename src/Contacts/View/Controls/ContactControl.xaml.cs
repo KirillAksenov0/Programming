@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using View.ViewModel;
+using View.ViewModel.Services;
 
 namespace View.Controls
 {
@@ -16,6 +18,25 @@ namespace View.Controls
         /// </summary>
         private static readonly Regex _allowedPhoneNumber = new Regex(@"^[0-9\-\(\)\.\+]+$");
 
+        /// <summary>
+        /// Регистрация выбранного контакта.
+        /// </summary>
+        public static readonly DependencyProperty SelectedContactProperty =
+            DependencyProperty.Register(nameof(SelectedContact), typeof(Contact), 
+                typeof(ContactControl));
+
+        /// <summary>
+        /// Возвращает и задает выбранный контакт.
+        /// </summary>
+        public Contact SelectedContact
+        {
+            get => (Contact)GetValue(SelectedContactProperty);
+            set => SetValue(SelectedContactProperty, value);
+        }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="ContactControl">.
+        /// </summary>
         public ContactControl()
         {
             InitializeComponent();

@@ -136,7 +136,8 @@
             </Grid.RowDefinitions>
 
             <userControl:ContactControl x:Name="ContactControl"
-                                        Grid.Row="0"/>
+                                        Grid.Row="0"
+                                        SelectedContact ="{Binding SelectedContact}"/>
         </Grid>
     </Grid>
 </Window>
