@@ -1,7 +1,7 @@
 ﻿using System.Windows;
+using View.ViewModel;
 
-
-namespace Contacts
+namespace View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -11,7 +11,9 @@ namespace Contacts
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainVM();
+            var mainVM = new MainVM();
+            DataContext = mainVM;
+            Application.Current.Exit += (sender, e) => mainVM.SaveOnExit();
         }
     }
 }
