@@ -10,8 +10,10 @@
         Title="Contacts" 
         Height="500" 
         MinHeight="500" 
+
         Width="750"
         MinWidth="750"
+
         Icon="/books16.ico">
     
     <Window.Resources>
