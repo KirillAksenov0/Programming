@@ -158,7 +158,7 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            Contacts = ContactSerializer.LoadContact();
+            Contacts = ContactSerializer.LoadContact() ?? new ObservableCollection<Contact>();
 
             AddCommand = new RelayCommand(execute => AddContact(), canExecute => !IsEditing);
             EditCommand = new RelayCommand(execute => EditContact(), canExecute => IsEditEnabled);
