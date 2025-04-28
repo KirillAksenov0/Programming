@@ -33,11 +33,19 @@ namespace View.ViewModel
         /// <summary>
         /// Флаг режима редактирования.
         /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsReadOnly))]
+        [NotifyPropertyChangedFor(nameof(IsVisibility))]
+        [NotifyCanExecuteChangedFor(nameof(AddCommand))]
+        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
         private bool _isEditing = false;
 
         /// <summary>
         /// Флаг режима добавления.
         /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsReadOnly))]
+        [NotifyPropertyChangedFor(nameof(IsVisibility))]
         private bool _isAdding = false;
 
         /// <summary>
@@ -72,49 +80,13 @@ namespace View.ViewModel
                     {
                         CancelEdit();
                     }
-                    _selectedContact = value;
-                    OnPropertyChanged();
+                    SetProperty(ref _selectedContact, value);
 
                     // Уведомляем команды, что их CanExecute мог измениться
                     EditCommand.NotifyCanExecuteChanged();
                     RemoveCommand.NotifyCanExecuteChanged();
                     ApplyCommand.NotifyCanExecuteChanged();
                 }
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает флаг режима редактирования.
-        /// </summary>
-        public bool IsEditing
-        {
-            get => _isEditing;
-            set
-            {
-                _isEditing = value;
-                OnPropertyChanged(nameof(IsEditing));
-                OnPropertyChanged(nameof(IsReadOnly));
-                OnPropertyChanged(nameof(IsVisibility));
-
-                // Уведомляем команды
-                EditCommand.NotifyCanExecuteChanged();
-                AddCommand.NotifyCanExecuteChanged();
-
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает флаг режима добавления.
-        /// </summary>
-        public bool IsAdding
-        {
-            get => _isAdding;
-            set
-            {
-                _isAdding = value;
-                OnPropertyChanged(nameof(IsAdding));
-                OnPropertyChanged(nameof(IsReadOnly));
-                OnPropertyChanged(nameof(IsVisibility));
             }
         }
 
