@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.ObjectModel;
@@ -73,6 +74,11 @@ namespace View.ViewModel
                     }
                     _selectedContact = value;
                     OnPropertyChanged();
+
+                    // Уведомляем команды, что их CanExecute мог измениться
+                    EditCommand.NotifyCanExecuteChanged();
+                    RemoveCommand.NotifyCanExecuteChanged();
+                    ApplyCommand.NotifyCanExecuteChanged();
                 }
             }
         }
@@ -89,6 +95,11 @@ namespace View.ViewModel
                 OnPropertyChanged(nameof(IsEditing));
                 OnPropertyChanged(nameof(IsReadOnly));
                 OnPropertyChanged(nameof(IsVisibility));
+
+                // Уведомляем команды
+                EditCommand.NotifyCanExecuteChanged();
+                AddCommand.NotifyCanExecuteChanged();
+
             }
         }
 
@@ -156,12 +167,11 @@ namespace View.ViewModel
         {
             Contacts = ContactSerializer.LoadContact() ?? new ObservableCollection<Contact>();
 
-            AddCommand = new RelayCommand(execute => AddContact(), canExecute => !IsEditing);
-            EditCommand = new RelayCommand(execute => EditContact(), canExecute => IsEditEnabled);
-            RemoveCommand = new RelayCommand(execute => RemoveContact(), canExecute => 
+            AddCommand = new RelayCommand(AddContact, () => !IsEditing);
+            EditCommand = new RelayCommand(EditContact, () => IsEditEnabled);
+            RemoveCommand = new RelayCommand( RemoveContact, () => 
             SelectedContact != null);
-            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), 
-                canExecute => CanApply());
+            ApplyCommand = new RelayCommand(ApplyContactChanges, () => CanApply());
         }
 
         /// <summary>
@@ -171,6 +181,7 @@ namespace View.ViewModel
         {
             _originalContact = null;
             SelectedContact = new Contact();
+            SelectedContact.PropertyChanged += OnSelectedContactPropertyChanged;
             IsAdding = true;
             IsEditing = true;
         }
@@ -192,6 +203,7 @@ namespace View.ViewModel
                 Email = SelectedContact.Email
             };
 
+            SelectedContact.PropertyChanged += OnSelectedContactPropertyChanged;
             IsEditing = true;
         }
 
@@ -275,6 +287,12 @@ namespace View.ViewModel
                 (string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Name)])
                 && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.PhoneNumber)])
                 && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Email)]));
+        }
+
+        private void OnSelectedContactPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // При изменении любого свойства контакта обновляем состояние ApplyCommand
+            ApplyCommand.NotifyCanExecuteChanged();
         }
 
         /// <summary>
