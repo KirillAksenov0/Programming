@@ -2,27 +2,31 @@
 using System.Runtime.CompilerServices;
 using System;
 using System.Text.RegularExpressions;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace View.ViewModel.Services
 {
     /// <summary>
     /// Хранит данные контакта.
     /// </summary>
-    public class Contact : INotifyPropertyChanged, IDataErrorInfo
+    public partial class Contact : ObservableObject, IDataErrorInfo
     {
         /// <summary>
         /// Имя контакта.
         /// </summary>
+        [ObservableProperty]
         private string _name;
 
         /// <summary>
         /// Номер телефона.
         /// </summary>
+        [ObservableProperty]
         private string _phoneNumber;
 
         /// <summary>
         /// Электронная почта.
         /// </summary>
+        [ObservableProperty]
         private string _email;
 
         /// <summary>
@@ -35,65 +39,6 @@ namespace View.ViewModel.Services
         /// Шаблон допустимой электронной почты.
         /// </summary>
         private string _emailPattern = "^\\S+@\\S+\\.\\S+$";
-
-        /// <summary>
-        /// Извещает систему об изменении свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Возвращает и задает имя контакта.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged();
-                }   
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает номер телефона.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNumber;
-            }
-
-            set
-            {
-                _phoneNumber = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает электронную почту.
-        /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-
-            set
-            {
-                _email = value;
-                OnPropertyChanged();
-            }
-        }
 
         /// <summary>
         /// Возвращает валидацию свойств класса Contact.
@@ -152,15 +97,5 @@ namespace View.ViewModel.Services
         /// Возвращает значение при ошибке.
         /// </summary>
         public string Error => null;
-
-        /// <summary>
-        /// Отслеживает изменение значении свойства.
-        /// </summary>
-        /// <param name="prop"></param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-
     }
 }
