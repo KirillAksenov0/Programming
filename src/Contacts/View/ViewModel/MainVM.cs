@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,7 +17,7 @@ namespace View.ViewModel
     /// <summary>
     /// Содержит VM для главного окна.
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    public class MainVM : ObservableObject
     {
         /// <summary>
         /// Выбранный контакт человка.
@@ -37,11 +38,6 @@ namespace View.ViewModel
         /// Флаг режима добавления.
         /// </summary>
         private bool _isAdding = false;
-
-        /// <summary>
-        /// Извещает систему об изменении свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Коллекция контактов.
@@ -287,15 +283,6 @@ namespace View.ViewModel
         public void SaveOnExit()
         {
            ContactSerializer.SaveContact(Contacts);
-        }
-
-        /// <summary>
-        /// Отслеживает изменение значении свойства.
-        /// </summary>
-        /// <param name="propertyName"></param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
