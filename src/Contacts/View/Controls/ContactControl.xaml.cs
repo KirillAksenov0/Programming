@@ -3,8 +3,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using View.ViewModel;
-using View.ViewModel.Services;
+using Model;
+using View;
 
 namespace View.Controls
 {

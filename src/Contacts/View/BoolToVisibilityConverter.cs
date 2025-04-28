@@ -3,7 +3,7 @@ using System.Windows;
 using System;
 using System.Windows.Data;
 
-namespace View.Converters
+namespace View
 {
     /// <summary>
     /// Хранит конвертер для Visibility.
@@ -41,7 +41,7 @@ namespace View.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             //throw new NotImplementedException();
-            return (value is Visibility visibility) && visibility == Visibility.Visible;
+            return value is Visibility visibility && visibility == Visibility.Visible;
         }
     }
 }

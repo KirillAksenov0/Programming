@@ -3,8 +3,9 @@ using System.Runtime.CompilerServices;
 using System;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Model.Services;
 
-namespace View.ViewModel.Services
+namespace Model
 {
     /// <summary>
     /// Хранит данные контакта.

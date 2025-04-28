@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 
-namespace View.ViewModel.Services
+namespace Model.Services
 {
     /// <summary>
     /// Хранит методы для сериализации и десериализации объекта.
@@ -76,7 +76,7 @@ namespace View.ViewModel.Services
             }
             catch
             {
-                MessageBox.Show("Возникла ошибка!");
+                throw new Exception("Возникла ошибка");
             }
         }
 
