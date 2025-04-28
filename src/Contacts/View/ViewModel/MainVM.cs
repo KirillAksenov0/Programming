@@ -18,7 +18,7 @@ namespace View.ViewModel
     /// <summary>
     /// Содержит VM для главного окна.
     /// </summary>
-    public class MainVM : ObservableObject
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Выбранный контакт человка.
@@ -140,25 +140,21 @@ namespace View.ViewModel
             }
         }
 
-        /// <summary>
-        /// Возвращает команду добавления контакта.
-        /// </summary>
-        public RelayCommand AddCommand { get; }
+        public bool CanAdd
+        {
+            get
+            {
+                return !IsEditing;
+            }
+        }
 
-        /// <summary>
-        /// Возвращает команду редактирования контакта.
-        /// </summary>
-        public RelayCommand EditCommand { get; }
-
-        /// <summary>
-        /// Возвращает команду удаления контакта.
-        /// </summary>
-        public RelayCommand RemoveCommand { get; }
-
-        /// <summary>
-        /// Возвращает команду принятия изменений контакта.
-        /// </summary>
-        public RelayCommand ApplyCommand { get; }
+        public bool CanRemove
+        {
+            get
+            {
+                return SelectedContact != null;
+            }
+        }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="MainVM">. 
@@ -166,18 +162,13 @@ namespace View.ViewModel
         public MainVM()
         {
             Contacts = ContactSerializer.LoadContact() ?? new ObservableCollection<Contact>();
-
-            AddCommand = new RelayCommand(AddContact, () => !IsEditing);
-            EditCommand = new RelayCommand(EditContact, () => IsEditEnabled);
-            RemoveCommand = new RelayCommand( RemoveContact, () => 
-            SelectedContact != null);
-            ApplyCommand = new RelayCommand(ApplyContactChanges, () => CanApply());
         }
 
         /// <summary>
         /// Добавляет контакт в список.
         /// </summary>
-        private void AddContact()
+        [RelayCommand(CanExecute = nameof(CanAdd))]
+        private void Add()
         {
             _originalContact = null;
             SelectedContact = new Contact();
@@ -189,7 +180,8 @@ namespace View.ViewModel
         /// <summary>
         /// Редактирует выбранный контакт.
         /// </summary>
-        private void EditContact()
+        [RelayCommand(CanExecute = nameof(IsEditEnabled))]
+        private void Edit()
         {
             if (SelectedContact == null)
             {
@@ -210,7 +202,8 @@ namespace View.ViewModel
         /// <summary>
         /// Принимает изменения выбранного контакта.
         /// </summary>
-        private void ApplyContactChanges()
+        [RelayCommand(CanExecute = nameof(CanApply))]
+        private void Apply()
         {
             if(IsAdding)
             {
@@ -228,7 +221,8 @@ namespace View.ViewModel
         /// <summary>
         /// Удаляет выбранный контакт.
         /// </summary>
-        private void RemoveContact()
+        [RelayCommand(CanExecute = nameof(CanRemove))]
+        private void Remove()
         {
             if (SelectedContact == null)
             {
