@@ -1,14 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Input;
-using System.Xml.Linq;
 using Model;
 using Model.Services;
 
@@ -51,7 +45,6 @@ namespace ViewModel
         /// Коллекция контактов.
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
-
 
         /// <summary>
         /// Возвращает условие для режима редактирования.
@@ -111,6 +104,9 @@ namespace ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает флаг, показывающий можно ли делать кнопку Add доступной.
+        /// </summary>
         public bool CanAdd
         {
             get
@@ -119,6 +115,9 @@ namespace ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает флаг, показывающий можно ли делать кнопку Remove доступной.
+        /// </summary>
         public bool CanRemove
         {
             get

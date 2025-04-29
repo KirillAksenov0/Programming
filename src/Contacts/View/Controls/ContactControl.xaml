@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:View.Controls"
              xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
              xmlns:Converters="clr-namespace:View.Converters"
-             xmlns:model="clr-namespace:Model;assembly=Model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     

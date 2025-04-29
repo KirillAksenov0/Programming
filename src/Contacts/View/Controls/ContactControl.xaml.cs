@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Model;
-using View;
 
 namespace View.Controls
 {
