@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <AssemblyName>View</AssemblyName>
+    <RootNamespace>Contacts.View</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

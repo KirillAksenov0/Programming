@@ -3,7 +3,7 @@ using System.Windows;
 using System;
 using System.Windows.Data;
 
-namespace View
+namespace View.Converters
 {
     /// <summary>
     /// Хранит конвертер для Visibility.
