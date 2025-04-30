@@ -1,22 +1,17 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Xml.Linq;
-using View.ViewModel;
-using View.ViewModel.Services;
+using Model;
+using Model.Services;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// Содержит VM для главного окна.
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Выбранный контакт человка.
@@ -31,23 +26,25 @@ namespace View.ViewModel
         /// <summary>
         /// Флаг режима редактирования.
         /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsReadOnly))]
+        [NotifyPropertyChangedFor(nameof(IsVisibility))]
+        [NotifyCanExecuteChangedFor(nameof(AddCommand))]
+        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
         private bool _isEditing = false;
 
         /// <summary>
         /// Флаг режима добавления.
         /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsReadOnly))]
+        [NotifyPropertyChangedFor(nameof(IsVisibility))]
         private bool _isAdding = false;
-
-        /// <summary>
-        /// Извещает систему об изменении свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Коллекция контактов.
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
-
 
         /// <summary>
         /// Возвращает условие для режима редактирования.
@@ -75,39 +72,13 @@ namespace View.ViewModel
                     {
                         CancelEdit();
                     }
-                    _selectedContact = value;
-                    OnPropertyChanged();
+                    SetProperty(ref _selectedContact, value);
+
+                    // Уведомляем команды, что их CanExecute мог измениться
+                    EditCommand.NotifyCanExecuteChanged();
+                    RemoveCommand.NotifyCanExecuteChanged();
+                    ApplyCommand.NotifyCanExecuteChanged();
                 }
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает флаг режима редактирования.
-        /// </summary>
-        public bool IsEditing
-        {
-            get => _isEditing;
-            set
-            {
-                _isEditing = value;
-                OnPropertyChanged(nameof(IsEditing));
-                OnPropertyChanged(nameof(IsReadOnly));
-                OnPropertyChanged(nameof(IsVisibility));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает флаг режима добавления.
-        /// </summary>
-        public bool IsAdding
-        {
-            get => _isAdding;
-            set
-            {
-                _isAdding = value;
-                OnPropertyChanged(nameof(IsAdding));
-                OnPropertyChanged(nameof(IsReadOnly));
-                OnPropertyChanged(nameof(IsVisibility));
             }
         }
 
@@ -134,24 +105,26 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Возвращает команду добавления контакта.
+        /// Возвращает флаг, показывающий можно ли делать кнопку Add доступной.
         /// </summary>
-        public RelayCommand AddCommand { get; }
+        public bool CanAdd
+        {
+            get
+            {
+                return !IsEditing;
+            }
+        }
 
         /// <summary>
-        /// Возвращает команду редактирования контакта.
+        /// Возвращает флаг, показывающий можно ли делать кнопку Remove доступной.
         /// </summary>
-        public RelayCommand EditCommand { get; }
-
-        /// <summary>
-        /// Возвращает команду удаления контакта.
-        /// </summary>
-        public RelayCommand RemoveCommand { get; }
-
-        /// <summary>
-        /// Возвращает команду принятия изменений контакта.
-        /// </summary>
-        public RelayCommand ApplyCommand { get; }
+        public bool CanRemove
+        {
+            get
+            {
+                return SelectedContact != null;
+            }
+        }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="MainVM">. 
@@ -159,22 +132,17 @@ namespace View.ViewModel
         public MainVM()
         {
             Contacts = ContactSerializer.LoadContact() ?? new ObservableCollection<Contact>();
-
-            AddCommand = new RelayCommand(execute => AddContact(), canExecute => !IsEditing);
-            EditCommand = new RelayCommand(execute => EditContact(), canExecute => IsEditEnabled);
-            RemoveCommand = new RelayCommand(execute => RemoveContact(), canExecute => 
-            SelectedContact != null);
-            ApplyCommand = new RelayCommand(execute => ApplyContactChanges(), 
-                canExecute => CanApply());
         }
 
         /// <summary>
         /// Добавляет контакт в список.
         /// </summary>
-        private void AddContact()
+        [RelayCommand(CanExecute = nameof(CanAdd))]
+        private void Add()
         {
             _originalContact = null;
             SelectedContact = new Contact();
+            SelectedContact.PropertyChanged += OnSelectedContactPropertyChanged;
             IsAdding = true;
             IsEditing = true;
         }
@@ -182,7 +150,8 @@ namespace View.ViewModel
         /// <summary>
         /// Редактирует выбранный контакт.
         /// </summary>
-        private void EditContact()
+        [RelayCommand(CanExecute = nameof(IsEditEnabled))]
+        private void Edit()
         {
             if (SelectedContact == null)
             {
@@ -196,13 +165,15 @@ namespace View.ViewModel
                 Email = SelectedContact.Email
             };
 
+            SelectedContact.PropertyChanged += OnSelectedContactPropertyChanged;
             IsEditing = true;
         }
 
         /// <summary>
         /// Принимает изменения выбранного контакта.
         /// </summary>
-        private void ApplyContactChanges()
+        [RelayCommand(CanExecute = nameof(CanApply))]
+        private void Apply()
         {
             if(IsAdding)
             {
@@ -220,7 +191,8 @@ namespace View.ViewModel
         /// <summary>
         /// Удаляет выбранный контакт.
         /// </summary>
-        private void RemoveContact()
+        [RelayCommand(CanExecute = nameof(CanRemove))]
+        private void Remove()
         {
             if (SelectedContact == null)
             {
@@ -281,21 +253,18 @@ namespace View.ViewModel
                 && string.IsNullOrWhiteSpace(SelectedContact[nameof(SelectedContact.Email)]));
         }
 
+        private void OnSelectedContactPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // При изменении любого свойства контакта обновляем состояние ApplyCommand
+            ApplyCommand.NotifyCanExecuteChanged();
+        }
+
         /// <summary>
         /// Сохраняет данные при закрытии приложения.
         /// </summary>
         public void SaveOnExit()
         {
            ContactSerializer.SaveContact(Contacts);
-        }
-
-        /// <summary>
-        /// Отслеживает изменение значении свойства.
-        /// </summary>
-        /// <param name="propertyName"></param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

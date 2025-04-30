@@ -14,10 +14,10 @@
         Width="750"
         MinWidth="750"
 
-        Icon="/books16.ico">
-    
+        Icon="/Resources/books16.ico">
+
     <Window.Resources>
-        <Converters:BoolToVisibilityConverter 
+        <Converters:BoolToVisibilityConverter
             x:Key="BoolToVisibilityConverter"/>
 
         <DataTemplate x:Key="contactTemplate">

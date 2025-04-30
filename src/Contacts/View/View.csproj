@@ -2,24 +2,32 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <AssemblyName>View</AssemblyName>
+    <RootNamespace>Contacts.View</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="books16.ico" />
-    <None Remove="ContactsApp_96x96.ico" />
+    <None Remove="Resources\books16.ico" />
     <None Remove="Resources\photo_placeholder_100x100.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="books16.ico" />
-    <Resource Include="ContactsApp_96x96.ico" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\books16.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\photo_placeholder_100x100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
